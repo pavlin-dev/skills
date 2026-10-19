@@ -1,10 +1,21 @@
-import sys, subprocess, numpy as np
-if len(sys.argv) < 2: sys.exit("usage: beats.py <audio> [audio ...]  # prints BPM + phase (110-150 BPM) for the kick band and the full band")
+# Tempo and beat phase of a track, for the kick band and the full band (they should agree on a usable track).
+# usage: beats.py <audio> [audio ...] [--min 110] [--max 150]
+#   phase = time of the first beat in the file (s); widen --min/--max for slow or fast tracks (else half/double tempo)
+import sys, subprocess
+args=[a for a in sys.argv[1:]]
+lo,hi=110.0,150.0
+for k in ('--min','--max'):
+    if k in args:
+        i=args.index(k); v=float(args[i+1]); del args[i:i+2]
+        if k=='--min': lo=v
+        else: hi=v
+if not args or args[0] in ('-h','--help'): sys.exit("usage: beats.py <audio> [audio ...] [--min 110] [--max 150]  # BPM + phase for the kick band and the full band")
+import numpy as np
 SR=22050; H=256; W=1024
 def load(p):
     raw=subprocess.run(['ffmpeg','-v','error','-i',p,'-f','f32le','-ac','1','-ar',str(SR),'-'],capture_output=True).stdout
     return np.frombuffer(raw,np.float32)
-def tempo(f,fps,lo=110,hi=150):
+def tempo(f,fps):
     f=f-f.mean(); best=(0,0,0); T=len(f)/fps
     for bpm in np.arange(lo,hi,0.25):
         per=60/bpm
@@ -13,7 +24,7 @@ def tempo(f,fps,lo=110,hi=150):
             s=f[idx].mean()
             if s>best[0]: best=(s,bpm,ph)
     return best
-for p in sys.argv[1:]:
+for p in args:
     x=load(p); fps=SR/H
     win=np.hanning(W); n=(len(x)-W)//H
     S=np.log1p(np.abs(np.array([np.fft.rfft(x[i*H:i*H+W]*win) for i in range(n)]))*20)

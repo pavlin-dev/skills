@@ -43,6 +43,8 @@ To keep part of a word fixed while the rest changes (or to fly a word into a sen
 ```tsx
 const ctx = document.createElement('canvas').getContext('2d')!;
 ctx.font = `800 ${SZ}px Inter`;                    // same weight/size/family as the rendered text, no letter-spacing
+// a font that is not installed system-wide must be loaded first, or widths come from the fallback font:
+// @font-face via staticFile + delayRender(); await document.fonts.load(`800 ${SZ}px Inter`); then measure; continueRender()
 const mw = (t: string) => ctx.measureText(t).width;
 // container at the anchor (left edge of the fixed part), width 0; scale around it
 <div style={{position: 'absolute', left: 0, top: 0, transformOrigin: '0 0', transform: `translate3d(${x0}px, ${y}px, ${z}px) scale(${s})`}}>
@@ -74,7 +76,7 @@ const R = (SZ * 0.62) / Math.tan((TH / 2) * Math.PI / 180);   // radius so faces
 const cur = FLIPS.reduce((n, t) => n + tw(f, t, 12, inOut), 0);   // 0..N-1, one step per beat
 const a = -(i - cur) * TH;                              // face i angle; negative = below the front
 transform: `translate3d(${x0}px, ${y}px, 0) translateZ(${-R}px) rotateX(${a}deg) translateZ(${R}px)`
-opacity: clamp01(1 - (Math.abs(a) - 12) / 30)          // neighbours only hinted, otherwise they read as stray words
+opacity: clamp01(1 - (Math.abs(a) - 6) / 18)           // neighbours practically hidden; at ~13 % they read as stray words at frame 0
 // faces: backfaceVisibility 'hidden'; container transformStyle 'preserve-3d'
 ```
 
@@ -103,6 +105,8 @@ const r = tw(f, T_B + 2, 20, Easing.bezier(0.5, 0, 0.2, 1)) * 2600;
 <div style={{position: 'absolute', left: cx - r, top: cy - r, width: 2 * r, height: 2 * r, borderRadius: '50%', background: CREAM}} />
 // fade the icon out once the circle covers the screen; the old scene falls back: translateZ(-1200 * b), opacity 1 - b
 ```
+
+The circle must open from the icon's *actual* position (the same coordinates the icon is drawn at, in the same camera layer) and only after the bloom has visibly started (2–4 frames later); a circle opening elsewhere or before the bloom reads as an unrelated wipe.
 
 The same circle works from a button ("the search button grows into the CTA background"): start as the button's rounded square (`borderRadius` from 24 to r within the first 25 %) and interpolate the colour from the button's to the next background.
 
@@ -143,6 +147,7 @@ style = outP > 0 ? {transformOrigin: 'bottom', transform: `perspective(1100px) r
 
 ## Pitfalls
 
+- An element that morphs from one part into the next (words gliding into a search bar, a card becoming the URL bar) lives in the later part's layer but must be mounted and visible from frame 0 when it is already on screen then. Mounting a layer only from the morph's start time made those words missing at the beginning. Drive visibility with the element's own state, not by mounting.
 - An element left outside the camera layer (the search bar in our case) stays flat while everything else tilts — the user noticed immediately.
 - `opacity < 1`, `filter`, `overflow: hidden` on a preserve-3d container flatten it; fade leaf elements. Cards with `overflow: hidden` are fine because they are leaves.
 - Elements at the same z inside one preserve-3d context can z-fight or paint in the wrong order; separate layers solve it.

@@ -10,9 +10,11 @@ CUES.json   list of effects, each placed by beat (relative to --b0) or by time i
                {"time": 7.1, "sfx": "thud"},
                {"beat": 30.5, "sfx": "ding", "freq": 1320}]
             sfx: tick (reel click, word flip), thud (something lands), whoosh (morph, fly), ding (CTA, sparkle)
+            gain: the effect's peak (each effect is normalized first), 0.3-0.5 sits well under typical music
 --music-gain  scale the music before adding effects; loud masters clip when summed (0.4-0.6 is usual)
 
-Needs numpy and ffmpeg. Prints the peak and loudness of the result.
+The output is loudness-normalized; when muxing with the engaging-video skill's render.sh, run it with
+LOUDNORM=0 so the level is not normalized twice. Needs numpy and ffmpeg. Prints the peak and loudness.
 """
 import argparse, json, os, subprocess, sys, tempfile, wave
 
@@ -40,6 +42,7 @@ mus = np.pad(mus, (0, max(0, N - len(mus))))[:N]
 idx = np.arange(N)
 mus *= np.minimum(1, np.minimum(idx / (0.05 * SR), (N - idx) / (0.8 * SR)))   # tiny fade in, 0.8 s fade out
 out = mus * a.music_gain
+fx = np.zeros(N, np.float32)
 rng = np.random.default_rng(1)
 
 
@@ -69,10 +72,12 @@ SFX = {'tick': tick, 'thud': thud, 'whoosh': whoosh, 'ding': ding}
 for c in json.load(open(a.cues)):
     t = c['time'] if 'time' in c else a.b0 + c['beat'] * 60 / a.bpm
     kw = {k: c[k] for k in ('freq', 'dur') if k in c}
-    x = SFX[c['sfx']](**kw) * c.get('gain', 0.4)
+    x = SFX[c['sfx']](**kw)
+    x = x / (np.abs(x).max() + 1e-9) * c.get('gain', 0.4)   # every effect peaks exactly at its gain
     i = int(t * SR)
     if 0 <= i < N:
-        x = x[:N - i]; out[i:i + len(x)] += x
+        x = x[:N - i]; fx[i:i + len(x)] += x
+out = out + fx
 
 tmp = os.path.join(tempfile.mkdtemp(), 'mix.wav')
 w = wave.open(tmp, 'wb'); w.setnchannels(1); w.setsampwidth(2); w.setframerate(SR)
@@ -80,5 +85,8 @@ w.writeframes((np.clip(out, -1, 1) * 32767).astype(np.int16).tobytes()); w.close
 subprocess.run(['ffmpeg', '-loglevel', 'error', '-y', '-i', tmp, '-af', f'loudnorm=I={a.lufs}:TP=-1.5,aresample={SR}', a.out], check=True)
 stats = subprocess.run(['ffmpeg', '-i', a.out, '-af', 'volumedetect', '-f', 'null', '-'], capture_output=True, text=True).stderr
 print(a.out, ' '.join(l.split('] ')[-1] for l in stats.splitlines() if 'mean_volume' in l or 'max_volume' in l))
-if np.abs(out).max() >= 1:
-    print('warning: the raw mix clipped before loudnorm; lower --music-gain', file=sys.stderr)
+pm, pf, po = np.abs(mus * a.music_gain).max(), np.abs(fx).max(), np.abs(out).max()
+if po >= 1:
+    who = 'the music alone' if pm >= 1 else 'the effects alone' if pf >= 1 else 'music and effects together'
+    fix = '--music-gain' if pm >= pf else 'the effect gains in the cue list'
+    print(f'warning: the raw mix clipped before loudnorm (peak {po:.2f}: {who}; music {pm:.2f}, effects {pf:.2f}); lower {fix}', file=sys.stderr)

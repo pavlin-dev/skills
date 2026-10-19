@@ -3,7 +3,6 @@
 # usage: python3 gen_cpu.py [--out DIR] [--bpm 120] [--duration 22] [--caption "..."] [preset ...]
 # Presets: see CAP below. --caption adds a custom one named "custom".
 import argparse, os, shutil, time
-from gradio_client import Client
 CAP = {
  'drive': 'energetic sporty electro pop, punchy four-on-the-floor kick, snappy claps, bouncy plucked synth hook, rubbery bass, bright, confident, fun, sports promo, instrumental',
  'funk': 'upbeat funky nu-disco, slap bass groove, catchy whistle synth hook, crisp hi-hats, claps, summer sports vibe, feel-good, instrumental',
@@ -21,6 +20,10 @@ if a.caption:
     a.presets.append('custom')
 if not a.presets:
     ap.error('give at least one preset (%s) or --caption' % ', '.join(CAP))
+try:
+    from gradio_client import Client
+except ImportError:
+    ap.exit(1, 'needs gradio_client: pip install gradio_client\n')
 os.makedirs(a.out, exist_ok=True)
 c = Client('WeReCooking/ACE-Step-CPU', verbose=False)
 for k in a.presets:

@@ -51,4 +51,7 @@ for r in res[:8]:
     print('start %6.1f s  kick-contrast %.2f  kick-phase %.3f  full-phase %.3f  rms %.3f' % (r[1], r[0], r[2], r[3], r[4]))
 t0 = res[0][1]
 _, b, p = best(kick, t0, np.arange(bpm0 - 1.5, bpm0 + 1.5, 0.05))
-print('refined bpm %.2f, first beat at %.3f s' % (b, t0 + p))
+per = 60 / b
+print('refined bpm %.2f, first beat of that window at %.3f s' % (b, t0 + p))
+print('cut the excerpt on a beat, e.g. ffmpeg -ss %.3f ..., then music.json = {"bpm": %.2f, "b0": 0}' % (t0 + p, b))
+print('(cutting at any other start S: b0 = (%.3f - S) mod %.4f)' % (t0 + p, per))
