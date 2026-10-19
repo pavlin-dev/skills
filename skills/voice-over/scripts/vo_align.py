@@ -2,7 +2,7 @@
 """Split one voice-over take into script lines and get word timings, without listening to it.
 
 Usage:
-  vo_align.py <take.wav> <script.txt> <out_dir> [--model medium] [--lang cs]
+  vo_align.py <take.wav> <script.txt> <out_dir> [--model medium] [--lang cs] [--squeeze 0.35]
 
 script.txt has one line per VO line, "id|text" (e.g. "l1|Zítra má Bára narozeniny.").
 Audio tags like <long pause> or <laugh> are ignored for matching.
@@ -13,6 +13,11 @@ aligned to the script word by word (fuzzy, so small mis-hearings don't matter), 
   <out_dir>/align.json  per line: start/end in the take, duration, and each script
                         word with its time relative to the line start
   stdout                the transcript next to the script, for checking the take
+
+--squeeze S shortens every silence in the take longer than S seconds to S before anything else
+(written to <out_dir>/take_squeezed.wav). Use it for TTS takes that leave ~0.8 s after every
+sentence; it also shortens performed dramatic pauses, so add those back with vo_timeline.py --extra.
+Words heard as digits ("1983" for "tisíc devět set osmdesát tři") are not flagged.
 
 Needs: ffmpeg, `pip install faster-whisper numpy`. The model is downloaded on first
 use (set HF_HOME or --download-root to choose where).
@@ -31,7 +36,15 @@ def main():
     ap.add_argument("--lang", default="cs")
     ap.add_argument("--download-root", default=None)
     ap.add_argument("--pad", type=float, default=0.12, help="seconds kept before the first and after the last word")
+    ap.add_argument("--squeeze", type=float, default=0, help="shorten silences longer than this (s) to this; 0 = off")
     a = ap.parse_args()
+    if a.squeeze > 0:
+        os.makedirs(a.out_dir, exist_ok=True)
+        sq = os.path.join(a.out_dir, "take_squeezed.wav")
+        subprocess.run(["ffmpeg", "-nostdin", "-v", "error", "-y", "-i", a.take, "-af",
+                        f"silenceremove=stop_periods=-1:stop_duration={a.squeeze}:stop_threshold=-45dB:stop_silence={a.squeeze}",
+                        "-ar", "48000", "-ac", "1", sq], check=True)
+        a.take = sq
 
     import numpy as np
     from faster_whisper import WhisperModel
@@ -89,6 +102,8 @@ def main():
         diffs = []
         for op, i1, i2, k1, k2 in difflib.SequenceMatcher(None, [norm(w) for w in want], [norm(w) for w in said], autojunk=False).get_opcodes():
             x, y = " ".join(want[i1:i2]), " ".join(said[k1:k2])
+            if re.fullmatch(r"[\d\s.,:/%-]+", y or "-x"):  # numbers written as digits by whisper
+                continue
             if op != "equal" and difflib.SequenceMatcher(None, norm(x), norm(y)).ratio() < 0.75:
                 diffs.append(f"'{x}' -> '{y}'")
         print(f"{lid:>5} {st:7.2f}-{en:6.2f}  {text.strip()}")

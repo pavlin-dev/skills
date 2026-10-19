@@ -73,13 +73,23 @@ mix = sum(stems.values())
 mix = mix * 10 ** ((a.lufs - lufs(mix)) / 20)
 fd, tmp = tempfile.mkstemp(suffix='.f32'); os.close(fd)
 mix.astype(np.float32).tofile(tmp)
-limit = 10 ** (a.tp / 20)
-af = f'alimiter=limit={limit:.3f}:level=false:attack=5:release=50,aresample=48000'
 src = ['-f', 'f32le', '-ar', str(SR), '-ac', '1', '-i', tmp]
-if a.video:
-    cmd = ['ffmpeg', '-nostdin', '-y', '-v', 'error', '-i', a.video, *src, '-filter_complex', f'[1]{af}[a]',
-           '-map', '0:v', '-map', '[a]', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '192k', '-shortest', a.out]
-else:
-    cmd = ['ffmpeg', '-nostdin', '-y', '-v', 'error', *src, '-af', af, '-c:a', 'pcm_s16le', a.out]
-subprocess.run(cmd, check=True); os.remove(tmp)
+def true_peak(path):  # dBTP of the encoded file (AAC encoding can push peaks over the limiter's ceiling)
+    err = subprocess.run(['ffmpeg', '-nostdin', '-nostats', '-i', path, '-af', 'ebur128=peak=true', '-f', 'null', '-'],
+                         capture_output=True).stderr.decode()
+    return float(re.findall(r'Peak:\s+(-?[\d.]+|-inf) dBFS', err)[-1].replace('-inf', '-99'))
+ceiling = a.tp - 0.5
+for attempt in range(4):  # oversampled limiter, then measure the real file and tighten if it still overshoots
+    af = f'aresample=192000,alimiter=limit={10 ** (ceiling / 20):.4f}:level=false:attack=1:release=50,aresample=48000'
+    if a.video:
+        cmd = ['ffmpeg', '-nostdin', '-y', '-v', 'error', '-i', a.video, *src, '-filter_complex', f'[1]{af}[a]',
+               '-map', '0:v', '-map', '[a]', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '192k', '-shortest', a.out]
+    else:
+        cmd = ['ffmpeg', '-nostdin', '-y', '-v', 'error', *src, '-af', af, '-c:a', 'pcm_s16le', a.out]
+    subprocess.run(cmd, check=True)
+    tp = true_peak(a.out)
+    if tp <= a.tp: break
+    ceiling -= tp - a.tp + 0.2
+os.remove(tmp)
+print(f'true peak {tp:.1f} dBTP (target {a.tp})')
 print(f'master {lufs(load(a.out)):.1f} LUFS -> {a.out}')

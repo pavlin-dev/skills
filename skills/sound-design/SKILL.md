@@ -66,7 +66,7 @@ Measure tempo and phase first (`engaging-video`'s `scripts/beats.py`), check the
    `python3 scripts/music_edit.py track.mp3 edit.json music.wav`.
 4. Mix and master:
    `python3 scripts/mix.py --vo vo.wav --music music.wav --fx sfx_fx.wav --amb sfx_amb.wav --video video.mp4 --out final.mp4`
-   It measures every stem, sets it against the voice (defaults: music -10 dB before ducking, effects -15, ambience -24; ducking 8 dB), masters to -14 LUFS with a true-peak limiter and prints the result. If the user says a layer is too loud or too quiet, change that one number (`--amb-db -28`), never the whole mix.
+   It measures every stem, sets it against the voice (defaults: music -10 dB before ducking, effects -15, ambience -24; ducking 8 dB), masters to -14 LUFS with an oversampled limiter, measures the true peak of the encoded file and tightens the limiter until it is under `--tp` (AAC encoding can push peaks over the ceiling), and prints the result. If the user says a layer is too loud or too quiet, change that one number (`--amb-db -28`), never the whole mix.
 5. Check the printed levels against the table in section 1, then ask the user to listen on a phone.
 
 Needs: ffmpeg, `pip install numpy`.

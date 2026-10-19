@@ -48,36 +48,46 @@ If the environment has a Gemini API key (e.g. in `GEMINI_API_KEY`), call the spe
 
 The free tier has usage limits and Google may use the inputs to improve its models: don't put anything confidential into the script. Before commercial publishing, the user should check Google's terms for generated audio. Tell them which model and voice made the take.
 
+### No real take yet: stop, don't ship a placeholder
+
+If there is no API key and the user can't be asked right now (you run unattended, or as a subagent), do **not** deliver a finished video with a fallback voice. In a test run an agent did exactly that, and the user's verdict was that the voice (and the music it guessed) were "nic moc". Instead:
+
+1. Finish everything that doesn't depend on the take: the script, the visuals, the sound effects and the music edit, timed to a placeholder take.
+2. Hand over the exact text to paste and the style instructions (section 2), and say clearly that the video waits for the real take.
+3. When the take arrives, re-run sections 3-4; the scenes and the mix follow the new word times.
+
+A placeholder render is fine as a draft for timing, labelled as such.
+
 ### Other engines (only as placeholders, and say so)
 
 - **Piper** (local, `pip install piper-tts`, Czech voice `cs_CZ-jirka-medium` from the `rhasspy/piper-voices` repository on Hugging Face): works offline, but sounds robotic. The user rejected it.
 - **gTTS** (Google Translate voice, `pip install gTTS`): free, no key, but one flat voice per language (female for Czech), no emotion.
-- **edge-tts** (Microsoft voices): needs a WebSocket connection, which some proxies and sandboxes block ("No audio was received").
+- **edge-tts** (Microsoft voices, `pip install edge-tts`, Czech `cs-CZ-AntoninNeural` / `cs-CZ-VlastaNeural`): decent, but an unofficial use of Microsoft's read-aloud service. It needs a WebSocket connection. Behind a TLS-inspecting proxy it fails with certificate errors until its SSL context trusts the proxy's CA bundle (set `edge_tts.communicate._SSL_CTX = ssl.create_default_context(cafile=<bundle>)`); some proxies block WebSockets entirely, and it also fails intermittently with "No audio was received", so retry a few times. It leaves ~0.85 s of silence after every sentence: use `vo_align.py --squeeze 0.35`.
 - Paid alternatives the user may prefer: ElevenLabs, or Google Cloud Text-to-Speech (Chirp 3 HD voices, needs a Cloud project with billing).
 
 ## 3. Check the take you cannot hear
 
 You can't listen, so check what you can and ask the user for the rest:
 
-- **Transcribe it** and compare with the script. `scripts/vo_align.py` does this (see below) and prints `LISTEN:` for each place where the voice said something other than the script, e.g. an extra word ("v obchody zavřený") or a changed one ("A já" heard as "A je na"). Whisper itself mishears some words, so these are places to listen, not proof of an error. Small spelling noise (ý/í) is ignored.
+- **Transcribe it** and compare with the script. `scripts/vo_align.py` does this (see below) and prints `LISTEN:` for each place where the voice said something other than the script, e.g. an extra word ("v obchody zavřený") or a changed one ("A já" heard as "A je na"). Whisper itself mishears some words, so these are places to listen, not proof of an error. Small spelling noise (ý/í) and numbers that whisper writes as digits ("1983") are ignored. Use the `medium` model for the check; `small` invents many false `LISTEN` lines.
 - **Length:** compare the take's duration with the planned video length.
 - **Ask the user to listen** for what a transcript can't show: wrong stress, English accent, the brand name, whether the emotion lands, clicks or artefacts. Name the exact lines `LISTEN:` flagged.
 
 ## 4. Split into lines and time everything to the words
 
 ```
-python3 scripts/vo_align.py take.wav script.txt vo/ [--model medium] [--lang cs]
+python3 scripts/vo_align.py take.wav script.txt vo/ [--model medium] [--lang cs] [--squeeze 0.35]
 ```
 
-`script.txt` holds one line per row as `id|text` (audio tags allowed). The script transcribes the take with faster-whisper (`pip install faster-whisper numpy`, ffmpeg needed; the model downloads on first use), aligns it to the script word by word, and writes `vo/<id>.wav` per line plus `vo/align.json` (start, end, duration, and each word's time relative to its line).
+`script.txt` holds one line per row as `id|text` (audio tags allowed). The script transcribes the take with faster-whisper (`pip install faster-whisper numpy`, ffmpeg needed; the model downloads on first use), aligns it to the script word by word, and writes `vo/<id>.wav` per line plus `vo/align.json` (start, end, duration, and each word's time relative to its line). `--squeeze` first shortens every silence longer than the given seconds (for TTS takes with long pauses after each sentence; it shortens performed dramatic pauses too, so add those back with `--extra` below).
 
 Then lay the lines out on the video's timeline:
 
 ```
-python3 scripts/vo_timeline.py vo/ [--extra <id>=0.9] [--lead 0.3] [--tail 1.0]
+python3 scripts/vo_timeline.py vo/ [--extra <id>=0.9] [--max-gap 0.8] [--show "tisíc devět set osmdesát tři,=1983,"]
 ```
 
-It keeps the gaps the voice performed (at least 0.25 s), adds `--extra` silence before chosen lines, fills in words whisper missed, and writes `timeline.json` (every line and word with absolute `t0`/`t1`) and `vo.wav`. Build everything from those numbers, not from guesses:
+It keeps the gaps the voice performed (at least `--min-gap`, default 0.1 s, since each line already has ~0.12 s of padding on both sides; at most `--max-gap` if set), adds `--extra` silence before chosen lines, fills in words whisper missed, and writes `timeline.json` (every line and word with absolute `t0`/`t1`) and `vo.wav`. `--show` maps how the narrator says something to how the caption writes it: the matched words get a `show` field (the first the caption text, the rest empty), and captions print `show` when present. Build everything from those numbers, not from guesses:
 
 - Place the lines one after another with **0.2-0.4 s** gaps; keep a longer gap (0.8-1.2 s) before a punchline, as the voice performed it.
 - **Captions** change on the word times (a new caption chunk starts when its first word is spoken). Captions are always needed: feeds autoplay muted.
