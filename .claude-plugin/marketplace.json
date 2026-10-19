@@ -1,0 +1,18 @@
+{
+  "name": "pavlin-dev",
+  "owner": {
+    "name": "pavlin-dev",
+    "url": "https://github.com/pavlin-dev"
+  },
+  "metadata": {
+    "description": "Claude Code plugins by pavlin-dev."
+  },
+  "plugins": [
+    {
+      "name": "pavlin-skills",
+      "source": "./",
+      "description": "Pavlin's Claude Code skills (engaging short promo videos, …).",
+      "category": "productivity"
+    }
+  ]
+}

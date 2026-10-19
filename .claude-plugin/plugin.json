@@ -1,0 +1,11 @@
+{
+  "name": "pavlin-skills",
+  "version": "0.1.0",
+  "description": "Pavlin's Claude Code skills (engaging short promo videos, …).",
+  "author": {
+    "name": "pavlin-dev",
+    "url": "https://github.com/pavlin-dev"
+  },
+  "homepage": "https://github.com/pavlin-dev/skills",
+  "repository": "https://github.com/pavlin-dev/skills"
+}
