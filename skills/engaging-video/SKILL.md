@@ -1,6 +1,6 @@
 ---
 name: engaging-video
-description: How to make short, engaging vertical promo videos (Reels/Shorts/TikTok, 1080×1920) with motion graphics in Remotion, real product footage and free AI-generated music synced to the beat. Use whenever the user asks for a promo video, short, reel, teaser, product demo video or "motion" animation, or says a video is boring, unclear or needs music.
+description: How to make short, engaging vertical promo videos (Reels/Shorts/TikTok, 1080×1920) in Remotion — clean 2D layouts with 3D transitions (2.5D motion design), real product footage, and AI music (Suno or free generators) synced to the beat. Use whenever the user asks for a promo video, short, reel, teaser, product demo video or "motion" animation, or says a video is boring, unclear or needs music.
 ---
 
 # Engaging short videos
@@ -11,8 +11,8 @@ A short video has about one second to tell the viewer what it is about, and abou
 
 1. **Say what it is in the very first frame.** Frame 0 must already show the category and the promise ("ONE SENTENCE → VR GAME", "Build a **VR** padel court…"). Never let text fade in from nothing at t=0: start entrance animations at negative time so frame 0 is readable. If the product is VR, AI, a game, etc., that word has to be on screen and visually emphasized immediately.
 2. **One subject.** One product or one demo per video (e.g. only the Padel Pro example), not a tour of features. 15–25 s is the target. Ask the user for the length if unsure, default 20 s.
-3. **One connecting motif.** Pick a physical object from the subject (a ball, a cursor, the logo, a link pill) and let it travel through the whole video. Every transition is caused by it: it bounces on words, gets smashed into the lens and becomes a round portal into the next shot, streaks across a cut, pushes a frame aside, and finally lands as the dot in the URL. This "everything is connected" feeling is what users mean by "motion animation".
-4. **No plain cuts.** Each scene change is motivated by motion: portal/iris from an object, zoom-through with blur, whip-pan push, match cut on the same shape, a headset visor closing and opening. Keep elements alive across the cut (the link pill morphs into the CTA URL bar instead of disappearing).
+3. **Connect the scenes, but not with a gimmick.** The viewer must feel one continuous piece, not a slideshow. The most reliable way is one hero element that survives every cut: the same phone flips to show the next screen, the scene turns like a cube, a card falls back into a floor, the screen swings open like a door (see "Clean 2D with 3D transitions" below). A travelling object (ball, mascot, cursor) that hops on words and dives into the lens can also work, but users have called a bouncing dot/mascot distracting and a free-flying 3D camera "too chaotic". Use such a motif only when the subject itself is a physical object (a ball in a sports game), never as a default.
+4. **No plain cuts.** Each scene change is motivated by motion: a 3D flip/turn/fold of the current layout, zoom-through, whip-pan push, match cut on the same shape. Keep elements alive across the cut (the link pill morphs into the CTA URL bar, the phone flips instead of disappearing).
 5. **Everything on the beat.** Pick music with a clear, steady kick, measure its exact BPM and phase, and put every landing, cut, word reveal and flash on a beat. Use bars as the unit of scene length (at 120 BPM, 1 bar = 2 s).
 6. **Show the real product.** Use actual footage of the product. Clean, full-bleed vertical footage beats upscaled screen recordings in a card. Avoid footage with baked-in captions.
 7. **Text is short and for the viewer.** Max ~4 words per caption, one caption per scene, big (100–150 px Geist ExtraBold), with a brand-colored period. Write for the viewer, not about the tech; if a copywriting skill is available, follow it. Take claims (free credits, devices) from the product's own website, never invent them.
@@ -20,16 +20,25 @@ A short video has about one second to tell the viewer what it is about, and abou
 9. **Sound design is half of it.** Add a sound for every visible motion: bounce "pocks", whooshes on transitions, a hit/boom on impacts, a click on buttons, a ding on score/CTA. Synthesize them (numpy), keep them ~10 dB under the music, loudnorm the final mix to −14 LUFS.
 10. **End with a clear CTA**: logo, one question or promise, a button ("Start for free"), the URL. Hold it for 3–4 s.
 
-## Storyboard template (20 s, 120 BPM, 10 bars)
+## Default style: clean 2D layouts with 3D transitions (2.5D)
 
-| bars | time | scene | transition out |
-|---|---|---|---|
-| 0–1 | 0–4 s | Hook: the prompt sentence, motif hops word to word on each beat and lights it up; category label on top from frame 0 | motif smashes into the camera |
-| 2–3 | 4–8 s | Product builds itself (real footage), feature chips pop on beats | zoom-through + motif streak |
-| 4 | 8–10 s | Refine: chat bubble "Add …", caption "Just ask." | visor/iris closes |
-| 5–6 | 10–14 s | Use it: first-person footage, slow-mo on the hit, score pop | motif pushes the frame sideways |
-| 7 | 14–16 s | Share: link pill, cursor clicks "Copy link" | pill morphs into URL bar |
-| 8–9 | 16–20 s | CTA: logo assembles, headline, button, motif lands as the dot in the URL | fade |
+This is what users liked best. Each scene is a tidy, flat 2D layout; depth appears only while moving from one scene to the next and in small details. A fully 3D world with a flying camera, depth of field and lots of floating cards looks impressive in stills but feels chaotic in motion.
+
+- **Scenes are flat and calm.** Light brand background (soft gradient shapes drifting slowly), one caption at the top (masked word reveal), one hero element in the middle (a phone mockup with a real screenshot, a card, a TV), at most 2–3 chips/stickers. Lots of white space. Nothing important below y ≈ 1570.
+- **3D happens in transitions, ~0.5–1 beat long, eased in-out:** card flip of the phone (front face → back face), cube turn of the whole scene, the layout tilting back into a floor while the next element rises from below, flying out of depth (`translateZ(-2000px)` → 0), folding two phones shut like a book, a door swing (rotateY around the left edge) revealing the end card.
+- **Small 2.5D details inside scenes:** elements enter with a flap (`rotateX(-90deg)` → 0 from their top edge) instead of a fade, a slow idle tilt of the phone (±3°), a flip-board tile for changing values (A → A# → H), a TV that switches on with a CRT line, stickers that swing in with `rotateY`.
+- **One idea per scene, a story arc over the video.** Two structures that worked: feature tour (hook → search → song → team → CTA) and problem → solution (a chaotic group chat on Sunday morning → everything in one place → for players and singers → on the big screen → "Sunday without stress").
+- Code for every transition and the CSS-3D pitfalls (opacity/filter flattening, z-fighting, nested perspective) are in `references/transitions-2-5d.md`. Read it before building.
+
+## Storyboard template (20 s, 10 bars at 120 BPM; scale beats to the song's tempo)
+
+| beats | scene (flat 2D layout) | 3D transition out |
+|---|---|---|
+| 0–8 | Hook: category pill + big headline readable at frame 0; a grid of real items flaps in row by row on the beats, one gets selected | grid tilts back into a floor, the phone rises from below |
+| 8–16 | Feature 1 on a phone with a real screenshot (typing, results), 2 chips flap in | phone card-flips; its back face is the next screen |
+| 16–24 | Feature 2 on the same phone, values change on a flip-board tile on each beat | the whole scene turns like a cube |
+| 24–32 | Feature 3: a tidy card (playlist, team) whose rows flap in on beats, tidy connectors draw to people | the scene swings open like a door |
+| 32–40 | CTA: logo flips in, headline, button, URL; hold 3–4 s (ideally the music's drop lands here) | — |
 
 Write the plan for the user before building, but don't wait for approval on small choices.
 
@@ -47,7 +56,9 @@ Write the plan for the user before building, but don't wait for approval on smal
 ### Rendering
 
 - Script paths below are relative to this skill's folder; run them from the Remotion project root.
-- Rendering is slow on CPU. Use `scripts/render.sh <Comp> <frames> <audio.wav> <out.mp4>`: it renders 1 s chunks, skips chunks that already exist, then muxes the audio and loudnorms to −14 LUFS. It is resumable, so if the environment limits command length or kills background jobs, run it in the foreground and re-run until it prints `ALLDONE`. If the workspace can be wiped (ephemeral containers), keep the project somewhere persistent.
+- Rendering is slow on CPU. Use `scripts/render.sh <Comp> <frames> <audio.wav> <out.mp4>`: it renders 1 s chunks, skips chunks that already exist, then muxes the audio and loudnorms to −14 LUFS. It is resumable, so if the environment limits command length or kills background jobs, run it in the foreground and re-run until it prints `ALLDONE`. If the workspace can be wiped (ephemeral containers), keep the project and its Python environment somewhere that survives a rebuild: a rebuild once deleted a whole working directory, including two finished videos and the venv.
+- If long renders get killed when the agent's shell or session restarts, start them detached and resumable: `setsid nohup bash -c 'for i in 1 2 3; do ./render.sh … && break; done' >> out/render.log 2>&1 < /dev/null & disown`, then poll `out/render.log` for `ALLDONE`.
+- A killed run can leave a truncated `-share.mp4` next to a complete main file. Before showing a file, check that exact file (`ffprobe` duration and frame count). For simple 2D scenes the share copy can be larger than the main file; send the smaller one.
 - Concurrency must not exceed the CPUs actually available: in containers the cgroup quota (`/sys/fs/cgroup/cpu.max`) is often lower than `nproc`. `render.sh` reads it; override with `CONCURRENCY=n`.
 - To fix one part, delete only the affected chunks (`out/chunks/cN.mp4` = second N) and re-run.
 - `render.sh` also writes a smaller `-share.mp4` (~7 Mbit/s) for previews and tools/chats with file-size limits.
@@ -69,12 +80,26 @@ Unless the user provides a track, generate catchy music with a clear beat using 
 5. Too short? `scripts/extend.py <src> <phase> <out.wav> [bpm] [seconds]` repeats whole bars on the bar grid with short crossfades.
 6. Mix with `scripts/audio.py <project> [out.wav]`: music + synthesized SFX at beat times, low-pass/duck during slow-mo, fade the last 0.4 s. It is a template for one 20 s storyboard: copy it into the project and rewrite the cue list for your scenes.
 
+### Suno (when the user is logged in to suno.com in the browser)
+
+Better music than the free generators. Drive the logged-in browser:
+
+1. `suno.com/create` → **Advanced**. Leave the lyrics empty (= instrumental). Fill the *Styles* textarea; its placeholder changes randomly, so select the visible textarea whose placeholder contains a comma and not "Describe", mark it with a data attribute and fill that. Don't fill the title field: the text tends to land in the styles box.
+2. Click the visible **Create** button. Suno often shows a CAPTCHA (hCaptcha images or Cloudflare "Verify you are human"). Never try to solve it yourself: ask the user to solve it (hand them the browser if your environment can). If nobody answers, don't wait; finish the video with a fallback track and offer to swap the music later.
+3. One click makes 2 full songs (v6-mini, 2–3 min) plus 2 "V6 PREVIEW" clips that a free plan can't use.
+4. Download only through the song page → "More options" → Download → MP3 → "Unlock & Download". The file lands in the browser's download folder. Free plans have a small download quota (it showed 7), so download only the song you will use and tell the user how many are left. The CDN `.m4a` behind the player is obfuscated and unusable.
+5. Songs are full-length with intros and builds, so find the best 20 s: `scripts/section.py <song> [bpm]` computes the beat contrast in sliding 20 s windows, then print the energy per bar to see the structure (build-up → drop). Start the video on a bar line so that **the drop lands on the CTA**.
+6. Don't time-stretch the song to your grid. Set `music.json` bpm to the song's tempo (e.g. 128.65) and let the beat-based timeline re-time itself; compute the total beats as `round(20 / BEAT)`.
+7. Tell the user that a free Suno plan probably gives no commercial rights and that they should check the terms before publishing.
+
 Tell the user which site generated the music. You can't listen to it, so say so and let them judge how catchy it is.
 
 ## Before sending
 
 - Frame 0 tells what it is; the key word (VR, AI, …) is visible and emphasized.
 - Contact sheet (2 fps) of the final file: no empty frames, no overlapping texts in morphs, captions not covered by the motif, nothing important in the bottom ~350 px (platform UI).
-- Every scene change is motivated by motion; the motif appears in every transition.
+- Every scene change is motivated by motion (a 3D flip/turn/fold/rise, not a cut or a plain fade).
 - Landings and cuts sit on beats; loudness ≈ −14 LUFS; exactly the planned length.
-- Share the `-share.mp4` with the user (attach or show it if your environment can), give the path to the full-quality file, and list what you could not check (e.g. listening).
+- The file you show has the full duration and frame count (check that exact file, not its sibling).
+- Every claim on screen is verified on the live site (feature works without login? number of songs = pages × items per page?). Mock UIs (chat, playlist) are fine, but tell the user which parts are illustrations.
+- Share the smaller of the main file and the `-share.mp4` with the user (attach or show it if your environment can), give the path to the full-quality file, and list what you could not check (e.g. listening).

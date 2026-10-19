@@ -21,7 +21,7 @@ Update later with `/plugin marketplace update pavlin-dev`.
 
 | Skill | What it does |
 |---|---|
-| `engaging-video` | Short, beat-synced vertical promo videos (Reels/Shorts/TikTok) in Remotion with real footage and AI music. |
+| `engaging-video` | Short, beat-synced vertical promo videos (Reels/Shorts/TikTok) in Remotion: clean 2D layouts with 3D transitions, real footage, AI music (Suno or free generators). |
 
 Skills are invoked automatically by their description, or explicitly as `/pavlin-skills:<skill>`.
 
