@@ -29,7 +29,7 @@ The goal is one continuous piece of animation: the viewer never sees a "next sli
 ## Workflow
 
 1. **Research the product**: open the site, use the product once, note real data you can show (search results, counts, slogans). Screenshots help for colours and tone.
-2. **Ask for music first.** The best results came from a track the user picked; you cannot listen, and every guess from free catalogs was rejected ("too old-fashioned", "too generic", "sounds like a kids' game"). If they have none, see the music section of `engaging-video` and offer two variants.
+2. **Ask for music first.** The best results came from a track the user picked; you cannot listen, and every guess from free catalogs was rejected ("too old-fashioned", "too generic", "sounds like a kids' game"). If they have none, see the music section of `engaging-video` and offer two variants. Never synthesize the music in code, not even as a placeholder: use an existing track or a music generator; only short sound effects may be synthesized.
 3. **Measure the music** (`engaging-video` skill: `scripts/beats.py`, `scripts/section.py`) and look at energy per bar. If the track has a lift/drop, start the excerpt so the lift lands on the biggest transition (e.g. the bloom into part 4).
 4. **Write the storyboard in beats** and show it to the user:
 
