@@ -1,0 +1,10 @@
+# Remotion (motion graphics)
+
+- Use Remotion (React → video). A working project to copy from: `/workspace/persistent/turbl-padel-20s` (composition `Padel20`, effects in `src/fx.tsx`: `Reveal`, `Mono`, `Chip`, `World` background, `Flash`, `Shockwave`, `Iris`, `BrandWipe`, `Grain`, `Vignette`). Copy `package.json` + `node_modules` from it instead of installing.
+- Second example, a web-tool promo: `/workspace/persistent/c2v-promo` (composition `Promo` in `src/Promo.tsx`: `Shot` camera over website screenshots, `PlayDot` motif, `Rays` logo assembly, masked `Caption`, `IrisOpen`, degraded-footage wipe).
+- Drive everything from time, not frames: `const t = frame / FPS`, `const b = k => b0 + BEAT * k`, tweens via `tw(t, t0, dur, easing)`. Scene boundaries are constants in beats, so changing the music's phase moves everything consistently. Keep `music.json` = `{bpm, b0, file}`.
+- Footage: `<Sequence from><OffthreadVideo playbackRate startFrom/></Sequence>`; set `playbackRate = sourceLength / sceneLength` to fit a shot exactly into its bars.
+- Pixel-precise layouts (e.g. where each word is, so a ball can land on it): measure text with PIL from the same TTF (`getlength` + letter-spacing) and write a JSON the composition imports.
+- Captions built from per-word masked spans: don't rely on `' '` between the `inline-block` spans (the spaces collapse → "Screenrecording?"); give non-last words a right margin (~0.2em) instead.
+- Degraded "before" footage: render the video at 1/3 size and `scale(3.2)` with `imageRendering: pixelated`, wrap it in `<Freeze frame={Math.floor(local / 6) * 6}>` for ~5 fps stutter, `filter: saturate(.55) contrast(.8) brightness(1.12)`, scanlines and a blinking "● REC" badge. Wipe it with `clipPath: inset(0 0 0 ${edge}px)` following the motif.
+- Check stills before rendering: `npx remotion bundle src/index.ts --out-dir=build`, then `npx remotion still build <Comp> out.png --frame=N --scale=0.3`, tile them with ffmpeg and look at them (name stills with zero-padded frame numbers, `-pattern_type glob` sorts lexically). Check the exact frames of landings, cuts and frame 0.
