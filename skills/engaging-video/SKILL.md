@@ -20,7 +20,7 @@ A short video has about one second to tell the viewer what it is about, and abou
 7. **Show the real product.** Use actual footage of the product. Clean, full-bleed vertical footage beats upscaled screen recordings in a card. Avoid footage with baked-in captions.
 8. **Text is short and for the viewer.** Max ~4 words per caption, one caption per scene, big (100-150 px Geist ExtraBold), with a brand-colored period. Write for the viewer, not about the tech; if a copywriting skill is available, follow it. Take claims (free credits, devices) from the product's own website, never invent them.
 9. **Moments of contrast.** One slow-motion beat (with the music low-passed and ducked) or one breakdown makes the rest feel faster. Add a punch: flash + shockwave + racket/impact sound on the key hit.
-10. **Sound design is half of it.** Add a sound for every visible motion: bounce "pocks", whooshes on transitions, a hit/boom on impacts, a click on buttons, a ding on score/CTA. Synthesize them (numpy), keep them ~10 dB under the music, loudnorm the final mix to −14 LUFS.
+10. **Sound design is half of it.** Add a sound for every visible motion: bounce "pocks", whooshes on transitions, a hit/boom on impacts, a click on buttons, a ding on score/CTA. Synthesize them (numpy), keep them ~10 dB under the music, loudnorm the final mix to −14 LUFS. With narration the voice is the anchor instead: follow the `sound-design` skill (far fewer effects, levels relative to the voice).
 11. **End with a clear CTA**: logo, one question or promise, a button ("Start for free"), the URL. Hold it for 3-4 s, not longer; cut the video there.
 12. **Vertical 1080×1920 by default**, also when the video is meant for Reddit or another feed, unless the user asks for another format.
 

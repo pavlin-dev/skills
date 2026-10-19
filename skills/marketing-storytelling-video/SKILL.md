@@ -7,7 +7,7 @@ description: Principles for marketing videos told as a story instead of an ad - 
 
 A classic promo says "our product does X". A marketing story says "this happened to me", and the product is the thing the person happened to use. People scroll past ads, but they watch a story to the end to see how it turns out. The product earns attention by being the turning point, not the topic.
 
-This skill decides *what story to tell and where the product sits in it*. For the craft, also follow the other skills in this repository: `marketing-content` (research, true claims, review as the audience), `voice-over` (narration, Google Gemini TTS, timing captions to words), and `engaging-video` / `motion-design-video` (building and rendering the video).
+This skill decides *what story to tell and where the product sits in it*. For the craft, also follow the other skills in this repository: `marketing-content` (research, true claims, review as the audience), `voice-over` (narration, Google Gemini TTS, timing captions to words), `sound-design` (levels of voice, music and effects, music cut to the story), and `engaging-video` / `motion-design-video` (building and rendering the video).
 
 ## The core rule
 

@@ -43,7 +43,7 @@ The goal is one continuous piece of animation: the viewer never sees a "next sli
 
 5. **Build** in Remotion with the patterns in `references/patterns.md` (shared camera layers, reel, shape→page morph, bloom, card→bar morph, stroke drawing, measured text anchors). Drive everything from beats.
 6. **Check stills, not just the code**: `scripts/sheet.sh` renders chosen frames of a bundle into one contact sheet. Look at frame 0, the middle of every morph, every caption change and the CTA.
-7. **Sound**: one effect per visible event (click on a reel step, whoosh on a morph, thud when something lands, ding on the CTA), mixed with `scripts/sfx_mix.py` (cue list in beats, music gain, loudnorm to −14 LUFS; the output is final, so mux it without a second normalization: `LOUDNORM=0` for `render.sh`).
+7. **Sound**: one effect per visible event (click on a reel step, whoosh on a morph, thud when something lands, ding on the CTA), mixed with `scripts/sfx_mix.py` (cue list in beats, music gain, loudnorm to −14 LUFS; the output is final, so mux it without a second normalization: `LOUDNORM=0` for `render.sh`). If the video has narration, mix with the `sound-design` skill instead.
 8. **Render** with `engaging-video`'s `scripts/render.sh` or `npx remotion render`, mux the mix, then make a 2 fps contact sheet of the final file (`ffmpeg -i out.mp4 -vf "fps=2,scale=160:-1,tile=19x2" -frames:v 1 sheet.png`) and check it.
 
 ## Before sending

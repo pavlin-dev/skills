@@ -71,7 +71,13 @@ python3 scripts/vo_align.py take.wav script.txt vo/ [--model medium] [--lang cs]
 
 `script.txt` holds one line per row as `id|text` (audio tags allowed). The script transcribes the take with faster-whisper (`pip install faster-whisper numpy`, ffmpeg needed; the model downloads on first use), aligns it to the script word by word, and writes `vo/<id>.wav` per line plus `vo/align.json` (start, end, duration, and each word's time relative to its line).
 
-Then build the timeline from those numbers, not from guesses:
+Then lay the lines out on the video's timeline:
+
+```
+python3 scripts/vo_timeline.py vo/ [--extra <id>=0.9] [--lead 0.3] [--tail 1.0]
+```
+
+It keeps the gaps the voice performed (at least 0.25 s), adds `--extra` silence before chosen lines, fills in words whisper missed, and writes `timeline.json` (every line and word with absolute `t0`/`t1`) and `vo.wav`. Build everything from those numbers, not from guesses:
 
 - Place the lines one after another with **0.2-0.4 s** gaps; keep a longer gap (0.8-1.2 s) before a punchline, as the voice performed it.
 - **Captions** change on the word times (a new caption chunk starts when its first word is spoken). Captions are always needed: feeds autoplay muted.
@@ -81,10 +87,7 @@ Then build the timeline from those numbers, not from guesses:
 
 ## 5. Mix
 
-- Voice on top: peak around -1 dBFS before the final loudness pass.
-- Music as a bed: roughly 15-20 dB under the voice while someone speaks, ducked with ~0.3 s smoothing, back up in pauses and on the end card. Licensed music only (see the `engaging-video` skill).
-- Sound effects (typing, whoosh, message ding) quieter than the voice; never over a key word.
-- Final mix: 48 kHz, loudness normalised to about -14 LUFS (`ffmpeg -af loudnorm=I=-14:TP=-1.5:LRA=11`).
+Follow the `sound-design` skill in this repository: levels relative to the voice (music about 16 dB under it, effects 15, ambience 25-30), few effects and only on story beats, nothing bright in 2.5-5 kHz, music cut to the story, master to about -14 LUFS. Its `scripts/mix.py` measures and sets every stem. Licensed music only (see the `engaging-video` skill).
 
 ## Before sending
 
