@@ -1,9 +1,11 @@
 ---
 name: engaging-video
-description: How to make short, engaging vertical promo videos (Reels/Shorts/TikTok, 1080×1920) in Remotion: clean 2D layouts with 3D transitions (2.5D motion design), real product footage, and music synced to the beat (the user's own track, Suno or free sources). Two styles: clean 2D layouts with 3D transitions, and motion design where vector shapes morph into the next scene under one shared 3D camera (details in the `motion-design-video` skill). Use whenever the user asks for a promo video, short, reel, teaser, product demo video or "motion" animation, or says a video is boring, unclear or needs music.
+description: How to make short, engaging vertical promo videos (Reels/Shorts/TikTok, 1080×1920) in Remotion: clean 2D layouts with 3D transitions (2.5D motion design), real product footage, and music synced to the beat (the user's own track, Suno or free sources). Two styles: clean 2D layouts with 3D transitions, and motion design where vector shapes morph into the next scene under one shared 3D camera (details in the `motion-design-video` skill). Use whenever the user asks for a promo video, short, reel, teaser, product demo video or "motion" animation, or says a video is boring, unclear or needs music. For marketing videos the default format is a user's story (`marketing-storytelling-video`); this skill is the craft for building any video and the guide for classic promos and demos.
 ---
 
 # Engaging short videos
+
+Marketing videos are made as a user's story by default (see `marketing-storytelling-video` and the rule in `marketing-content`); the storyboard and CTA rules below are for classic promos, feature demos and launches. The craft (motion, transitions, rendering, sound) applies to both.
 
 A short video has about one second to tell the viewer what it is about, and about one second per idea after that. Every frame has to either explain the product or carry the viewer to the next frame. A slideshow of nice stills is boring, no matter how good the stills are.
 

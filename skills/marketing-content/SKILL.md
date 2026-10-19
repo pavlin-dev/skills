@@ -1,13 +1,25 @@
 ---
 name: marketing-content
-description: How to make marketing content for a product or service, such as social posts (Reddit, Instagram, Facebook, LinkedIn, X), promo images and banners, ad copy, short promo videos, newsletters, landing-page sections, that is true, clear and fits the platform, and how to review it as the audience before handing it over. Use whenever the user asks for marketing, promo, advertising or social-media content, a post or image "about <product/website>", or wants existing marketing material improved.
+description: How to make marketing content for a product or service, such as social posts (Reddit, Instagram, Facebook, LinkedIn, X), promo images and banners, ad copy, marketing videos, newsletters, landing-page sections, that is true, clear and fits the platform, and how to review it as the audience before handing it over. Use whenever the user asks for marketing, promo, advertising or social-media content, a post or image "about <product/website>", or wants existing marketing material improved. For marketing videos (YouTube, Shorts, Reels, TikTok) the default format is a user's story, see `marketing-storytelling-video`.
 ---
 
 # Marketing content
 
 Marketing content works when a stranger understands in a few seconds what it is, why it matters to them, and what to do next, and nothing in it makes them doubt it. Most failures are not "bad design" but small things: a number nobody can read, a slogan that only makes sense to the author, a claim the product doesn't support, a format that doesn't fit the platform.
 
-For videos, also follow the `engaging-video` and `motion-design-video` skills in this repository. For a promo told as a user's story instead of an ad, follow `marketing-storytelling-video`. This skill decides *what* to say and checks the result; those skills say how to animate it.
+This skill decides *what* to say and checks the result; the video skills in this repository say how to build it.
+
+## Marketing videos: a story by default
+
+Every marketing video (YouTube, Shorts, Reels, TikTok, a promo for a website or app) is made as a **marketing story** unless the user asks for something else: a user of the product tells what happened to them, and the product appears only as the tool they used when they were stuck. No slogans, no feature list, no end card with logo and URL. Follow `marketing-storytelling-video` for the story and `voice-over` for the narration.
+
+Make a **classic promo** (the product as the topic: hook, features, call to action; built with `engaging-video` or `motion-design-video`) only when:
+
+- the user asks for an ad, a promo, a teaser or a feature demo in that style, or
+- the content is news about the product itself (a launch, a new feature, a price change), a tutorial or a how-to, or
+- it is a paid retargeting ad for people who already know the product.
+
+If unsure, make the story and mention in one line that a classic promo is the alternative.
 
 ## 1. Research before writing
 

@@ -1,6 +1,6 @@
 ---
 name: marketing-storytelling-video
-description: Principles for marketing videos told as a story instead of an ad - a user of the product tells what happened to them, and the product (usually an app or website) only shows up as the tool they used at the moment they were stuck. Covers finding the moment of need, the character, the story beats, where and how the product appears, faceless execution with screens and voice-over, honesty and disclosure, and the review. Use when the user wants marketing or a promo that "doesn't look like an ad", storytelling/story-based marketing, a "story of a user", native or soft-sell content, or a video where the product is mentioned "by the way". This is the marketing variant; for stories that are not meant to promote anything, a general storytelling skill applies instead.
+description: Principles for marketing videos told as a story instead of an ad - a user of the product tells what happened to them, and the product (usually an app or website) only shows up as the tool they used at the moment they were stuck. Covers finding the moment of need, the character, the story beats, where and how the product appears, faceless execution with screens and voice-over, honesty and disclosure, and the review. This is the default format for marketing videos (YouTube, Shorts, Reels, TikTok): use it whenever the user asks for a marketing or promo video for a product, website or app, unless they ask for a classic ad, a feature demo or a launch announcement. Also use it when the user wants something that "doesn't look like an ad", storytelling/story-based marketing, a "story of a user", native or soft-sell content, or a video where the product is mentioned "by the way". This is the marketing variant; for stories that are not meant to promote anything, a general storytelling skill applies instead.
 ---
 
 # Marketing storytelling videos
@@ -43,7 +43,7 @@ Don't start from a feature. Start from a situation in the target user's life whe
 
 ## 4. Story beats
 
-For a 25-35 s vertical video (shorter is better; a 42 s first cut was too long on review):
+For a 25-35 s vertical video (Shorts, Reels, TikTok; shorter is better, a 42 s first cut was too long on review). For a horizontal YouTube video (16:9) the same beats scale to 1-3 minutes: the struggle gets more room (two or three attempts that fail), the product still enters around the middle, and the hook still has to land in the first seconds.
 
 | share of runtime | beat | what happens |
 |---|---|---|
