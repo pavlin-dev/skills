@@ -25,6 +25,7 @@ Update later with `/plugin marketplace update pavlin-dev`.
 | `motion-design-video` | Motion-design promo videos where vector shapes morph into the next scene under one shared 3D camera: workflow, Remotion patterns, SFX mixer, contact sheets. |
 | `marketing-content` | Marketing content in general (posts, images, ad copy, videos): research and verified claims, platform fit, and a mandatory review pass as the audience before handing it over. |
 | `voice-over` | Narration for videos: script written for the ear, Google Gemini TTS via AI Studio (https://aistudio.google.com/generate-speech), checking the take via transcription, word timings for captions and cuts, mixing under music. |
+| `marketing-storytelling-video` | Marketing videos told as a user's story instead of an ad: the moment of need, the user as hero and the product as the tool at the stuck moment, story beats, no branded end card, faceless execution with screens and voice-over, honesty rules. |
 
 Skills are invoked automatically by their description, or explicitly as `/pavlin-skills:<skill>`.
 

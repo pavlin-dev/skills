@@ -7,7 +7,7 @@ description: How to make marketing content for a product or service — social p
 
 Marketing content works when a stranger understands in a few seconds what it is, why it matters to them, and what to do next, and nothing in it makes them doubt it. Most failures are not "bad design" but small things: a number nobody can read, a slogan that only makes sense to the author, a claim the product doesn't support, a format that doesn't fit the platform.
 
-For videos, also follow the `engaging-video` and `motion-design-video` skills in this repository. This skill decides *what* to say and checks the result; those skills say how to animate it.
+For videos, also follow the `engaging-video` and `motion-design-video` skills in this repository. For a promo told as a user's story instead of an ad, follow `marketing-storytelling-video`. This skill decides *what* to say and checks the result; those skills say how to animate it.
 
 ## 1. Research before writing
 
