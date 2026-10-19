@@ -124,6 +124,8 @@ Tell the user which site generated the music. You can't listen to it, so say so 
 
 ## Before sending
 
+Do at least one full review pass as the viewer, on the rendered file (see section 3 of the `marketing-content` skill: is everything easy to understand, is anything weird), fix what it finds, then go through this list:
+
 - Frame 0 tells what it is; the key word (VR, AI, …) is visible and emphasized.
 - Contact sheet (2 fps) of the final file: no empty frames, no overlapping texts in morphs, captions not covered by the motif, nothing important in the bottom ~350 px (platform UI).
 - Every scene change is motivated by motion (a 3D flip/turn/fold/rise, not a cut or a plain fade).

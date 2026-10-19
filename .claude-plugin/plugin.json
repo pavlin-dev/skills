@@ -1,7 +1,7 @@
 {
   "name": "pavlin-skills",
-  "version": "0.3.1",
-  "description": "Pavlin's Claude Code skills (engaging short promo videos, motion-design videos, …).",
+  "version": "0.4.0",
+  "description": "Pavlin's Claude Code skills (marketing content, engaging short promo videos, motion-design videos, …).",
   "author": {
     "name": "pavlin-dev",
     "url": "https://github.com/pavlin-dev"

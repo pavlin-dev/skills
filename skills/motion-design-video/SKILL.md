@@ -48,6 +48,8 @@ The goal is one continuous piece of animation: the viewer never sees a "next sli
 
 ## Before sending
 
+First do at least one full review pass as the viewer on the rendered file (`marketing-content` skill, section 3), fix what it finds, then check:
+
 - Frame 0 says what it is; nothing important below y ≈ 1570 or above y ≈ 130.
 - Every part change is a visible morph of an element; no cut, no plain fade, no slide change.
 - All layers (UI included) tilt with the same camera; nothing looks pasted on.
