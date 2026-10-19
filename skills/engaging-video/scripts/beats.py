@@ -1,4 +1,5 @@
-import subprocess, sys, numpy as np
+import sys, subprocess, numpy as np
+if len(sys.argv) < 2: sys.exit("usage: beats.py <audio> [audio ...]  # prints BPM + phase (110-150 BPM) for the kick band and the full band")
 SR=22050; H=256; W=1024
 def load(p):
     raw=subprocess.run(['ffmpeg','-v','error','-i',p,'-f','f32le','-ac','1','-ar',str(SR),'-'],capture_output=True).stdout

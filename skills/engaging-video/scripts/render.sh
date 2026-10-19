@@ -3,8 +3,12 @@
 # usage: render.sh <CompositionId> <totalFrames> <audio.wav> <out.mp4> [chunkFrames=30]
 # Delete out/chunks/cN.mp4 to re-render only second N (with 30-frame chunks at 30 fps).
 set -e
+if [ $# -lt 4 ]; then sed -n '2,4p' "$0"; exit 1; fi
 COMP=$1; TOTAL=$2; AUDIO=$3; OUT=$4; CH=${5:-30}
-CONC=$(awk '{ if ($1=="max") print 2; else printf "%d", ($1/$2 < 1 ? 1 : $1/$2) }' /sys/fs/cgroup/cpu.max 2>/dev/null || echo 2)
+# Concurrency: $CONCURRENCY, else the cgroup CPU quota (containers often allow fewer CPUs than nproc shows), else nproc.
+NPROC=$(nproc 2>/dev/null || sysctl -n hw.ncpu 2>/dev/null || echo 2)
+CONC=${CONCURRENCY:-$(awk -v n="$NPROC" '{ if ($1=="max") print n; else printf "%d", ($1/$2 < 1 ? 1 : $1/$2) }' /sys/fs/cgroup/cpu.max 2>/dev/null || true)}
+CONC=${CONC:-$NPROC}
 [ -d build ] || npx remotion bundle src/index.ts --out-dir=build --log=error
 mkdir -p out/chunks
 N=$(( (TOTAL + CH - 1) / CH ))
@@ -20,6 +24,6 @@ for c in $(seq 0 $((N-1))); do echo "file 'chunks/c$c.mp4'"; done > out/list.txt
 ffmpeg -loglevel error -y -f concat -safe 0 -i out/list.txt -i "$AUDIO" -map 0:v -map 1:a \
   -c:v libx264 -preset slow -crf 18 -pix_fmt yuv420p \
   -af "loudnorm=I=-14:TP=-1.5:LRA=11" -c:a aac -b:a 192k -ar 48000 -shortest -movflags +faststart "$OUT"
-# under 25 MB so it can be shown in the conversation
+# smaller copy (~7 Mbit/s) for previews and chat/file-size limits
 ffmpeg -loglevel error -y -i "$OUT" -c:v libx264 -preset slow -b:v 7M -maxrate 8M -bufsize 14M -pix_fmt yuv420p -c:a copy -movflags +faststart "${OUT%.mp4}-share.mp4"
 echo ALLDONE

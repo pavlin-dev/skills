@@ -1,9 +1,16 @@
-import json, subprocess, sys, wave
+# TEMPLATE: music + synthesized SFX mix for one concrete 20 s storyboard.
+# Copy it into your project and change the cue list at the bottom (and the scene
+# beats in S / HIT* / CLICK) to match your own composition.
+# usage: python3 audio.py <remotion-project-dir> [out.wav] [duration_s=20]
+# Reads <project>/src/music.json = {"bpm", "b0", "file"} and <project>/public/<file>.
+import json, os, subprocess, sys, wave
 import numpy as np
 
-HERE = '/workspace/persistent/turbl-padel-20s'
+if len(sys.argv) < 2:
+    sys.exit(__doc__ or 'usage: audio.py <remotion-project-dir> [out.wav] [duration_s=20]')
+HERE = os.path.abspath(sys.argv[1])
 SR = 48000
-DUR = 20.0
+DUR = float(sys.argv[3]) if len(sys.argv) > 3 else 20.0
 N = int(DUR * SR)
 M = json.load(open(f'{HERE}/src/music.json'))
 BEAT = 60 / M['bpm']
@@ -111,7 +118,8 @@ mix = music * 0.9 + sfx
 pk = np.abs(mix).max()
 print('peak', round(float(pk), 2))
 mix /= max(pk / 0.98, 1)
-out = sys.argv[1] if len(sys.argv) > 1 else f'{HERE}/work/audio.wav'
+out = sys.argv[2] if len(sys.argv) > 2 else f'{HERE}/work/audio.wav'
+os.makedirs(os.path.dirname(os.path.abspath(out)), exist_ok=True)
 with wave.open(out, 'wb') as w:
     w.setnchannels(2); w.setsampwidth(2); w.setframerate(SR)
     w.writeframes((np.clip(mix.T, -1, 1) * 32767).astype(np.int16).tobytes())

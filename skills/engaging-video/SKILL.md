@@ -15,7 +15,7 @@ A short video has about one second to tell the viewer what it is about, and abou
 4. **No plain cuts.** Each scene change is motivated by motion: portal/iris from an object, zoom-through with blur, whip-pan push, match cut on the same shape, a headset visor closing and opening. Keep elements alive across the cut (the link pill morphs into the CTA URL bar instead of disappearing).
 5. **Everything on the beat.** Pick music with a clear, steady kick, measure its exact BPM and phase, and put every landing, cut, word reveal and flash on a beat. Use bars as the unit of scene length (at 120 BPM, 1 bar = 2 s).
 6. **Show the real product.** Use actual footage of the product. Clean, full-bleed vertical footage beats upscaled screen recordings in a card. Avoid footage with baked-in captions.
-7. **Text is short and for the viewer.** Max ~4 words per caption, one caption per scene, big (100–150 px Geist ExtraBold), with a brand-colored period. Follow the `user-facing-copy` skill. Take claims (free credits, devices) from the product's own website, never invent them.
+7. **Text is short and for the viewer.** Max ~4 words per caption, one caption per scene, big (100–150 px Geist ExtraBold), with a brand-colored period. Write for the viewer, not about the tech; if a copywriting skill is available, follow it. Take claims (free credits, devices) from the product's own website, never invent them.
 8. **Moments of contrast.** One slow-motion beat (with the music low-passed and ducked) or one breakdown makes the rest feel faster. Add a punch: flash + shockwave + racket/impact sound on the key hit.
 9. **Sound design is half of it.** Add a sound for every visible motion: bounce "pocks", whooshes on transitions, a hit/boom on impacts, a click on buttons, a ding on score/CTA. Synthesize them (numpy), keep them ~10 dB under the music, loudnorm the final mix to −14 LUFS.
 10. **End with a clear CTA**: logo, one question or promise, a button ("Start for free"), the URL. Hold it for 3–4 s.
@@ -37,35 +37,37 @@ Write the plan for the user before building, but don't wait for approval on smal
 
 ### Remotion (motion graphics)
 
-- Use Remotion (React → video). A working project to copy from: `/workspace/persistent/turbl-padel-20s` (composition `Padel20`, effects in `src/fx.tsx`: `Reveal`, `Mono`, `Chip`, `World` background, `Flash`, `Shockwave`, `Iris`, `BrandWipe`, `Grain`, `Vignette`). Copy `package.json` + `node_modules` from it instead of installing.
+- Use Remotion (React → video): `npx create-video@latest` (blank template), 1080×1920, 30 fps. If the user already has a Remotion project, reuse its `package.json` and effects instead of starting over.
+- Build a small reusable effects file (`src/fx.tsx`) early: `Reveal` (word/line entrance), `Chip` (feature pill popping on a beat), an animated background, `Flash`, `Shockwave` (expanding ring on impacts), `Iris` (circular portal/mask transition), `BrandWipe` (brand-colored push between scenes), `Grain` and `Vignette` overlays. Every scene is then composed from these.
 - Drive everything from time, not frames: `const t = frame / FPS`, `const b = k => b0 + BEAT * k`, tweens via `tw(t, t0, dur, easing)`. Scene boundaries are constants in beats, so changing the music's phase moves everything consistently. Keep `music.json` = `{bpm, b0, file}`.
 - Footage: `<Sequence from><OffthreadVideo playbackRate startFrom/></Sequence>`; set `playbackRate = sourceLength / sceneLength` to fit a shot exactly into its bars.
 - Pixel-precise layouts (e.g. where each word is, so a ball can land on it): measure text with PIL from the same TTF (`getlength` + letter-spacing) and write a JSON the composition imports.
 - Check stills before rendering: `npx remotion bundle src/index.ts --out-dir=build`, then `npx remotion still build <Comp> out.png --frame=N --scale=0.3`, tile them with ffmpeg and look at them. Check the exact frames of landings, cuts and frame 0.
 
-### Rendering on this machine
+### Rendering
 
-- The machine is rebuilt when idle, which kills background jobs and wipes everything outside `/workspace`. Keep projects in `/workspace/persistent/<name>` and **render in the foreground** with `scripts/render.sh` (chunks of 1 s, resumable, max 10 min per tool call, re-run until `ALLDONE`).
-- Concurrency must not exceed the cgroup CPU limit (`/sys/fs/cgroup/cpu.max`, often 2 even when `nproc` says 8); `render.sh` reads it.
+- Script paths below are relative to this skill's folder; run them from the Remotion project root.
+- Rendering is slow on CPU. Use `scripts/render.sh <Comp> <frames> <audio.wav> <out.mp4>`: it renders 1 s chunks, skips chunks that already exist, then muxes the audio and loudnorms to −14 LUFS. It is resumable, so if the environment limits command length or kills background jobs, run it in the foreground and re-run until it prints `ALLDONE`. If the workspace can be wiped (ephemeral containers), keep the project somewhere persistent.
+- Concurrency must not exceed the CPUs actually available: in containers the cgroup quota (`/sys/fs/cgroup/cpu.max`) is often lower than `nproc`. `render.sh` reads it; override with `CONCURRENCY=n`.
 - To fix one part, delete only the affected chunks (`out/chunks/cN.mp4` = second N) and re-run.
-- `show_file` refuses files over 25 MB; `render.sh` also writes a `-share.mp4` at ~7 Mbit/s.
+- `render.sh` also writes a smaller `-share.mp4` (~7 Mbit/s) for previews and tools/chats with file-size limits.
 
 ### Clean 3D footage of a web scene
 
-`scripts/rec3d.mjs` opens a Turbl/three.js scene in headless Chromium, freezes time, sets a scripted camera per frame and saves 1080×1920 JPEGs (config JSON: `out`, `shots[{name, frames, keys:[{pos, look, fov}], ease, build}]`, optional `buildFn` to animate the scene assembling). Software rendering is slow (~3 s/frame), so record only what you need. Existing Padel Pro shots: `/workspace/persistent/turbl-padel-20s/public/pp_*.mp4`.
+`scripts/rec3d.mjs` opens a three.js web scene (e.g. a Turbl game) in headless Chromium, freezes time, sets a scripted camera per frame and saves 1080×1920 JPEGs (config JSON: `url`, `out`, `shots[{name, frames, keys:[{pos, look, fov}], ease, build}]`, optional `threeModule`, `chrome`, `css`, `buildFn` to animate the scene assembling; details in the file header). It needs `puppeteer-core` resolvable from the script's location, so copy it into the video project and `npm i puppeteer-core` there, and a Chromium binary (`$CHROME_PATH`). Software rendering is slow (~3 s/frame), so record only what you need, then `ffmpeg -framerate 30 -i out/<shot>/%04d.jpg -c:v libx264 -crf 14 -pix_fmt yuv420p public/<shot>.mp4`.
 
 ### Free AI music
 
-The user wants generated music from a free website, catchy, with a clear beat.
+Unless the user provides a track, generate catchy music with a clear beat using a free tool.
 
-1. **ACE-Step on Hugging Face** via `gradio_client` (installed in `/workspace/persistent/turbl-yt-54af/pylibs`, run with `/workspace/turbl-video/.venv/bin/python`):
+1. **ACE-Step on Hugging Face** via `gradio_client` (`pip install gradio_client`):
    - `ACE-Step/ACE-Step` (`/__call__`, fast) — uses the shared anonymous ZeroGPU quota, often exhausted ("exceeded your ZeroGPU quota").
-   - `WeReCooking/ACE-Step-CPU` (`/generate`, has a `bpm` parameter) — no quota, ~6 min per track. See `scripts/gen_cpu.py`. It returns only ~16 s of music even when asked for 22 s.
+   - `WeReCooking/ACE-Step-CPU` (`/generate`, has a `bpm` parameter) — no quota, ~6 min per track. See `scripts/gen_cpu.py` (`--caption`, `--bpm`, `--duration`, `--out`). It returns only ~16 s of music even when asked for 22 s.
 2. **boppy.me** (no signup) — a few songs per day, then "That's all for today".
 3. Prompt: genre + "punchy four-on-the-floor kick, snappy claps, catchy synth hook, <mood>, sports/tech promo, instrumental", lyrics `[Instrumental]`. Generate 2+ variants.
 4. Measure with `scripts/beats.py <file>`: prefer the track where the kick-band and full-band tempo/phase agree; a weak or syncopated kick makes beat-sync look wrong.
-5. Too short? `scripts/extend.py <src> <phase> <out.wav>` repeats whole bars on the bar grid with short crossfades.
-6. Mix with `scripts/audio.py` (template): music + synthesized SFX at beat times, low-pass/duck during slow-mo, fade the last 0.4 s.
+5. Too short? `scripts/extend.py <src> <phase> <out.wav> [bpm] [seconds]` repeats whole bars on the bar grid with short crossfades.
+6. Mix with `scripts/audio.py <project> [out.wav]`: music + synthesized SFX at beat times, low-pass/duck during slow-mo, fade the last 0.4 s. It is a template for one 20 s storyboard: copy it into the project and rewrite the cue list for your scenes.
 
 Tell the user which site generated the music. You can't listen to it, so say so and let them judge how catchy it is.
 
@@ -75,4 +77,4 @@ Tell the user which site generated the music. You can't listen to it, so say so 
 - Contact sheet (2 fps) of the final file: no empty frames, no overlapping texts in morphs, captions not covered by the motif, nothing important in the bottom ~350 px (platform UI).
 - Every scene change is motivated by motion; the motif appears in every transition.
 - Landings and cuts sit on beats; loudness ≈ −14 LUFS; exactly the planned length.
-- Send the `-share.mp4` with `show_file`, give the path to the full-quality file, and list what you could not check (e.g. listening).
+- Share the `-share.mp4` with the user (attach or show it if your environment can), give the path to the full-quality file, and list what you could not check (e.g. listening).
