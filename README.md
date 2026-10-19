@@ -27,6 +27,10 @@ Update later with `/plugin marketplace update pavlin-dev`.
 
 Skills are invoked automatically by their description, or explicitly as `/pavlin-skills:<skill>`.
 
+## Session rules
+
+The plugin injects `hooks/style-rules.md` into every session start (no long dashes, only the short hyphen). Edit that file to change the rules.
+
 ## Adding a skill
 
 1. Create `skills/<name>/SKILL.md` with `name` and `description` frontmatter (helper scripts go to `skills/<name>/scripts/`).
