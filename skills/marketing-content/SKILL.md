@@ -1,6 +1,6 @@
 ---
 name: marketing-content
-description: How to make marketing content for a product or service — social posts (Reddit, Instagram, Facebook, LinkedIn, X), promo images and banners, ad copy, short promo videos, newsletters, landing-page sections — that is true, clear and fits the platform, and how to review it as the audience before handing it over. Use whenever the user asks for marketing, promo, advertising or social-media content, a post or image "about <product/website>", or wants existing marketing material improved.
+description: How to make marketing content for a product or service, such as social posts (Reddit, Instagram, Facebook, LinkedIn, X), promo images and banners, ad copy, short promo videos, newsletters, landing-page sections, that is true, clear and fits the platform, and how to review it as the audience before handing it over. Use whenever the user asks for marketing, promo, advertising or social-media content, a post or image "about <product/website>", or wants existing marketing material improved.
 ---
 
 # Marketing content
@@ -28,13 +28,13 @@ For videos, also follow the `engaging-video` and `motion-design-video` skills in
 - **Clear call to action**: what to do and where (URL, button text from the product).
 - **Licensed assets only.** Music: an existing licensed track or one from a music generator, never self-synthesized (see `engaging-video`); tell the user the source and the licence (e.g. CC BY needs attribution in the post). Images/fonts: own renders, the product's own assets, or properly licensed ones. Never imitate another brand.
 
-## 3. Review it as the audience — at least one full iteration (mandatory)
+## 3. Review it as the audience: at least one full iteration (mandatory)
 
 After the first version exists, stop being the author. Look at the finished output itself (the rendered image, frames of the final video, the text as it will appear), not at your code or plan, and go through it as a person who has never heard of the product and scrolls past in a hurry:
 
 1. **Is everything easy to understand?**
    - In 3 seconds: what is it, for whom, what do I get? Say it in one sentence; if you can't, the piece isn't clear.
-   - Can every word, number and icon be understood without explanation? (Unlabelled numbers next to items — are those ratings, counts, prices? A caption that only makes sense with the previous frame?)
+   - Can every word, number and icon be understood without explanation? (Unlabelled numbers next to items: are those ratings, counts, prices? A caption that only makes sense with the previous frame?)
    - Is the text readable at the real size (phone, feed thumbnail) and long enough on screen to read (≈ 3 words per second)?
 2. **Is anything weird?**
    - Odd or clumsy wording, a joke or poem that falls flat, wrong typography (straight quotes in Czech, missing diacritics), typos.

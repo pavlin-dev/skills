@@ -1,4 +1,4 @@
-# Motion-design patterns — Remotion recipes
+# Motion-design patterns: Remotion recipes
 
 All snippets are CSS 3D / SVG in Remotion, driven by beats. Shared helpers:
 
@@ -30,7 +30,7 @@ const Layer = ({children}) => {
     <AbsoluteFill style={{transformStyle: 'preserve-3d', transform: camera(f), transformOrigin: '540px 1000px'}}>{children}</AbsoluteFill>
   </AbsoluteFill>;
 };
-// <Bg/>  <Layer>scene 1–3</Layer>  <Layer>bloom circle + icon</Layer>  <Layer>cards, ink circle, CTA</Layer>  <Layer>captions, top bar</Layer>
+// <Bg/>  <Layer>scene 1-3</Layer>  <Layer>bloom circle + icon</Layer>  <Layer>cards, ink circle, CTA</Layer>  <Layer>captions, top bar</Layer>
 // background blobs: add parallax, e.g. right: base + ry * 9, top: base + rx * 9
 ```
 
@@ -106,7 +106,7 @@ const r = tw(f, T_B + 2, 20, Easing.bezier(0.5, 0, 0.2, 1)) * 2600;
 // fade the icon out once the circle covers the screen; the old scene falls back: translateZ(-1200 * b), opacity 1 - b
 ```
 
-The circle must open from the icon's *actual* position (the same coordinates the icon is drawn at, in the same camera layer) and only after the bloom has visibly started (2–4 frames later); a circle opening elsewhere or before the bloom reads as an unrelated wipe.
+The circle must open from the icon's *actual* position (the same coordinates the icon is drawn at, in the same camera layer) and only after the bloom has visibly started (2-4 frames later); a circle opening elsewhere or before the bloom reads as an unrelated wipe.
 
 The same circle works from a button ("the search button grows into the CTA background"): start as the button's rounded square (`borderRadius` from 24 to r within the first 25 %) and interpolate the colour from the button's to the next background.
 
@@ -148,8 +148,8 @@ style = outP > 0 ? {transformOrigin: 'bottom', transform: `perspective(1100px) r
 ## Pitfalls
 
 - An element that morphs from one part into the next (words gliding into a search bar, a card becoming the URL bar) lives in the later part's layer but must be mounted and visible from frame 0 when it is already on screen then. Mounting a layer only from the morph's start time made those words missing at the beginning. Drive visibility with the element's own state, not by mounting.
-- An element left outside the camera layer (the search bar in our case) stays flat while everything else tilts — the user noticed immediately.
+- An element left outside the camera layer (the search bar in our case) stays flat while everything else tilts, and the user noticed immediately.
 - `opacity < 1`, `filter`, `overflow: hidden` on a preserve-3d container flatten it; fade leaf elements. Cards with `overflow: hidden` are fine because they are leaves.
 - Elements at the same z inside one preserve-3d context can z-fight or paint in the wrong order; separate layers solve it.
 - Something sinking into depth moves towards the perspective origin and can slide over other elements; add a downward drift (`y += 260 * r`) and fade it fast (`opacity 1 - 2.5 r`).
-- Recompute `durationInFrames` after changing the track's BPM or the storyboard; cut so the CTA holds 3–4 s.
+- Recompute `durationInFrames` after changing the track's BPM or the storyboard; cut so the CTA holds 3-4 s.

@@ -1,8 +1,8 @@
-# Clean 2D layouts with 3D transitions — Remotion recipes
+# Clean 2D layouts with 3D transitions: Remotion recipes
 
 Every snippet is plain CSS 3D inside Remotion, driven by time: `t = frame / FPS`, `b(k) = b0 + BEAT * k`,
-`tw(t, t0, dur, ease) = ease(clamp((t - t0) / dur))`. Transitions are 0.5–1 beat long and use
-`Easing.inOut(Easing.cubic)` (or `Easing.in` for things leaving, `Easing.out(Easing.back(1.2–1.6))` for things arriving).
+`tw(t, t0, dur, ease) = ease(clamp((t - t0) / dur))`. Transitions are 0.5-1 beat long and use
+`Easing.inOut(Easing.cubic)` (or `Easing.in` for things leaving, `Easing.out(Easing.back(1.2-1.6))` for things arriving).
 A transition starts ~0.5 beat before the scene boundary and lands on the beat.
 
 A full video is just these pieces on a beat timeline: a light animated background, one `Reveal` caption per scene,
@@ -19,7 +19,7 @@ one hero element (phone mockup with a real screenshot, card, TV), and one transi
 
 // flap-in (instead of a fade): pivot on the top edge
 style={{transformOrigin:'50% 0%', transform:`rotateX(${(1-u)*-95}deg)`, opacity: clamp(u*3)}}
-// put `perspective: 900–1600` on a parent; u = tw(t, at, 0.5, Easing.out(Easing.back(1.2)))
+// put `perspective: 900-1600` on a parent; u = tw(t, at, 0.5, Easing.out(Easing.back(1.2)))
 
 // phone with two faces so it can flip
 const face = {position:'absolute', inset:0, borderRadius:66, background:INK, backfaceVisibility:'hidden', WebkitBackfaceVisibility:'hidden'};
