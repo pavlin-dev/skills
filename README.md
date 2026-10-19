@@ -21,7 +21,8 @@ Update later with `/plugin marketplace update pavlin-dev`.
 
 | Skill | What it does |
 |---|---|
-| `engaging-video` | Short, beat-synced vertical promo videos (Reels/Shorts/TikTok) in Remotion: clean 2D layouts with 3D transitions, real footage, AI music (Suno or free generators). |
+| `engaging-video` | Short, beat-synced vertical promo videos (Reels/Shorts/TikTok) in Remotion: hook, story, sound design, music, rendering; two styles (motion design, 2D layouts with 3D transitions). |
+| `motion-design-video` | Motion-design promo videos where vector shapes morph into the next scene under one shared 3D camera: workflow, Remotion patterns, SFX mixer, contact sheets. |
 
 Skills are invoked automatically by their description, or explicitly as `/pavlin-skills:<skill>`.
 

@@ -1,6 +1,6 @@
 ---
 name: engaging-video
-description: How to make short, engaging vertical promo videos (Reels/Shorts/TikTok, 1080×1920) in Remotion — clean 2D layouts with 3D transitions (2.5D motion design), real product footage, and AI music (Suno or free generators) synced to the beat. Use whenever the user asks for a promo video, short, reel, teaser, product demo video or "motion" animation, or says a video is boring, unclear or needs music.
+description: How to make short, engaging vertical promo videos (Reels/Shorts/TikTok, 1080×1920) in Remotion — clean 2D layouts with 3D transitions (2.5D motion design), real product footage, and music synced to the beat (the user's own track, Suno or free sources). Two styles: clean 2D layouts with 3D transitions, and motion design where vector shapes morph into the next scene under one shared 3D camera (details in the `motion-design-video` skill). Use whenever the user asks for a promo video, short, reel, teaser, product demo video or "motion" animation, or says a video is boring, unclear or needs music.
 ---
 
 # Engaging short videos
@@ -10,19 +10,31 @@ A short video has about one second to tell the viewer what it is about, and abou
 ## What makes it engaging (learned the hard way)
 
 1. **Say what it is in the very first frame.** Frame 0 must already show the category and the promise ("ONE SENTENCE → VR GAME", "Build a **VR** padel court…"). Never let text fade in from nothing at t=0: start entrance animations at negative time so frame 0 is readable. If the product is VR, AI, a game, etc., that word has to be on screen and visually emphasized immediately.
-2. **One subject.** One product or one demo per video (e.g. only the Padel Pro example), not a tour of features. 15–25 s is the target. Ask the user for the length if unsure, default 20 s.
-3. **Connect the scenes, but not with a gimmick.** The viewer must feel one continuous piece, not a slideshow. The most reliable way is one hero element that survives every cut: the same phone flips to show the next screen, the scene turns like a cube, a card falls back into a floor, the screen swings open like a door (see "Clean 2D with 3D transitions" below). A travelling object (ball, mascot, cursor) that hops on words and dives into the lens can also work, but users have called a bouncing dot/mascot distracting and a free-flying 3D camera "too chaotic". Use such a motif only when the subject itself is a physical object (a ball in a sports game), never as a default.
-4. **No plain cuts.** Each scene change is motivated by motion: a 3D flip/turn/fold of the current layout, zoom-through, whip-pan push, match cut on the same shape. Keep elements alive across the cut (the link pill morphs into the CTA URL bar, the phone flips instead of disappearing).
-5. **Everything on the beat.** Pick music with a clear, steady kick, measure its exact BPM and phase, and put every landing, cut, word reveal and flash on a beat. Use bars as the unit of scene length (at 120 BPM, 1 bar = 2 s).
-6. **Show the real product.** Use actual footage of the product. Clean, full-bleed vertical footage beats upscaled screen recordings in a card. Avoid footage with baked-in captions.
-7. **Text is short and for the viewer.** Max ~4 words per caption, one caption per scene, big (100–150 px Geist ExtraBold), with a brand-colored period. Write for the viewer, not about the tech; if a copywriting skill is available, follow it. Take claims (free credits, devices) from the product's own website, never invent them.
-8. **Moments of contrast.** One slow-motion beat (with the music low-passed and ducked) or one breakdown makes the rest feel faster. Add a punch: flash + shockwave + racket/impact sound on the key hit.
-9. **Sound design is half of it.** Add a sound for every visible motion: bounce "pocks", whooshes on transitions, a hit/boom on impacts, a click on buttons, a ding on score/CTA. Synthesize them (numpy), keep them ~10 dB under the music, loudnorm the final mix to −14 LUFS.
-10. **End with a clear CTA**: logo, one question or promise, a button ("Start for free"), the URL. Hold it for 3–4 s.
+2. **Find the motion that *is* the product.** Ask what the product does and turn exactly that into movement (a rhyme finder: the word's ending stays put while its start spins on a reel). That one image carries the hook; generic flips between nice layouts read as a slideshow.
+3. **One subject.** One product or one demo per video (e.g. only the Padel Pro example), not a tour of features. 15–25 s is the target. Ask the user for the length if unsure, default 20 s.
+4. **Connect the scenes, but not with a gimmick.** The viewer must feel one continuous piece, not a slideshow. The most reliable way is one hero element that survives every cut: the same phone flips to show the next screen, the scene turns like a cube, a card falls back into a floor, the screen swings open like a door (see the two styles below). A travelling object (ball, mascot, cursor) that hops on words and dives into the lens can also work, but users have called a bouncing dot/mascot distracting and a free-flying 3D camera "too chaotic". Use such a motif only when the subject itself is a physical object (a ball in a sports game), never as a default.
+5. **No plain cuts.** Each scene change is motivated by motion: a 3D flip/turn/fold of the current layout, zoom-through, whip-pan push, match cut on the same shape. Keep elements alive across the cut (the link pill morphs into the CTA URL bar, the phone flips instead of disappearing).
+6. **Everything on the beat, but no global pulse.** Pick music with a clear, steady kick, measure its exact BPM and phase, and put every landing, cut, word reveal and flash on a beat. Don't scale the whole frame on every beat: users called it "too much". Use bars as the unit of scene length (at 120 BPM, 1 bar = 2 s).
+7. **Show the real product.** Use actual footage of the product. Clean, full-bleed vertical footage beats upscaled screen recordings in a card. Avoid footage with baked-in captions.
+8. **Text is short and for the viewer.** Max ~4 words per caption, one caption per scene, big (100–150 px Geist ExtraBold), with a brand-colored period. Write for the viewer, not about the tech; if a copywriting skill is available, follow it. Take claims (free credits, devices) from the product's own website, never invent them.
+9. **Moments of contrast.** One slow-motion beat (with the music low-passed and ducked) or one breakdown makes the rest feel faster. Add a punch: flash + shockwave + racket/impact sound on the key hit.
+10. **Sound design is half of it.** Add a sound for every visible motion: bounce "pocks", whooshes on transitions, a hit/boom on impacts, a click on buttons, a ding on score/CTA. Synthesize them (numpy), keep them ~10 dB under the music, loudnorm the final mix to −14 LUFS.
+11. **End with a clear CTA**: logo, one question or promise, a button ("Start for free"), the URL. Hold it for 3–4 s, not longer; cut the video there.
+12. **Vertical 1080×1920 by default**, also when the video is meant for Reddit or another feed, unless the user asks for another format.
 
-## Default style: clean 2D layouts with 3D transitions (2.5D)
+## Style A: motion design — vector morphs under one camera
 
-This is what users liked best. Each scene is a tidy, flat 2D layout; depth appears only while moving from one scene to the next and in small details. A fully 3D world with a flying camera, depth of field and lots of floating cards looks impressive in stills but feels chaotic in motion.
+The style users liked most for products without much footage. Full guide, workflow and code: the `motion-design-video` skill (`skills/motion-design-video/` in this repository). The core rules:
+
+- **One continuous piece, 4–6 parts, 15–20 s.** Every part is born out of an element of the previous one: a highlight grows into the next page, an icon draws itself and blooms into the next background, a button grows into a full-screen circle, a stack of cards folds into the CTA's URL bar, one word splits into a list. Each part has its own background colour, so the morph reads.
+- **One shared 3D camera** (a few degrees of rotateX/rotateY, new direction per part) over *all* layers, UI included. A flat search bar on top of a tilting scene looked pasted on.
+- **Vector decor**: rings, dots, squiggles and underlines that draw themselves (stroke-dash), sparkles that pop; 2–3 per part, gone when the part ends.
+- **Kinetic type**: one flip-board caption per part, key words in the brand colour.
+- **Events on beats, no global pulse.**
+
+## Style B: clean 2D layouts with 3D transitions (2.5D)
+
+Good when there is real product footage or screenshots to show. Each scene is a tidy, flat 2D layout; depth appears only while moving from one scene to the next and in small details. A fully 3D world with a flying camera, depth of field and lots of floating cards looks impressive in stills but feels chaotic in motion.
 
 - **Scenes are flat and calm.** Light brand background (soft gradient shapes drifting slowly), one caption at the top (masked word reveal), one hero element in the middle (a phone mockup with a real screenshot, a card, a TV), at most 2–3 chips/stickers. Lots of white space. Nothing important below y ≈ 1570.
 - **3D happens in transitions, ~0.5–1 beat long, eased in-out:** card flip of the phone (front face → back face), cube turn of the whole scene, the layout tilting back into a floor while the next element rises from below, flying out of depth (`translateZ(-2000px)` → 0), folding two phones shut like a book, a door swing (rotateY around the left edge) revealing the end card.
@@ -55,6 +67,7 @@ Write the plan for the user before building, but don't wait for approval on smal
 
 ### Rendering
 
+- Remotion needs a Chromium it can start in headless mode. Recent Chrome/Chromium builds removed the old headless mode ("Old Headless mode has been removed"); pass a `chrome-headless-shell` binary instead: `--browser-executable=$CHROME_PATH` on `remotion still/render`. A Playwright install has one under its browsers folder (`$PLAYWRIGHT_BROWSERS_PATH/chromium_headless_shell-*/…/headless_shell` or `chrome-headless-shell`); otherwise let Remotion download its own.
 - Script paths below are relative to this skill's folder; run them from the Remotion project root.
 - Rendering is slow on CPU. Use `scripts/render.sh <Comp> <frames> <audio.wav> <out.mp4>`: it renders 1 s chunks, skips chunks that already exist, then muxes the audio and loudnorms to −14 LUFS. It is resumable, so if the environment limits command length or kills background jobs, run it in the foreground and re-run until it prints `ALLDONE`. If the workspace can be wiped (ephemeral containers), keep the project and its Python environment somewhere that survives a rebuild: a rebuild once deleted a whole working directory, including two finished videos and the venv.
 - If long renders get killed when the agent's shell or session restarts, start them detached and resumable: `setsid nohup bash -c 'for i in 1 2 3; do ./render.sh … && break; done' >> out/render.log 2>&1 < /dev/null & disown`, then poll `out/render.log` for `ALLDONE`.
@@ -67,9 +80,17 @@ Write the plan for the user before building, but don't wait for approval on smal
 
 `scripts/rec3d.mjs` opens a three.js web scene (e.g. a Turbl game) in headless Chromium, freezes time, sets a scripted camera per frame and saves 1080×1920 JPEGs (config JSON: `url`, `out`, `shots[{name, frames, keys:[{pos, look, fov}], ease, build}]`, optional `threeModule`, `chrome`, `css`, `buildFn` to animate the scene assembling; details in the file header). It needs `puppeteer-core` resolvable from the script's location, so copy it into the video project and `npm i puppeteer-core` there, and a Chromium binary (`$CHROME_PATH`). Software rendering is slow (~3 s/frame), so record only what you need, then `ffmpeg -framerate 30 -i out/<shot>/%04d.jpg -c:v libx264 -crf 14 -pix_fmt yuv420p public/<shot>.mp4`.
 
+### Music: ask the user first
+
+You cannot listen to music, so your choice is a guess. Ask for a track (a file, a link, or a video whose music they like: `ffmpeg -i ref.mp4 -vn -ac 2 -ar 48000 music.wav`) before you search. Without one, offer two variants and say you could not listen. Notes from trying:
+
+- Free generators: the `bpm` parameter of ACE-Step was ignored (asked for 100, got 133) and the mp3 had broken frames at the end; decode to wav and measure before use. The user called the result "terrible".
+- Free catalogs: Kevin MacLeod's incompetech.com has a machine-readable list (`https://incompetech.com/music/royalty-free/pieces.json`: title, bpm, feel, instruments, description; files at `…/mp3-royaltyfree/<title>.mp3`, CC BY 4.0, attribution required). Filtering by feel is easy, but the style is often dated or generic; polka-like tracks sound like a kids' game. Pixabay and Bensound refused scripted downloads (403).
+- Measure every candidate with `scripts/beats.py` (prefer tracks where kick and full-band tempo/phase agree) and print energy per bar to find a lift; place the lift on the biggest transition.
+
 ### Free AI music
 
-Unless the user provides a track, generate catchy music with a clear beat using a free tool.
+If the user wants generated music, use a free tool.
 
 1. **ACE-Step on Hugging Face** via `gradio_client` (`pip install gradio_client`):
    - `ACE-Step/ACE-Step` (`/__call__`, fast) — uses the shared anonymous ZeroGPU quota, often exhausted ("exceeded your ZeroGPU quota").
@@ -78,7 +99,8 @@ Unless the user provides a track, generate catchy music with a clear beat using 
 3. Prompt: genre + "punchy four-on-the-floor kick, snappy claps, catchy synth hook, <mood>, sports/tech promo, instrumental", lyrics `[Instrumental]`. Generate 2+ variants.
 4. Measure with `scripts/beats.py <file>`: prefer the track where the kick-band and full-band tempo/phase agree; a weak or syncopated kick makes beat-sync look wrong.
 5. Too short? `scripts/extend.py <src> <phase> <out.wav> [bpm] [seconds]` repeats whole bars on the bar grid with short crossfades.
-6. Mix with `scripts/audio.py <project> [out.wav]`: music + synthesized SFX at beat times, low-pass/duck during slow-mo, fade the last 0.4 s. It is a template for one 20 s storyboard: copy it into the project and rewrite the cue list for your scenes.
+6. Loud masters clip when SFX are added on top: scale the music to ~0.45 before summing and check `max_volume` (ffmpeg `volumedetect`) of the result. The `motion-design-video` skill's `scripts/sfx_mix.py` takes a cue list in beats and does this.
+7. Mix with `scripts/audio.py <project> [out.wav]`: music + synthesized SFX at beat times, low-pass/duck during slow-mo, fade the last 0.4 s. It is a template for one 20 s storyboard: copy it into the project and rewrite the cue list for your scenes.
 
 ### Suno (when the user is logged in to suno.com in the browser)
 
