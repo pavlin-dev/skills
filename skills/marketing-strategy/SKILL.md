@@ -96,12 +96,20 @@ Small products start narrow even in B2C: the broad-reach advice is for products 
 A recurring marketing run (a weekly routine, a scheduled task, or a user asking "what should we post") goes like this:
 
 1. **Read the strategy file**, including the lessons log.
-2. **Gather new raw material** since the last run (product data, new questions, the user's notes). If there is none, ask for it or pick an item still unused from the list.
-3. **Write a hypothesis** for each piece: "*For <segment> in <buying situation>, at <awareness level>, <this angle / hook / format> on <channel> will <measurable result>*." One variable per test, otherwise nothing is learned.
-4. **Answer the six questions** (below). If any answer is weak, change the piece or drop it.
-5. **Make it** with `marketing-content` (research, true claims, review as the audience) and the video skills for video. Vary hooks, formats and visuals between pieces; repetition of the *situation and the brand* is good, repetition of the *template* is what platforms penalise as mass-produced.
-6. **Hand it over for approval** where it matters (see below), with the hypothesis attached.
-7. **Measure after a fixed time** (two to four weeks for most B2B signals; a week can be enough for short video in B2C) and **write the lesson** into the strategy file: what was tested, what happened, what to do differently. Kill what doesn't work, double what does.
+2. **Evaluate what is due.** For every experiment whose measuring time has passed, look up the result the way its log row says (the analytics, the platform's statistics, the sign-up sources), write the result and the lesson, and update the strategy if the lesson changes it (a situation that doesn't resonate, a channel to drop, an angle to repeat): kill what doesn't work, double what does. If a result can't be found, write why and fix the tracking, so the next experiment can be judged.
+3. **Listen to the audience.** Go through the listening sources in the strategy file (communities, comment sections, review sites, competitors' channels, questions people ask AI assistants and search engines about the problem) and look for what changed since the last run:
+   - new questions and complaints, quoted in the audience's own words, with a link, into "Words they use";
+   - new buying situations or alternatives people mention, into those sections as hypotheses;
+   - questions worth answering, into the raw material;
+   - new places where the segment gathers, into the listening sources or channels.
+   Write down only what is new and has a source; "people want to save time" is not a finding.
+4. **Gather new raw material** since the last run (product data, new questions, the user's notes). If there is none, ask for it or pick an item still unused from the list.
+5. **Write a hypothesis** for each piece: "*For <segment> in <buying situation>, at <awareness level>, <this angle / hook / format> on <channel> will <measurable result>*." One variable per test, otherwise nothing is learned.
+6. **Answer the six questions** (below). If any answer is weak, change the piece or drop it.
+7. **Make it** with `marketing-content` (research, true claims, review as the audience) and the video skills for video. Vary hooks, formats and visuals between pieces; repetition of the *situation and the brand* is good, repetition of the *template* is what platforms penalise as mass-produced.
+8. **Hand it over for approval** where it matters (see below), with the hypothesis attached.
+9. **Log the experiment** so a later run can judge it without this run's memory: the hypothesis, where it was published (link), the metric, how to read the result (which report, which tag, which field) and the date when to evaluate it (two to four weeks for most B2B signals; a week can be enough for short video in B2C).
+10. **Save the strategy file** where it lives (commit it, or write it back to the place the user keeps it). Notes that stay in one session are lost; if saving isn't possible, say so clearly and give the user the changes.
 
 ### The six questions (mandatory before making a piece)
 
@@ -114,7 +122,7 @@ A recurring marketing run (a weekly routine, a scheduled task, or a user asking 
 
 ## 5. Measure what can be measured, honestly
 
-- **Pick the metric before publishing.** Likes and views are a weak signal; sign-ups, replies from the right people, demo requests, newsletter subscribers and saves are stronger.
+- **Pick the metric before publishing, and know where it will be read.** Likes and views are a weak signal; sign-ups, replies from the right people, demo requests, newsletter subscribers and saves are stronger. A metric nobody can look up later (no access to the analytics, no tag on the link) is not a metric; fix that first.
 - **Tag links** (UTM parameters or the platform's equivalent) so sign-ups can be traced to a channel and, if possible, a piece.
 - **Ask people where they heard about the product**: a free-text "How did you hear about us?" at sign-up catches what links never will. In B2B, much of the decision happens in private channels (colleagues, Slack groups, messages) that no tracking sees.
 - **Watch slow signals for brand building**: searches for the product's name, direct visits, mentions, being named by AI assistants.

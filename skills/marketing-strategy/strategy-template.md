@@ -29,6 +29,14 @@ The moments the best-fit customer suddenly needs this. Top 2-3 first; content co
 3.
 4.
 
+## Listening sources
+
+Where the best-fit customer talks about the problem. Checked every run; add new places as you find them.
+
+| Source (link) | What to look for there | Last checked |
+|---|---|---|
+| | | |
+
 ## Words they use
 
 How customers describe the problem and the alternatives, quoted from real sources (reviews, threads, support, calls). Use these words in content, not ours.
@@ -78,8 +86,8 @@ Sources of new information only we have. Mark items as used, with the date.
 
 ## Experiments and lessons
 
-Newest first. One line per test, plus the lesson.
+Newest first. One line per test. Each run first evaluates the rows whose "evaluate on" date has passed.
 
-| Date | Hypothesis (segment, situation, level, angle, channel, expected result) | Piece | Result after <n> weeks | Lesson / next step |
-|---|---|---|---|---|
-| | | | | |
+| Published | Hypothesis (segment, situation, level, angle, channel, expected result) | Where (link) | Metric and how to read it | Evaluate on | Result | Lesson / next step |
+|---|---|---|---|---|---|---|
+| | | | | | | |
