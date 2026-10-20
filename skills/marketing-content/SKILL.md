@@ -7,7 +7,7 @@ description: How to make marketing content for a product or service, such as soc
 
 Marketing content works when a stranger understands in a few seconds what it is, why it matters to them, and what to do next, and nothing in it makes them doubt it. Most failures are not "bad design" but small things: a number nobody can read, a slogan that only makes sense to the author, a claim the product doesn't support, a format that doesn't fit the platform.
 
-This skill decides *what* to say and checks the result; the video skills in this repository say how to build it.
+This skill decides *what* to say and checks the result; the video skills in this repository say how to build it. *Whom* to target, in which situation, on which channel and how to learn from the results is decided by `marketing-strategy`: if the product has a strategy file, read it first; if it has none and the marketing is recurring or should be targeted, start there.
 
 ## Marketing videos: a story by default
 
