@@ -17,7 +17,7 @@ aligned to the script word by word (fuzzy, so small mis-hearings don't matter), 
 --squeeze S shortens every silence in the take longer than S seconds to S before anything else
 (written to <out_dir>/take_squeezed.wav). Use it for TTS takes that leave ~0.8 s after every
 sentence; it also shortens performed dramatic pauses, so add those back with vo_timeline.py --extra.
-Words heard as digits ("1983" for "tisíc devět set osmdesát tři") are not flagged.
+Numbers whisper writes as digits ("1983" for "tisíc devět set osmdesát tři", "8 servrů") are not flagged.
 
 Needs: ffmpeg, `pip install faster-whisper numpy`. The model is downloaded on first
 use (set HF_HOME or --download-root to choose where).
@@ -102,8 +102,11 @@ def main():
         diffs = []
         for op, i1, i2, k1, k2 in difflib.SequenceMatcher(None, [norm(w) for w in want], [norm(w) for w in said], autojunk=False).get_opcodes():
             x, y = " ".join(want[i1:i2]), " ".join(said[k1:k2])
-            if re.fullmatch(r"[\d\s.,:/%-]+", y or "-x"):  # numbers written as digits by whisper
-                continue
+            if re.search(r"\d", y or ""):  # whisper writes numbers as digits ("8 servrů" for "osm serverů")
+                rest = [t for t in y.split() if not re.search(r"\d", t)]
+                joined = norm(x)  # whisper may also split a word ("New Yorkský", "e -mailů")
+                if all(norm(t) in joined or max((difflib.SequenceMatcher(None, norm(t), norm(u)).ratio() for u in x.split()), default=0) >= 0.6 for t in rest):
+                    continue
             if op != "equal" and difflib.SequenceMatcher(None, norm(x), norm(y)).ratio() < 0.75:
                 diffs.append(f"'{x}' -> '{y}'")
         print(f"{lid:>5} {st:7.2f}-{en:6.2f}  {text.strip()}")

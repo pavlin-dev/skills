@@ -50,11 +50,13 @@ import re, unicodedata
 def norm(w):
     w = unicodedata.normalize('NFKD', w.lower()); w = ''.join(c for c in w if not unicodedata.combining(c))
     return re.sub(r'[^\w]', '', w)
-SHOW = [(k.split(), v) for k, v in (e.split('=', 1) for e in a.show)]
+# longest phrases first, and a word mapped once is not mapped again ("osm serverů." before "osm.")
+SHOW = sorted(((k.split(), v) for k, v in (e.split('=', 1) for e in a.show)), key=lambda kv: -len(kv[0]))
 def apply_show(words):
     for spoken, shown in SHOW:
         n = len(spoken)
         for i in range(len(words) - n + 1):
+            if any('show' in w for w in words[i:i + n]): continue
             if [norm(w['w']) for w in words[i:i + n]] == [norm(x) for x in spoken]:
                 words[i]['show'] = shown
                 for w in words[i + 1:i + n]: w['show'] = ''
