@@ -1,8 +1,6 @@
 {
   "name": "pavlin-skills",
   "version": "0.12.0",
-  "description": "Pavlin's Claude Code skills (marketing content, engaging short promo videos, motion-design videos, …).",
-  "version": "0.12.0",
   "description": "Pavlin's Claude Code skills (marketing strategy and content, engaging short promo videos, motion-design videos, …).",
   "author": {
     "name": "pavlin-dev",
