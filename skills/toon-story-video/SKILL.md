@@ -73,7 +73,8 @@ The first cut was "not dynamic, the characters should feel alive". What fixed it
 
 - **`holdPhone(c, phone, pose, t, typing)`:** the phone sits in front of the chest and both hands grip its long sides (arm IK), elbows out and down. With `oneHand` the free hand can gesture.
 - **No fingers.** Drawn thumbs flying over the keys "didn't look good". Instead an on-screen keyboard is drawn, and for each letter from `typed(str, t0, t1, t)` the key lights up with a pop-up bubble. Meanwhile the hand on that key's side gives a small tap (in and down onto the glass, then back) and the phone dips a touch. Typing sounds are one tick per letter on the same times (`scripts/word_cues.py`).
-- **Close-up with `phoneCloseUp()`:** the camera sits on the screen's normal, so the screen and both hands are in frame. Move the captions off the keyboard for that shot. Never show a phone floating on a coloured background.
+- **The screen faces the character, not the camera.** The phone is turned to their face and tilted up to the eyes. A close-up taken from in front of the character (camera on the screen's normal, character behind the phone) read as "he holds the phone the wrong way round and shows it to you".
+- **Close-up over the shoulder with `phoneCloseUp(phone, character, t)`:** the camera sits behind and above the right shoulder, rolled toward the phone's up so the screen reads upright. The edge of the head and the hand stay in frame, as if we were looking over their shoulder. Move the captions off the keyboard for that shot. Never show a phone floating on a coloured background.
 - Laptops and TVs (`makeLaptop`, `makeTV`) get a live canvas: the real page, or the character's own content. A contrast pair works well, e.g. a blurry, choppy "screen recording" with a cursor and a notification vs the crisp export.
 
 ## 6. Build and render

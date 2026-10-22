@@ -217,17 +217,22 @@ export function holdPhone(c, phone, p, t, typing = null, oneHand = false) {
   if (typing && typing.key) { const r = phone.keyRect(typing.key), k = Math.sin(clamp(typing.press) * Math.PI); if (r.x + r.w / 2 > 360) tapR = k; else tapL = k; }
   else if (typing && typing.idle) { tapL = 0.25 * Math.max(0, Math.sin(t * 2.3)); tapR = 0.25 * Math.max(0, Math.sin(t * 2.3 + 2)); }
   g.visible = true; g.position.copy(c.torso.localToWorld(V(0, 0.3, 0.3)));
-  g.quaternion.copy(c.torso.getWorldQuaternion(new THREE.Quaternion())).multiply(new THREE.Quaternion().setFromEuler(new THREE.Euler(-0.75 - 0.03 * (tapL + tapR), 0, 0.025 * (tapL - tapR))));
+  // screen turned to the character's face (yaw pi) and tilted up toward the eyes
+  g.quaternion.copy(c.torso.getWorldQuaternion(new THREE.Quaternion())).multiply(new THREE.Quaternion().setFromEuler(new THREE.Euler(0.65 + 0.03 * (tapL + tapR), Math.PI, 0.025 * (tapR - tapL))));
   g.updateMatrixWorld(true);
   // grips on the long sides; a tap moves that hand in and down toward the keyboard and onto the glass
   const gripL = g.localToWorld(V(-0.072 + 0.022 * tapL, -0.035 - 0.02 * tapL, -0.01 + 0.03 * tapL)), gripR = g.localToWorld(V(0.072 - 0.022 * tapR, -0.035 - 0.02 * tapR, -0.01 + 0.03 * tapR));
   c.pose({ ...p, al: { ...(p.al || {}), target: gripL }, ar: oneHand ? p.ar : { ...(p.ar || {}), target: gripR } });
 }
-// close-up of the phone in the hands: camera on the screen's normal, so the screen and both hands are in frame
-export function phoneCloseUp(phone, t, dist = 0.5, fov = 44) {
-  const g = phone.group; g.updateMatrixWorld(true); const c0 = g.getWorldPosition(new THREE.Vector3());
-  const n = V(0, 0, 1).transformDirection(g.matrixWorld), up = V(0, 1, 0).transformDirection(g.matrixWorld);
-  camera.up.copy(up); shotCam(c0.clone().addScaledVector(n, dist).addScaledVector(up, -0.06), c0.clone().addScaledVector(up, -0.02), fov, t, 0.4); camera.up.set(0, 1, 0);
+// over-the-shoulder close-up: the camera sits behind and above the character's right shoulder, looking down at the
+// screen the way they see it (their head and shoulder stay at the edge of the frame). Shooting the screen from the
+// front instead reads as "he holds the phone the wrong way round and shows it to you".
+export function phoneCloseUp(phone, c, t, fov = 23) {
+  c.torso.updateMatrixWorld(true); const g = phone.group; g.updateMatrixWorld(true);
+  const cam = c.torso.localToWorld(V(-0.62, 1.12, 0.06)), aim = g.getWorldPosition(new THREE.Vector3()).add(V(0, -0.01, 0));
+  // roll the camera most of the way to the phone's up, so the screen reads nearly upright
+  camera.up.copy(V(0, 1, 0).lerp(V(0, 1, 0).transformDirection(g.matrixWorld), 0.7)).normalize();
+  shotCam(cam, aim, fov, t, 0.4); camera.up.set(0, 1, 0);
 }
 
 // ---------- laptop / TV with a live canvas screen ----------

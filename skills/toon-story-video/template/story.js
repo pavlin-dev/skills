@@ -52,7 +52,7 @@ function shot(t) {
     place(me, 0.75, -0.55, -0.6); const ty = typed(ORDER, typeA, typeB, t), send = clamp((t - typeB - 0.15) / 0.3);
     holdPhone(me, phone, life(me, t, 2, standPose({ hp: 0.35 }), 0.4), t, ty.key ? ty : { idle: true });
     drawApp(ty.text, ty.key, send > 0 && send < 1 ? 1 - send : 0);
-    phoneCloseUp(phone, t);
+    phoneCloseUp(phone, me, t);
   } else { // Tom finally finds his phone; I shrug at the camera
     place(tom, -0.35, -1.38, 0.35); place(me, 0.75, -0.55, -0.6);
     const found = ss(T('l3:found') - 0.2, T('l3:found'), t);
