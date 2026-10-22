@@ -4,7 +4,7 @@
 //
 // Exports: the scene/camera/renderer, helpers (clamp, ss, eio, back, ...), obj/toon/RB for building sets,
 // makeChar (characters with faces, poses, arm IK), life/blink/mouth (keep characters alive), camera helpers
-// (shotCam, punch), makePhone/holdPhone/typed (a phone held in two hands, thumbs typing on the keyboard),
+// (shotCam, punch), makePhone/holdPhone/typed (a phone held in two hands that tap as the keys light up),
 // makeScreen (a laptop or TV with a live canvas screen), loadTimeline/captions/present.
 import * as THREE from 'three';
 import { RoundedBoxGeometry } from './lib/RoundedBoxGeometry.js';
@@ -92,7 +92,7 @@ export function drawFace(x, spec, s = 512) {
 }
 
 // ---------- characters ----------
-// makeChar({ hair, shirt, scarf, young }) -> character with .pose(p), .face(spec), .squash(a), .root, .head, .hands, .thumbs
+// makeChar({ hair, shirt, scarf, young }) -> character with .pose(p), .face(spec), .squash(a), .root, .head, .hands
 // pose p: hipY (0.72 standing, 0.5 sitting), lean/twist/tilt (torso), hp/hy/hr (head pitch/yaw/roll),
 //   al/ar arms { p: pitch, r: roll out, e: elbow bend, er } or { target: world Vector3 } (two-bone IK),
 //   ll/lr legs { h: hip pitch (negative = forward), k: knee bend, s: spread }
@@ -113,10 +113,9 @@ export function makeChar({ hair = 0x9aa3b0, shirt = 0x8b2f3a, scarf = null, youn
   if (!young) obj(new THREE.SphereGeometry(0.219, 30, 12, Math.PI * 0.85, Math.PI * 1.3, Math.PI * 0.28, Math.PI * 0.2), toon(hair), 0, 0, 0, head, 0);
   const lim = {}; for (const k of ['ua_l', 'fa_l', 'ua_r', 'fa_r', 'th_l', 'sh_l', 'th_r', 'sh_r']) { lim[k] = new THREE.Mesh(limbGeo, BLACK); lim[k].castShadow = true; root.add(lim[k]); }
   const hands = { l: new THREE.Mesh(ballGeo, BLACK), r: new THREE.Mesh(ballGeo, BLACK) }; for (const h of Object.values(hands)) { h.scale.setScalar(0.034); h.castShadow = true; root.add(h); }
-  const thumbs = { l: new THREE.Mesh(limbGeo, BLACK), r: new THREE.Mesh(limbGeo, BLACK) }; for (const th of Object.values(thumbs)) { th.visible = false; scene.add(th); }
   const feet = { l: new THREE.Mesh(ballGeo, BLACK), r: new THREE.Mesh(ballGeo, BLACK) }; for (const f of Object.values(feet)) { f.scale.set(0.045, 0.025, 0.06); f.castShadow = true; root.add(f); }
   let faceKind = '';
-  const c = { root, torso, headPiv, head, hands, feet, thumbs, body,
+  const c = { root, torso, headPiv, head, hands, feet, body,
     face(spec) { if (spec === faceKind) return; faceKind = spec; drawFace(faceC.ctx, spec); faceC.t.needsUpdate = true; },
     squash(a) { head.scale.set(1.0 * (1 + 0.12 * a), 0.92 * (1 - 0.12 * a), 0.95 * (1 + 0.12 * a)); }, // >0 squashed, <0 stretched
     hand(side) { return hands[side].getWorldPosition(new THREE.Vector3()); },
@@ -145,7 +144,7 @@ export function makeChar({ hair = 0x9aa3b0, shirt = 0x8b2f3a, scarf = null, youn
 export const sitPose = (o = {}) => ({ hipY: 0.5, ll: { h: -1.45, k: -1.5 }, lr: { h: -1.45, k: -1.5 }, al: { p: -0.5, r: 0.2, e: -0.9 }, ar: { p: -0.5, r: 0.2, e: -0.9 }, ...o });
 export const standPose = (o = {}) => ({ hipY: 0.72, ll: { h: 0, k: 0 }, lr: { h: 0, k: 0 }, ...o });
 export function place(c, x, z, ry) { c.root.visible = true; c.root.position.set(x, 0, z); c.root.rotation.y = ry; }
-export function hideChars() { for (const c of chars) { c.root.visible = false; c.thumbs.l.visible = c.thumbs.r.visible = false; c.squash(0); } }
+export function hideChars() { for (const c of chars) { c.root.visible = false; c.squash(0); } }
 
 // ---------- life: a character that holds still looks dead ----------
 // life() adds breathing, sway, small head turns and arm drift on top of a pose; use it on every pose, every shot.
@@ -184,8 +183,8 @@ export function shotCam(p, a, fov, t, amt = 1, kick = 0) {
 // 0..1 pulse right after `at`, decaying over ~d: subtract it from the fov for a punch-in, use it as kick or squash
 export const punch = (t, at, d = 0.25) => (t > at && t < at + d * 3 ? Math.exp(-(t - at) / d) * ss(at, at + 0.05, t) : 0);
 
-// ---------- phone: held in two hands, thumbs typing on a keyboard ----------
-// makePhone() -> { group, ctx (720x1520 screen canvas), update(), keyRect(ch), drawKeyboard(key, theme) }
+// ---------- phone: held in two hands, tapping as the keys light up ----------
+// makePhone() -> { group, ctx (720x1520 screen canvas), update(), keyRect(ch), drawKeyboard(key, dark) }
 export function makePhone(color = 0x2b2f38) {
   const group = new THREE.Group(); scene.add(group); obj(RB(0.1, 0.205, 0.013, 0.014), toon(color), 0, 0, 0, group, 0.005);
   const SW = 0.091, SH = 0.192, live = canvasTex(720, 1520, null);
@@ -198,7 +197,7 @@ export function makePhone(color = 0x2b2f38) {
   const drawKeyboard = (key, dark = true) => { const x = live.ctx;
     x.fillStyle = dark ? '#1c1c1e' : '#d1d4db'; x.fillRect(0, KB_Y, 720, 1520 - KB_Y); x.font = '400 34px Inter'; x.textAlign = 'center'; x.textBaseline = 'middle';
     for (const ch of ROWS.join('') + ' ') { const r = keyRect(ch), on = key && key.toLowerCase() === ch;
-      x.fillStyle = on ? (dark ? '#a5a5aa' : '#aab0bb') : (dark ? '#46464a' : '#ffffff'); rr(x, r.x, r.y, r.w, r.h, 12); x.fill(); x.fillStyle = dark ? '#fff' : '#111'; x.fillText(ch === ' ' ? 'space' : ch, r.x + r.w / 2, r.y + r.h / 2 + 2);
+      x.fillStyle = on ? (dark ? '#a5a5aa' : '#8f97a6') : (dark ? '#46464a' : '#ffffff'); rr(x, r.x, r.y, r.w, r.h, 12); x.fill(); x.fillStyle = dark ? '#fff' : '#111'; x.fillText(ch === ' ' ? 'space' : ch, r.x + r.w / 2, r.y + r.h / 2 + 2);
       if (on && ch !== ' ') { x.fillStyle = dark ? '#a5a5aa' : '#ffffff'; rr(x, r.x - 10, r.y - 110, r.w + 20, 104, 16); x.fill(); x.fillStyle = dark ? '#fff' : '#111'; x.font = '500 54px Inter'; x.fillText(ch, r.x + r.w / 2, r.y - 58); x.font = '400 34px Inter'; } } };
   const local = (px, py) => V((px / 720 - 0.5) * SW, (0.5 - py / 1520) * SH, 0.008); // screen pixel -> phone space
   return { group, screen, ctx: live.ctx, update: () => (live.t.needsUpdate = true), keyRect, drawKeyboard, local };
@@ -208,22 +207,24 @@ export function typed(str, t0, t1, t) {
   const n = Math.max(0, Math.min(str.length, Math.floor((t - t0) / (t1 - t0) * str.length + 1e-6))), ti = t0 + (n - 1) * (t1 - t0) / str.length;
   return { text: t < t0 ? '' : str.slice(0, n), key: n > 0 && t - ti < 0.09 && t < t1 + 0.05 ? str[n - 1] : null, press: n > 0 && t - ti < 0.09 ? 1 - (t - ti) / 0.09 : 0 };
 }
-// the character holds the phone in front of the chest in both hands (IK to the lower corners); the thumb on the
-// side of the key being typed taps it, the other rests. typing = typed(...) result, or { idle: true } for fidgeting.
+// the character holds the phone in front of the chest in both hands (IK to its long sides). No fingers: drawn
+// thumbs flying over the keys looked bad on review. Instead, on every key press the hand on that key's side gives a
+// small tap (it presses in toward the screen and springs back) and the phone dips a touch; the key lights up on
+// the screen. typing = typed(...) result, or { idle: true } for slow fidgeting; oneHand frees the right arm.
 export function holdPhone(c, phone, p, t, typing = null, oneHand = false) {
   c.pose(p); c.torso.updateMatrixWorld(true); const g = phone.group;
+  let tapL = 0, tapR = 0;
+  if (typing && typing.key) { const r = phone.keyRect(typing.key), k = Math.sin(clamp(typing.press) * Math.PI); if (r.x + r.w / 2 > 360) tapR = k; else tapL = k; }
+  else if (typing && typing.idle) { tapL = 0.25 * Math.max(0, Math.sin(t * 2.3)); tapR = 0.25 * Math.max(0, Math.sin(t * 2.3 + 2)); }
   g.visible = true; g.position.copy(c.torso.localToWorld(V(0, 0.3, 0.3)));
-  g.quaternion.copy(c.torso.getWorldQuaternion(new THREE.Quaternion())).multiply(new THREE.Quaternion().setFromEuler(new THREE.Euler(-0.75, 0, 0))); g.updateMatrixWorld(true);
-  const gripL = g.localToWorld(V(-0.062, -0.092, -0.018)), gripR = g.localToWorld(V(0.062, -0.092, -0.018));
+  g.quaternion.copy(c.torso.getWorldQuaternion(new THREE.Quaternion())).multiply(new THREE.Quaternion().setFromEuler(new THREE.Euler(-0.75 - 0.03 * (tapL + tapR), 0, 0.025 * (tapL - tapR))));
+  g.updateMatrixWorld(true);
+  // grips on the long sides; a tap moves that hand in and down toward the keyboard and onto the glass
+  const gripL = g.localToWorld(V(-0.072 + 0.022 * tapL, -0.035 - 0.02 * tapL, -0.01 + 0.03 * tapL)), gripR = g.localToWorld(V(0.072 - 0.022 * tapR, -0.035 - 0.02 * tapR, -0.01 + 0.03 * tapR));
   c.pose({ ...p, al: { ...(p.al || {}), target: gripL }, ar: oneHand ? p.ar : { ...(p.ar || {}), target: gripR } });
-  for (const side of ['l', 'r']) { const th = c.thumbs[side]; th.visible = !(oneHand && side === 'r'); if (!th.visible) continue;
-    let tip = g.localToWorld(phone.local(side === 'l' ? 120 : 600, 1300 + 30 * Math.sin(t * 3 + (side === 'l' ? 0 : 2))));
-    if (typing && typing.key) { const r = phone.keyRect(typing.key); if ((side === 'r') === (r.x + r.w / 2 > 360)) tip = g.localToWorld(phone.local(r.x + r.w / 2, r.y + r.h / 2).add(V(0, 0, 0.012 * (1 - typing.press)))); }
-    else if (typing && typing.idle) tip = g.localToWorld(phone.local(side === 'l' ? 200 : 520, 1250).add(V(0, 0, 0.01 * Math.abs(Math.sin(t * (side === 'l' ? 11 : 13))))));
-    seg(th, c.hand(side), tip, 0.0065); }
 }
-// close-up of the phone in the hands: camera on the screen's normal, so screen, thumbs and forearms are in frame
-export function phoneCloseUp(phone, t, dist = 0.3, fov = 46) {
+// close-up of the phone in the hands: camera on the screen's normal, so the screen and both hands are in frame
+export function phoneCloseUp(phone, t, dist = 0.5, fov = 44) {
   const g = phone.group; g.updateMatrixWorld(true); const c0 = g.getWorldPosition(new THREE.Vector3());
   const n = V(0, 0, 1).transformDirection(g.matrixWorld), up = V(0, 1, 0).transformDirection(g.matrixWorld);
   camera.up.copy(up); shotCam(c0.clone().addScaledVector(n, dist).addScaledVector(up, -0.06), c0.clone().addScaledVector(up, -0.02), fov, t, 0.4); camera.up.set(0, 1, 0);

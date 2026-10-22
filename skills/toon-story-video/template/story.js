@@ -48,7 +48,7 @@ function shot(t) {
     me.pose(life(me, t, 2, standPose({ hy: 0.35, al: { p: -0.3, r: 0.35, e: -1.4 + 0.3 * Math.sin(t * 6) * (mouth(t, ['l1']) > 0 ? 1 : 0) } }), 1.2));
     me.face(faceAt('smile', t, 2, mouth(t, ['l1']))); me.squash(0.25 * punch(t, T('l1:forgets'), 0.15));
     const u = eio(t / cut1); shotCam(V(1.5 - 0.2 * u, 1.35, 1.5 - 0.3 * u), V(0.1, 0.85, -0.9), 48 - 6 * punch(t, T('l1:forgets'), 0.35), t);
-  } else if (t < cut2) { // close-up: thumbs type the order letter by letter, then tap Send
+  } else if (t < cut2) { // close-up: the order is typed letter by letter (hands tap, keys light up), then Send
     place(me, 0.75, -0.55, -0.6); const ty = typed(ORDER, typeA, typeB, t), send = clamp((t - typeB - 0.15) / 0.3);
     holdPhone(me, phone, life(me, t, 2, standPose({ hp: 0.35 }), 0.4), t, ty.key ? ty : { idle: true });
     drawApp(ty.text, ty.key, send > 0 && send < 1 ? 1 - send : 0);
@@ -63,5 +63,5 @@ function shot(t) {
     shotCam(V(1.4, 1.35, 1.3), V(0.1, 0.85, -0.9), 46, t);
   }
 }
-window.renderFrame = (t) => { shot(t); present(t, CAPS); };
+window.renderFrame = (t) => { shot(t); present(t, CAPS, t >= cut1 && t < cut2 ? 1660 : 1300); }; // captions off the keyboard in the close-up
 window._ready();

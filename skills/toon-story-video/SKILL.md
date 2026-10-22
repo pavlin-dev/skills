@@ -1,6 +1,6 @@
 ---
 name: toon-story-video
-description: How to make a vertical marketing story video (Shorts, Reels, TikTok) as a 3D cartoon - round white heads with drawn faces, stick limbs, flat colours, bold outlines, quick cuts - where characters act out a short story and the real product appears on a phone, laptop or TV in the scene. Includes a three.js toolkit (characters with faces, poses, arm IK and constant "life"; a phone held in two hands with thumbs typing letter by letter; laptops and TVs with live screens; voice-driven timing and captions), a one-take voice script, real-site screenshots and a renderer. Use when the user wants a cartoon / animated / 3D story video, characters instead of screen recordings, "something like those cartoon shorts", a more engaging version of a screen-and-captions video, or asks for another video "in the same style" as an earlier toon story.
+description: How to make a vertical marketing story video (Shorts, Reels, TikTok) as a 3D cartoon - round white heads with drawn faces, stick limbs, flat colours, bold outlines, quick cuts - where characters act out a short story and the real product appears on a phone, laptop or TV in the scene. Includes a three.js toolkit (characters with faces, poses, arm IK and constant "life"; a phone held in two hands, typing letter by letter with a hand tap per key; laptops and TVs with live screens; voice-driven timing and captions), a one-take voice script, real-site screenshots and a renderer. Use when the user wants a cartoon / animated / 3D story video, characters instead of screen recordings, "something like those cartoon shorts", a more engaging version of a screen-and-captions video, or asks for another video "in the same style" as an earlier toon story.
 ---
 
 # Toon story video
@@ -71,9 +71,9 @@ The first cut was "not dynamic, the characters should feel alive". What fixed it
 
 "The handling of the phone is weak" until it was done like this:
 
-- **`holdPhone(c, phone, pose, t, typing)`:** the phone sits in front of the chest, both hands grip its lower corners (arm IK), and the elbows go out and down. With `oneHand` the free hand can gesture.
-- **Thumbs type for real:** an on-screen keyboard is drawn. For each letter from `typed(str, t0, t1, t)`, the thumb on that key's side taps it, and the key lights up with a pop-up bubble. Typing sounds are one tick per letter on the same times (`scripts/word_cues.py`).
-- **Close-up with `phoneCloseUp()`:** the camera sits on the screen's normal, so the screen, both thumbs and the forearms are in frame. Never show a phone floating on a coloured background.
+- **`holdPhone(c, phone, pose, t, typing)`:** the phone sits in front of the chest and both hands grip its long sides (arm IK), elbows out and down. With `oneHand` the free hand can gesture.
+- **No fingers.** Drawn thumbs flying over the keys "didn't look good". Instead an on-screen keyboard is drawn, and for each letter from `typed(str, t0, t1, t)` the key lights up with a pop-up bubble. Meanwhile the hand on that key's side gives a small tap (in and down onto the glass, then back) and the phone dips a touch. Typing sounds are one tick per letter on the same times (`scripts/word_cues.py`).
+- **Close-up with `phoneCloseUp()`:** the camera sits on the screen's normal, so the screen and both hands are in frame. Move the captions off the keyboard for that shot. Never show a phone floating on a coloured background.
 - Laptops and TVs (`makeLaptop`, `makeTV`) get a live canvas: the real page, or the character's own content. A contrast pair works well, e.g. a blurry, choppy "screen recording" with a cursor and a notification vs the crisp export.
 
 ## 6. Build and render
@@ -99,7 +99,7 @@ The first cut was "not dynamic, the characters should feel alive". What fixed it
 - Hook in the first 2 s: a character and a problem, readable without sound (one-word captions are on).
 - A cut or a clear change every 1.5-3 s; every character moves in every frame.
 - The product appears only on screens, real and readable for at least ~1.5 s (punch in on it). The voice-over never names it, and there's no end card.
-- Phone and laptop handling looks physical: hands on the device, thumbs on the keys being typed.
+- Phone and laptop handling looks physical: hands on the device, a tap on each key that lights up.
 - Voice is one uncut take; captions match it word for word.
 - Claims checked on the live site; music credit and the voice's licence status told to the user.
 - Tell the user honestly what's weak (simplified walk cycle, mouth timing rather than lip-sync, any not-logged-in UI).
