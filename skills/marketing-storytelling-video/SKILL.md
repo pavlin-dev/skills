@@ -37,7 +37,8 @@ Don't start from a feature. Start from a situation in the target user's life whe
 ## 3. The character and honesty
 
 - The narrator is a **user of the product**, speaking in the first person, in the words such a person would use (colloquial, short, a little self-ironic). Not a presenter, not the company.
-- Decide who the person is (age, gender, situation) before writing. Keep it consistent everywhere: verb forms in gendered languages (Czech "zapomněl"/"zapomněla"), captions, any visible names.
+- Sincerity comes from how the person talks and what the screens show, not from praise or from criticising the product. Concrete details from their life and small mistakes of their own (a clumsy first draft, a typo) make them real at no cost to the product.
+- Decide who the person is (age, gender, situation) before writing. Keep it consistent everywhere: verb forms in languages where they change with the speaker's gender, captions, any visible names.
 - **A made-up character is fine as a scene posted by the brand** (its own account or a paid ad, labelled by the platform). It is **not** fine to present a made-up person as a real, independent customer, to post from an account pretending to be one, or to invent reviews or testimonials. That is hidden advertising and fake endorsement. Paid creators must disclose the partnership.
 - Everything the product does on screen is its real output (real search results, real UI). The character's own world (notes, chats, lock screen) can be mocked, but generic, not imitating another brand's app.
 
@@ -47,15 +48,16 @@ For a 25-35 s vertical video (Shorts, Reels, TikTok; shorter is better, a 42 s f
 
 | share of runtime | beat | what happens |
 |---|---|---|
-| 0-10 % | **Hook: stakes** | The problem and why it matters, readable on the very first frame ("Tomorrow is Bára's birthday. And I completely forgot."). No logo, no product. |
+| 0-10 % | **Hook: stakes** | The problem and why it matters, readable on the very first frame ("Tomorrow is Mia's birthday. And I completely forgot."). No logo, no product. |
 | 10-45 % | **Attempt and struggle** | The person tries on their own and it goes badly. A funny or painful detail makes it real. End on the stuck moment, with a beat of silence before the punchline ("…and what rhymes with love… *pause* nothing."). |
-| 45-55 % | **Turn: the product** | One natural sentence names it ("So I opened Rýmovač."). The product's real screen appears. |
-| 55-75 % | **Discovery** | The product gives the answer, and the person *recognises* it as theirs ("Brunette! Bára is a brunette!"). The aha belongs to the person, the product only supplied the options. |
+| 45-55 % | **Turn: the product** | One natural sentence names it, as part of what the person did ("So I threw it into Rhymebox."). The product's real screen appears. |
+| 55-75 % | **Discovery** | The product gives the answer, and the person *recognises* it as theirs ("Aisle! We met in a supermarket aisle!"). Show them skipping one or two real results that don't fit before finding theirs ("while… style… no… aisle!"): it is true to how such tools work and keeps the aha with the person. The product only supplied the options. |
 | 75-100 % | **Payoff** | The result in the person's life: the finished thing, the reaction of the other person. End on that emotion. |
 
 Rules for the product:
 
-- **Name it once**, in a sentence the narrator would really say. Captions may highlight the name lightly.
+- **Name it once**, in passing, as part of what the person did, with a concrete verb ("So I threw it into Rhymebox.", "I tried it in Scenecraft."), never "I used X". Not in the first seconds, at the turn. Captions may highlight the name lightly.
+- **The narrator never praises or explains the product**: no "easily", "in seconds", "for free", "I recommend it", no superlatives, no features. Their feelings go to the result, not to the tool.
 - **No end card with logo, slogan, URL or call to action.** Viewers read that as "it was an ad after all", which undoes the story. End on the payoff.
 - If the product's name or address should be findable, let it appear **where it naturally is**: the browser's address bar, the app's own header, a share sheet. The link goes in the post text, not in the video.
 - A branded end card is an exception for paid ads, only when the user asks for it, and even then short.
@@ -77,18 +79,21 @@ Do the review pass from `marketing-content` (section 3) on the rendered video, a
 
 - **Does any moment feel like an ad?** Slogans, feature lists, a product shot that lasts longer than the story needs, an end card. Remove it.
 - **Without the product name in the caption, would a viewer still know what was used and where to find it?** If not, make the product's screen clearer, don't add a pitch.
+- **Would a real user say each sentence to a friend?** A line that sounds written by the company (a benefit, a promise, praise of the product) gets rewritten or cut.
 - **Is the payoff about the person?** If the last thing on screen is the product, the story ends in the wrong place.
 - **Is every product behaviour real** and does the plot fit its limits (time, price, login)?
 - **Is the character honest?** Clearly the brand's scene, not a fake independent user.
 - **Would you watch it to the end** if you didn't know the product? Cut whatever you would skip.
 
-## Example: Rýmovač (Czech rhyme finder)
+## Example: Rhymebox (a fictional rhyme finder)
 
-Situation: 23:58, a guy realises his girlfriend's birthday is tomorrow and he has no gift; he decides to write her a poem. Screens: lock screen with a calendar notification → notes app, he types "Moje milá Báro, ty jsi moje láska" and gets stuck on the rhyme ("…nic.") → Rýmovač in the browser (address bar `rymovac.cz`), he types "láska", real results: kráska, sázka, páska… tmavovláska, "Bára is a brunette!" → the finished poem in the notes → next morning he sends it, she replies "nejlepší dárek, co jsem kdy dostala". Voice-over in first person (Gemini TTS), captions synced to the words, quiet lo-fi bed. ~35 s. No end card.
+The product here is made up, to show the shape; with a real product, every result on screen comes from the real product.
 
-What testing taught:
+Situation: 23:58, a guy realises his girlfriend Mia's birthday is tomorrow and he has no gift; he decides to write her a poem. Screens: lock screen with a calendar notification → notes app, he types "Mia, I still think about your smile" and gets stuck on the rhyme ("…smile… and… nothing.") → Rhymebox in the browser (address bar `rhymebox.example`), he types "smile", the results: while, style, mile… he skips them… aisle, "Aisle! We met in a supermarket aisle!" → the finished poem in the notes → next morning he sends it, she replies "best gift I've ever got". Voice-over in first person, captions synced to the words, quiet lo-fi bed. ~35 s. No end card.
+
+What testing of earlier videos in this format taught:
 
 - The robotic voice was "the worst part"; a directed Gemini TTS voice was accepted.
-- A logo/URL end card made the whole video feel like an ad again; the user removed it.
+- A logo/URL end card made the whole video feel like an ad again; it was removed.
 - The first cut was 42 s with a 10 s static lock screen; tightening the setup helped.
-- The rhymes on screen were real results from the site, which made the turn believable.
+- Real results from the product on screen made the turn believable.
