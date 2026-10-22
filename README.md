@@ -28,7 +28,7 @@ Update later with `/plugin marketplace update pavlin-dev`.
 | `marketing-storytelling-video` | The default for marketing videos (YouTube, Shorts, Reels, TikTok), told as a user's story instead of an ad: the moment of need, the user as hero and the product as the tool at the stuck moment, story beats, no branded end card, faceless execution with screens and voice-over, honesty rules. |
 | `sound-design` | Sound for videos: levels of voice, music, effects and ambience measured in LUFS, restraint (sound only story beats), keeping the voice's band clear, cutting music to the story (tape-stop, drop-out, muffle), mastering; scripts for effect stems, music edits and the mix. |
 | `storytelling-video` | Narrated story shorts that promote nothing (true stories, history, "how did that happen"): picking a story, hook, escalation, 30-45 s length, fact checking, a living pen-drawing style with a ready template (ink.js, scenes keyed to the voice's word times, headless render) or motion design. |
-| `toon-story-video` | Marketing story videos as a 3D cartoon (round heads, stick limbs, bold outlines, quick cuts) with the real product on a phone, laptop or TV in the scene: a three.js toolkit (live characters, two-handed phone that taps as it types, voice-driven timing and captions), one-take voice, real-site screenshots, renderer. |
+| `toon-3d-animation` | The look and animation of 3D cartoon videos (round white heads with drawn faces, stick limbs, flat colours, bold outlines, quick cuts): live characters, a phone held and typed on in first person, laptops/TVs with real screens, voice-driven timing, a three.js toolkit and renderer. Design only, no story. |
 
 Skills are invoked automatically by their description, or explicitly as `/pavlin-skills:<skill>`.
 
