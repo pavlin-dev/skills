@@ -144,7 +144,7 @@ export function makeChar({ hair = 0x9aa3b0, shirt = 0x8b2f3a, scarf = null, youn
 export const sitPose = (o = {}) => ({ hipY: 0.5, ll: { h: -1.45, k: -1.5 }, lr: { h: -1.45, k: -1.5 }, al: { p: -0.5, r: 0.2, e: -0.9 }, ar: { p: -0.5, r: 0.2, e: -0.9 }, ...o });
 export const standPose = (o = {}) => ({ hipY: 0.72, ll: { h: 0, k: 0 }, lr: { h: 0, k: 0 }, ...o });
 export function place(c, x, z, ry) { c.root.visible = true; c.root.position.set(x, 0, z); c.root.rotation.y = ry; }
-export function hideChars() { for (const c of chars) { c.root.visible = false; c.squash(0); } }
+export function hideChars() { for (const c of chars) { c.root.visible = false; c.head.visible = true; c.squash(0); } }
 
 // ---------- life: a character that holds still looks dead ----------
 // life() adds breathing, sway, small head turns and arm drift on top of a pose; use it on every pose, every shot.
@@ -224,15 +224,16 @@ export function holdPhone(c, phone, p, t, typing = null, oneHand = false) {
   const gripL = g.localToWorld(V(-0.072 + 0.022 * tapL, -0.035 - 0.02 * tapL, -0.01 + 0.03 * tapL)), gripR = g.localToWorld(V(0.072 - 0.022 * tapR, -0.035 - 0.02 * tapR, -0.01 + 0.03 * tapR));
   c.pose({ ...p, al: { ...(p.al || {}), target: gripL }, ar: oneHand ? p.ar : { ...(p.ar || {}), target: gripR } });
 }
-// over-the-shoulder close-up: the camera sits behind and above the character's right shoulder, looking down at the
-// screen the way they see it (their head and shoulder stay at the edge of the frame). Shooting the screen from the
-// front instead reads as "he holds the phone the wrong way round and shows it to you".
-export function phoneCloseUp(phone, c, t, fov = 23) {
-  c.torso.updateMatrixWorld(true); const g = phone.group; g.updateMatrixWorld(true);
-  const cam = c.torso.localToWorld(V(-0.62, 1.12, 0.06)), aim = g.getWorldPosition(new THREE.Vector3()).add(V(0, -0.01, 0));
-  // roll the camera most of the way to the phone's up, so the screen reads nearly upright
+// first-person close-up: the camera is the character's eyes, looking down at the phone in their own hands (the
+// head is hidden for this shot so the camera doesn't see its inside). This reads as "he is typing for himself".
+// Shooting the screen from the front read as "he holds the phone the wrong way round and shows it to you", and
+// over the shoulder the big round head covers half of the frame.
+export function phoneCloseUp(phone, c, t, fov = 44) {
+  c.head.visible = false; c.torso.updateMatrixWorld(true); const g = phone.group; g.updateMatrixWorld(true);
+  const eyes = c.torso.localToWorld(V(0, 0.66, 0.1)), aim = g.getWorldPosition(new THREE.Vector3()).add(V(0, 0.02, 0));
+  // roll the view most of the way to the phone's up, so the screen reads upright
   camera.up.copy(V(0, 1, 0).lerp(V(0, 1, 0).transformDirection(g.matrixWorld), 0.7)).normalize();
-  shotCam(cam, aim, fov, t, 0.4); camera.up.set(0, 1, 0);
+  shotCam(eyes, aim, fov, t, 0.5); camera.up.set(0, 1, 0);
 }
 
 // ---------- laptop / TV with a live canvas screen ----------
