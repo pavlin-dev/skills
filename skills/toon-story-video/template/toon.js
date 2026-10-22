@@ -202,20 +202,25 @@ export function makePhone(color = 0x2b2f38) {
   const local = (px, py) => V((px / 720 - 0.5) * SW, (0.5 - py / 1520) * SH, 0.008); // screen pixel -> phone space
   return { group, screen, ctx: live.ctx, update: () => (live.t.needsUpdate = true), keyRect, drawKeyboard, local };
 }
-// letters of `str` appear evenly between t0 and t1: { text so far, key being pressed now, press 0..1 }
+// letters of `str` appear evenly from t0 (letter k at t0 + k * (t1 - t0) / length, the same times word_cues.py
+// puts the typing ticks on). Returns the text so far, the key lit now (for ~0.12 s after its letter), and `hits`:
+// the nearby key presses { ch, dt } (dt = t - press time) so the hands can move down *before* each press and land on it.
 export function typed(str, t0, t1, t) {
-  const n = Math.max(0, Math.min(str.length, Math.floor((t - t0) / (t1 - t0) * str.length + 1e-6))), ti = t0 + (n - 1) * (t1 - t0) / str.length;
-  return { text: t < t0 ? '' : str.slice(0, n), key: n > 0 && t - ti < 0.09 && t < t1 + 0.05 ? str[n - 1] : null, press: n > 0 && t - ti < 0.09 ? 1 - (t - ti) / 0.09 : 0 };
+  const step = (t1 - t0) / str.length, n = t < t0 ? 0 : Math.min(str.length, Math.floor((t - t0) / step + 1e-6) + 1);
+  const lit = n > 0 && t - (t0 + (n - 1) * step) < Math.min(0.12, step * 0.9) ? str[n - 1] : null;
+  const hits = []; for (let k = Math.max(0, n - 2); k <= Math.min(str.length - 1, n); k++) hits.push({ ch: str[k], dt: t - (t0 + k * step) });
+  return { text: str.slice(0, n), key: lit, hits };
 }
+// a tap: the hand starts down 0.07 s before the press, lands on it, springs back over 0.1 s
+const tapCurve = (dt) => (dt < -0.07 || dt > 0.1 ? 0 : dt < 0 ? Math.sin((1 + dt / 0.07) * Math.PI / 2) : Math.cos((dt / 0.1) * Math.PI / 2));
 // the character holds the phone in front of the chest in both hands (IK to its long sides). No fingers: drawn
 // thumbs flying over the keys looked bad on review. Instead, on every key press the hand on that key's side gives a
-// small tap (it presses in toward the screen and springs back) and the phone dips a touch; the key lights up on
-// the screen. typing = typed(...) result, or { idle: true } for slow fidgeting; oneHand frees the right arm.
+// small tap timed so it lands exactly when the letter appears (and the key lights up), and the phone dips a touch.
+// typing = typed(...) result or null (hands just hold); oneHand frees the right arm.
 export function holdPhone(c, phone, p, t, typing = null, oneHand = false) {
   c.pose(p); c.torso.updateMatrixWorld(true); const g = phone.group;
   let tapL = 0, tapR = 0;
-  if (typing && typing.key) { const r = phone.keyRect(typing.key), k = Math.sin(clamp(typing.press) * Math.PI); if (r.x + r.w / 2 > 360) tapR = k; else tapL = k; }
-  else if (typing && typing.idle) { tapL = 0.25 * Math.max(0, Math.sin(t * 2.3)); tapR = 0.25 * Math.max(0, Math.sin(t * 2.3 + 2)); }
+  if (typing && typing.hits) for (const h of typing.hits) { const k = tapCurve(h.dt); if (!k) continue; const r = phone.keyRect(h.ch); if (r.x + r.w / 2 > 360) tapR = Math.max(tapR, k); else tapL = Math.max(tapL, k); }
   g.visible = true; g.position.copy(c.torso.localToWorld(V(0, 0.3, 0.3)));
   // screen turned to the character's face (yaw pi) and tilted up toward the eyes
   g.quaternion.copy(c.torso.getWorldQuaternion(new THREE.Quaternion())).multiply(new THREE.Quaternion().setFromEuler(new THREE.Euler(0.65 + 0.03 * (tapL + tapR), Math.PI, 0.025 * (tapR - tapL))));

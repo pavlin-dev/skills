@@ -50,7 +50,8 @@ function shot(t) {
     const u = eio(t / cut1); shotCam(V(1.5 - 0.2 * u, 1.35, 1.5 - 0.3 * u), V(0.1, 0.85, -0.9), 48 - 6 * punch(t, T('l1:forgets'), 0.35), t);
   } else if (t < cut2) { // close-up: the order is typed letter by letter (hands tap, keys light up), then Send
     place(me, 0.75, -0.55, -0.6); const ty = typed(ORDER, typeA, typeB, t), send = clamp((t - typeB - 0.15) / 0.3);
-    holdPhone(me, phone, life(me, t, 2, standPose({ hp: 0.35 }), 0.4), t, ty.key ? ty : { idle: true });
+    ty.hits.push({ ch: 'p', dt: t - (typeB + 0.15) }); // the right hand also taps Send
+    holdPhone(me, phone, life(me, t, 2, standPose({ hp: 0.35 }), 0.4), t, ty);
     drawApp(ty.text, ty.key, send > 0 && send < 1 ? 1 - send : 0);
     phoneCloseUp(phone, me, t);
   } else { // Tom finally finds his phone; I shrug at the camera
