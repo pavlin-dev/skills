@@ -62,8 +62,6 @@ Rules for the product:
 
 ## 5. Showing it without a face
 
-Two executions work: screens only (below), or a 3D cartoon where simple round-head characters act the story out and the product appears on a phone, laptop or TV in the scene (the `toon-3d-animation` skill; more engaging, reviewed as "super").
-
 Filming people is expensive and amateur footage often looks bad. A story works without faces when the viewer watches **the screens of the character's life**:
 
 - One phone stays on screen the whole time as the hero element; scenes are app switches on that phone (lock screen with a notification → notes → the product → messages). Switches are motivated by the story, never plain cuts.
