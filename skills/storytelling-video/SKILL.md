@@ -20,7 +20,7 @@ For a story that should sell a product, use the `marketing-storytelling-video` s
 
 | Beat | Time | What it does |
 |---|---|---|
-| Hook | 0-3 s | Stakes or the absurd outcome, not background info. "Tahle noc mohla skončit jadernou válkou." beats "Dvanáct a půl kilometru nad Kanadou." |
+| Hook | 0-3 s | Stakes or the absurd outcome, not background info. "Tahle noc mohla skončit jadernou válkou." beats "Dvanáct a půl kilometru nad Kanadou." Write and pick it with the `shorts-hook` skill. |
 | Setup | 1 line | Who, where, when, in one sentence. |
 | Escalation | 2-4 beats | Each beat worse than the last; one visual per beat. |
 | Turn | 1-2 lines | The decision, the twist, the cause revealed. A pause before it. |
@@ -79,6 +79,8 @@ Follow the `sound-design` skill: voice as the anchor, few effects and only on st
 6. Contact sheet of the final file (`ffmpeg -i final.mp4 -vf "fps=0.5,scale=180:-1,tile=11x2" -frames:v 1 sheet.png`) and look at it.
 
 ## Before sending
+
+- Hook and visual pace checked with `shorts-hook` (candidates for the first line, motion in the first second, `motion_audit.py` on the render).
 
 - The hook is stakes or an outcome; 30-45 s; every fact listed as verified (with sources) or not.
 - Real voice take, not a placeholder; captions match what is said (numbers via `show`).

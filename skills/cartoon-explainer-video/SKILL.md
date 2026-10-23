@@ -95,6 +95,8 @@ Render stills at every line change and at every word that triggers something, an
 
 ## Before sending
 
+- The opening and the pace pass `shorts-hook`: the picture moves in the first second, and `motion_audit.py` finds no still stretch over ~3 s. One continuous world is necessary but not enough: the example film opened on three seconds of a nearly static shot.
+
 - One world, one camera: no cut, no crossfade, no object on an empty background. The subject is on screen, or marked, the whole time.
 - Every comparison is a full-size ghost in the world and resolves into the real thing.
 - Every reveal and label lands on its word and stays readable for at least ~1 s. Nothing sits in the caption area or under the bottom UI.

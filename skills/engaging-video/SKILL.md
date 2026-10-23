@@ -130,6 +130,8 @@ Tell the user which site generated the music. You can't listen to it, so say so 
 
 ## Before sending
 
+- The opening and the pace pass `shorts-hook` (the first line and frame 0, motion in the first second, no still stretch over ~3 s).
+
 Do at least one full review pass as the viewer, on the rendered file (see section 3 of the `marketing-content` skill: is everything easy to understand, is anything weird), fix what it finds, then go through this list:
 
 - Frame 0 tells what it is; the key word (VR, AI, …) is visible and emphasized.
