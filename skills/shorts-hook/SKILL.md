@@ -113,7 +113,7 @@ By medium:
   - animate the comparison instead of showing it
   - add a secondary motion (particles, background traffic, weather)
   - cut closer
-- **Change is not the same as quality.** The first version of the test film showed separate drawings with crossfades between them. It passed the change audit, yet the user found it disconnected. The second version, one continuous world, felt much better, but it had the static opening and a 3.5 s still stretch. You need both: continuity (the style skills, e.g. `cartoon-explainer-video`, `motion-design-video`) and enough change (this skill).
+- **Change is not the same as quality.** The first version of the test film showed separate drawings with crossfades between them. It passed the change audit, yet the user found it disconnected. The second version, one continuous world, felt much better, but it had the static opening and a 3.5 s still stretch. You need both: continuity (the style skills, e.g. `cartoon-world-video`, `motion-design-video`) and enough change (this skill).
 
 ## 5. The end and the loop
 

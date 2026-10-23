@@ -1,6 +1,6 @@
 ---
 name: storytelling-video
-description: How to make a short narrated story video that promotes nothing (a true story, a piece of history, a disaster, a "how did that happen" moment) for YouTube Shorts, Reels or TikTok - finding a story people watch to the end, the hook, the escalation and payoff, the length, checking the facts, and visual styles - a living pen drawing (template included: ink.js, scenes driven by the voice-over's word times, rendered frame by frame in a headless browser), motion design, or a coloured cartoon world (see `cartoon-explainer-video`). Use whenever the user wants a storytelling video, a story/history/explainer short, "a video people enjoy watching", a non-promotional narrated short, or the pen/hand-drawn animated style.
+description: How to make a short narrated story video that promotes nothing (a true story, a piece of history, a disaster, a "how did that happen" moment) for YouTube Shorts, Reels or TikTok - finding a story people watch to the end, the hook, the escalation and payoff, the length, checking the facts, and visual styles - a living pen drawing (template included: ink.js, scenes driven by the voice-over's word times, rendered frame by frame in a headless browser), motion design, or a coloured cartoon world (see `cartoon-world-video`). Use whenever the user wants a storytelling video, a story/history/explainer short, "a video people enjoy watching", a non-promotional narrated short, or the pen/hand-drawn animated style.
 ---
 
 # Storytelling video
@@ -63,7 +63,7 @@ One hero shape that morphs through the story (globe → radar → phone dial →
 
 ## 4b. Visual style C: coloured cartoon world
 
-A colourful cartoon look (living outlines, shaded fills, label boxes, a mascot) where the whole film is one continuous world under one camera. Follow the `cartoon-explainer-video` skill; it has its own template.
+A colourful cartoon look (living outlines, shaded fills, label boxes, a mascot) where the whole film is one continuous world under one camera. Follow the `cartoon-world-video` skill; it has its own template.
 
 ## 5. Sound
 

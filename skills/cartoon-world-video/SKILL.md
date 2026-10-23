@@ -1,5 +1,5 @@
 ---
-name: cartoon-explainer-video
+name: cartoon-world-video
 description: How to design and build vertical videos (1080x1920, Shorts/Reels/TikTok) in a coloured hand-drawn cartoon style - thick living outlines, flat fills with a shade crescent, white label boxes, a reacting mascot in a bubble, white captions on top - where the whole film is ONE continuous world under ONE camera: the subject never leaves the screen, comparisons appear as full-size "ghosts" next to the real thing and fold into it, and the camera travels and zooms through the world instead of cutting. Template included (toon.js drawing kit + camera engine + an example world, rendered frame by frame in a headless browser). Use whenever the user wants this cartoon / "How it works" explainer look, a video "in the style of" a cartoon explainer channel, or says a video looks like separate objects or slides, is "málo propojené", or the world doesn't feel connected.
 ---
 
