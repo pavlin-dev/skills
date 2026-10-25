@@ -21,19 +21,19 @@ These are the rules of `shorts-hook` section 1, applied to the title. If one cha
 3. **Stakes, a result, a contradiction or a real question.** Something is lost, won, broken, saved, or a question the reader actually has.
 4. **A promise the video keeps.** The video answers the title. A title the video doesn't pay off is clickbait: people leave and remember.
 5. **True.** Check the title like any other claim, on its own. A fact you rejected for the hook doesn't come back in the title.
-6. **Understandable cold.** Someone who has never heard of the topic understands every word and why it would matter to them. No unexplained jargon, abbreviation, insider reference, or contradiction of a myth only some people know ("The Chernobyl divers didn't die"). No riddle.
-7. **Vary the type across a channel.** Not every title "X is lying to you".
+6. **Understandable cold.** Someone from the video's audience who has never heard of the topic understands every word and why it would matter to them. No unexplained jargon, abbreviation, insider reference, or contradiction of a myth only some people know ("The Chernobyl divers didn't die"). No riddle.
+7. **Vary the type across a channel** when you know its recent titles. Not every title "X is lying to you".
 
 ## 2. What is specific to a title
 
 - **Length.** YouTube allows long titles but cuts them in most views, and how much shows depends on the device and the surface. Put the point in the first ~40 characters and keep the whole title under ~60. Check that the cut version still makes sense.
-- **A search term near the front.** The word people would type: the name, the object, the question ("49,90", "Jan Palach", "battery percentage"). Here a title differs from the spoken hook: a known name helps search, so it may lead, but the rest of the title says in plain words what happened or what the video answers. "Jan Palach: what he actually demanded in 1969" works for a reader who has never heard the name; "Jan Palach" alone doesn't.
+- **A search term near the front:** the word people would type, such as the name, the object or the question ("49,90", "Jan Palach", "battery percentage"). Here a title differs on purpose from the spoken hook, where an unexplained name is a mistake: in a title a name helps search, so it may lead, but the rest of the title says in plain words what happened or what the video answers. "Jan Palach: what he actually demanded in 1969" works for a reader who has never heard the name; "Jan Palach" alone doesn't.
 - **Complement, don't copy.** The title, the on-screen hook text and the spoken hook make the same promise in different words. A common split: the title carries the searchable question, the hook carries the stakes. A title identical to the spoken hook wastes one of the two.
 - **Question titles** fit explainers well when they are the question people really ask ("Proč všechno stojí 49,90, a ne 50 korun?"). The video must answer it early.
 - **No filler and no shouting:** "Watch this", "You won't believe", "Tohle zkus", "Šokující", "(GONE WRONG)", whole words in capitals, a row of emoji, a trailing "!!!".
 - **Capitalisation and language.** Czech titles capitalise only the first word and proper names ("Proč ceny končí na ,90", not "Proč Ceny Končí Na ,90"). English may use title case or sentence case; keep the channel's choice. Always correct diacritics. Use the same tykání or vykání as the video.
 - **Products.** Don't lead with a product name nobody knows; lead with the pain or the outcome the viewer recognises. The name can come later in the title or in the description.
-- **Sensitive topics** follow `shorts-hook` ("Sensitive topics"): aim at the person, the motive or what changed, never the method or the injury, no tabloid words.
+- **Sensitive topics** follow `shorts-hook` ("Sensitive topics"): aim at the person, the motive, the decision or what changed, never the method or the injury, no tabloid words. Name the event instead of the death toll ("Tenerife 1977: why the captain thought he was cleared", not "583 died after one misheard OK").
 - **Shorts vs long videos.** In the Shorts feed the video starts playing and the hook does most of the work; the title matters for search, for the channel page and for shares. For a long video the title (together with the thumbnail) *is* the hook: spend more effort on it, and make the thumbnail and the title say different things that add up to one promise.
 
 ## 3. How to write it
@@ -55,7 +55,7 @@ These are the rules of `shorts-hook` section 1, applied to the title. If one cha
    - **Search term:** which word would someone type, and where is it?
    - **Cold:** which word, if any, would a stranger to the topic not understand?
    - **True:** which fact does it rest on, and is it checked? Did this claim fail the check anywhere else in your work?
-   - **Paid off:** at which second does the video answer it?
+   - **Paid off:** which line of the script answers it?
    - **Differs from the hook:** quote the spoken hook and the on-screen text next to it.
    - **No filler:** no word you could delete without losing information.
 4. Keep the best one and two alternatives, and tell the user all three with one line on why.

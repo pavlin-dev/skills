@@ -24,13 +24,14 @@ This skill fixes both, whatever the topic or visual style. The advice is the con
 4. **Open a loop that this video closes.** The question the hook raises must be answered inside the video. A hook the video doesn't pay off is clickbait: viewers leave later, and they remember.
 5. **True.** A hook that bends a fact poisons the whole video. Check it like any other claim.
 6. **Understandable cold.** The viewer has never heard of the topic and gets one hearing, with no picture they can rely on yet. Every word must make sense to them, and so must why it matters.
+   - "The viewer" means the audience the video is made for. A name or thing everyone in that audience knows (Jágr or kapr for a Czech channel, Einstein for anyone) is fine; a name only fans, locals or one generation know is not.
    - No name, place, abbreviation or jargon the viewer has to know already. Say what it is instead: "three men", "a nuclear reactor", "a 20-year-old student", not "the Chernobyl divers", "the RBMK" or "Pochodeň číslo jedna".
    - A contradiction only works against a belief most people really hold. "The Chernobyl divers didn't die" contradicts a myth from one TV series; whoever hasn't seen it hears nothing.
    - No reference that only works locally or for insiders ("you know his name from the square").
    - No riddle the listener has to decode. "Deset haléřů ti v hlavě udělá z padesátky čtyřicítku" is clever on paper and a puzzle when heard once.
    - Test: say it to someone who knows nothing about the topic. Can they repeat in their own words what is at stake? If not, rewrite it.
 7. **One breath, the point first.** No subordinate clause or background before the point. If it runs past ~2.5 s when spoken, cut it or split it.
-8. **The second sentence pays immediately and stays short** (≤ ~12 words, ~3 s). It gives the one line of context the hook made the viewer want. It doesn't re-explain the hook, and it isn't the place to unload the date, the full names and the setting at once.
+8. **The second sentence pays immediately and stays short** (≤ ~12 words, ~3 s). It gives the one line of context the hook made the viewer want, so the hook is fully understood and the question gets sharper. It doesn't answer the question itself (that is the payoff), doesn't re-explain the hook, and isn't the place to unload the date, the full names and the setting at once.
 
 ### Hook types
 
@@ -56,22 +57,22 @@ Use several types when you write candidates. Story and explainer channels mostly
 | "Today let's look at how airplanes stay in the air." | announces a topic and promises nothing | "Every airliner you've flown on can glide with all its engines off." |
 | "Have you ever wondered why the sky is blue?" | a rhetorical question everyone has heard; no stakes | "The sky should be violet. Your eyes are lying to you." |
 | "The Chernobyl divers didn't die." | needs the viewer to know a myth from one TV series | "Three men waded under a destroyed nuclear reactor. All three walked out." |
-| "Jeho jméno znáš z názvu náměstí. Co chtěl, asi ne." | only works for people who know Prague | "Dvacetiletý student chtěl jen dvě věci: konec cenzury a jedněch novin." |
+| "Jeho jméno znáš z názvu náměstí. Co chtěl, asi ne." | assumes the viewer knows a square in Prague; many in the audience don't | "Dvacetiletý student chtěl jen dvě věci: konec cenzury a jedněch novin." |
 
 ### How to pick it
 
 1. Write the hook **first**, together with the payoff it promises, before the rest of the script.
 2. Write **8-10 candidates across at least four types.** The first idea is usually the setup sentence in disguise.
 3. Score each candidate. Write the evidence, not a tick: a tick written after you already like the line proves nothing.
-   - **Stakes word:** quote the word that carries the stakes, the result or the contradiction, and give its position. It should be within the first five words; a concrete in-the-action scene may take up to ~8, because the scene itself holds attention.
+   - **Stakes word:** quote the word that carries the stakes, the result, the contradiction or the tension, and give its position. In a stakes + count hook the count or the mismatch carries it ("one goalie against five", "344 things"). It should land within about the first second of speech: five English words, or ~8 syllables in Czech. A concrete in-the-action scene may take up to ~8 English words (~13 Czech syllables), because the scene itself holds attention.
    - **Cold:** would someone who knows nothing about the topic understand every word and why it matters? Name any word they wouldn't.
    - **Concrete:** what exactly can the viewer picture?
    - **True:** which fact does it rest on, and is that fact checked? Anything that bends the fact for the punchline (rounding 49,90 down to "forty") fails.
-   - **Loop:** where in the video is it paid off?
+   - **Loop:** which line of the script pays it off?
    - **Length:** spoken length in seconds (≤ 2.5 s; see "Other languages" for counting).
 4. Read the best two aloud together with the second sentence and keep the one that makes the second sentence feel necessary.
 5. Tell the user which candidates you considered, so they can pick another.
-6. **Vary the type across a channel.** The five-word rule makes the bare contradiction ("X isn't Y", "your Z is lying to you") the easiest winner. If every short opens like that, the channel sounds like one template. Check which types the last few videos used and prefer another one when it is about as strong.
+6. **Vary the type across a channel.** The five-word rule makes the bare contradiction ("X isn't Y", "your Z is lying to you") the easiest winner. If every short opens like that, the channel sounds like one template. If you know which types the last few videos used (ask the user or look at the channel when you can), prefer another one when it is about as strong. Without that history, at least don't default to the contradiction.
 
 ### Other languages (Czech and others)
 
@@ -88,6 +89,7 @@ Death, suicide, violence, victims, illness and tragedies. The push for stakes an
 
 - Aim the hook at the person, the motive, the decision or what changed, not at the death or the injury.
 - Never describe the method, the pain or the body, in the hook or on frame 0 (no archive photos of the wounded as the first frame).
+- The death toll is stated once, plainly, in the body of the video. It is never the hook's punchline and never the on-screen text; "deadliest" and "583 lives" are the easy stakes words here, and they are the tabloid ones. In the title, name the event (it is also what people search) instead of the number.
 - For suicide or self-immolation, don't present the act as the price paid for a goal or as something that worked ("for these he gave his life"). Follow the media guidelines on reporting suicide (WHO): no method, no glorification, a helpline in the description, checked for the viewer's country.
 - Don't build the hook on copycats or a numbered series of victims.
 - If the line could appear in a tabloid headline, write another one.
@@ -109,7 +111,7 @@ The hook is not only the spoken line. In the first second three things land at o
   - Never a logo, a title card, an empty background, a slow establishing shot or a fade from black.
 - **On-screen text.**
   - 3-7 words in the upper third, outside the platform UI, visible for at least 2 s. Most feeds autoplay muted.
-  - It sharpens the promise and doesn't repeat the spoken line word for word. Spoken "344 things had to go right" pairs with the text "1 FAILURE = $10B LOST".
+  - It sharpens the promise and doesn't repeat the spoken line word for word. Overlapping with the second sentence or the title is fine; it is read while the hook is heard, so only the hook itself must not be duplicated. Spoken "344 things had to go right" pairs with the text "1 FAILURE = $10B LOST".
   - If the video has word-by-word captions, either give the first two seconds a separate title box, or show the first caption chunk larger.
 - **The voice starts at once.** First word by ~0.2 s, no musical intro, no breath of silence, slightly faster and with more energy than the rest.
 - **Sound:** one hit on frame 0 (impact, whoosh) if the mix has effects. Follow `sound-design` for the levels.
