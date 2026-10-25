@@ -39,7 +39,8 @@ These are the rules of `shorts-hook` section 1, applied to the title. If one cha
 ## 3. How to write it
 
 1. Write the title **together with the hook, as a pair**, once the payoff is known. The title makes the promise, the hook confirms it in the first second: someone who clicked the title must hear at once that this is the video they chose. Present them to the user side by side, as pairs, never as two separate lists.
-   - A good split: **the title is the general question or claim, the hook is a concrete instance the viewer can see or check.** "Why do plane windows have rounded corners?" + "Look at your plane window's corner. There isn't one." / "Your Battery Percentage Is a Guess" + "Your phone at 0% isn't empty." Both pairs passed review.
+   - A good split: **the title is the everyday question, the hook is a surprising concrete fact or mismatch that makes the question urgent.** "Why are bananas radioactive?" + "Bananas have set off radiation alarms at ports." / "Your Battery Percentage Is a Guess" + "Your phone at 0% isn't empty." See section 5 for all pairs the user reviewed.
+   - The hook must work on its own, because in the feed it is heard before the title is read. "Why does an octopus have three hearts?" + "An octopus's main heart stops when it swims": the hook leans on the title.
    - The hook must not answer the title. "Why are plane windows round?" + "Sharp corners tore two airliners open in midair" gives the answer in the first second.
    - Both halves point at the same thing. "Why Your Battery % Suddenly Jumps" + "Your battery percentage is a guess" talk past each other: jumps vs. guessing.
 2. Write **8-10 candidates across at least four types**:
@@ -77,7 +78,29 @@ These are the rules of `shorts-hook` section 1, applied to the title. If one cha
 | "Jan Palach nechtěl obdiv. Chtěl konec cenzury." | an interpretation presented as fact | "Co přesně chtěl Jan Palach v lednu 1969" |
 | "Ceny na ,90: trik, který na tebe funguje" | vague "trik"; says nothing concrete | "Proč všechno stojí 49,90, a ne 50 korun?" |
 
-## 5. After publishing
+## 5. Pairs the user reviewed
+
+Real verdicts from the user on English pairs. Prefer these over guesses when you need an example; add new verdicts here.
+
+| Verdict | Title | Hook |
+|---|---|---|
+| good | "Why are bananas radioactive?" | "Bananas have set off radiation alarms at ports." |
+| good | "Why do cats land on their feet?" | "A falling cat has nothing to push against, yet it flips." |
+| good | "The man who survived both atomic bombs" | "He survived Hiroshima. Then he went home to Nagasaki." |
+| good | "Why doesn't the Tower of Pisa fall?" | "A war saved the Leaning Tower of Pisa." |
+| good | "Your Battery Percentage Is a Guess" | "Your phone at 0% isn't empty." |
+| good | "What really happened to the three men under Chernobyl" | "Three men waded under a destroyed nuclear reactor. All three walked out." |
+| good | "Why NASA's Mars probe flew too low" | "NASA lost a Mars spacecraft to a school-level math mistake." (beat "A $125 million spacecraft vanished behind Mars.") |
+| good title, better hook from the alternative | "How emus beat Australia's army" | "Machine guns against 20,000 emus: the emus won." (beat "A thousand emus walked toward a hidden machine gun.") |
+| OK | "How Tenerife 1977 changed the way pilots talk" | "The flight engineer asked one question. The captain said yes." |
+| good title, weak hook | "Why can't you tickle yourself?" | "Tickle your own ribs right now: you'll feel almost nothing." (asks the viewer to do something) |
+| good title, weak hook | "Why does an octopus have three hearts?" | "An octopus's main heart stops when it swims." (needs the title, half answers it) |
+| good title, weak hook | "Why Your Battery % Suddenly Jumps" | "Your battery percentage is a guess." (abstract; doesn't match "jumps") |
+| shorten the title, weak hook | "Why are plane windows round? The 1954 Comet crashes" | "Sharp corners tore two airliners open in midair." (clunky, answers the title) |
+| bad | "Tenerife 1977: why the captain thought he was cleared" | "Without permission, in fog, a captain began his takeoff." (most people don't know the event or why it is dangerous) |
+| bad | "Every musician, their own key, one setlist" | "Two minutes before worship, the bassist's in the wrong key." |
+
+## 6. After publishing
 
 Tell the user where to look, and that YouTube publishes no benchmarks, so compare with the channel's own videos:
 
