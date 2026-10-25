@@ -38,7 +38,7 @@ These are the rules of `shorts-hook` section 1, applied to the title. If one cha
 
 ## 3. How to write it
 
-1. Write the title **after the hook and the payoff are fixed**, so you know which promise the video keeps.
+1. Write the title **together with the hook, as a pair**, once the payoff is known. The title makes the promise, the hook confirms it in the first second: someone who clicked the title must hear at once that this is the video they chose. Present them to the user side by side, as pairs, never as two separate lists.
 2. Write **8-10 candidates across at least four types**:
 
 | Type | Example |
@@ -56,7 +56,7 @@ These are the rules of `shorts-hook` section 1, applied to the title. If one cha
    - **Cold:** which word, if any, would a stranger to the topic not understand?
    - **True:** which fact does it rest on, and is it checked? Did this claim fail the check anywhere else in your work?
    - **Paid off:** which line of the script answers it?
-   - **Differs from the hook:** quote the spoken hook and the on-screen text next to it.
+   - **Pairs with the hook:** quote the spoken hook and the on-screen text next to it. Does the hook pick up the title's promise at once, without repeating it word for word?
    - **No filler:** no word you could delete without losing information.
 4. Keep the best one and two alternatives, and tell the user all three with one line on why.
 

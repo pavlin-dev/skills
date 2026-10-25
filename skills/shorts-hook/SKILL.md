@@ -61,7 +61,7 @@ Use several types when you write candidates. Story and explainer channels mostly
 
 ### How to pick it
 
-1. Write the hook **first**, together with the payoff it promises, before the rest of the script.
+1. Write the hook **first**, together with the payoff it promises and the video's title (`video-title`), before the rest of the script. Title and hook are one pair: the title promises, the hook confirms it in the first second.
 2. Write **8-10 candidates across at least four types.** The first idea is usually the setup sentence in disguise.
 3. Score each candidate. Write the evidence, not a tick: a tick written after you already like the line proves nothing.
    - **Stakes word:** quote the word that carries the stakes, the result, the contradiction or the tension, and give its position. In a stakes + count hook the count or the mismatch carries it ("one goalie against five", "344 things"). It should land within about the first second of speech: five English words, or ~8 syllables in Czech. A concrete in-the-action scene may take up to ~8 English words (~13 Czech syllables), because the scene itself holds attention.
