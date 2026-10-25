@@ -1,6 +1,6 @@
 ---
 name: video-title
-description: How to write the title of a video (YouTube Shorts, long YouTube videos, Reels, TikTok) so people understand it at once, click it and find it in search, without clickbait. The title follows the same core rules as the opening sentence in `shorts-hook` (first words do work, concrete, stakes or a contradiction, a promise the video keeps, true, understandable without any context) plus what is specific to a title (short wins, everyday words over names and years, written as a pair with the hook that the hook must not answer, no filler, capitalisation per language), writing 8-10 candidates and picking one with an evidence-based checklist, weak vs strong examples in English and Czech, and how to read the result in YouTube Studio. Use whenever you name a video, write its title or caption headline, or the user says a title is weak, boring, unclear or clickbait ("název není dobrý").
+description: How to write the title of a video (YouTube Shorts, long YouTube videos, Reels, TikTok) so people understand it at once, click it and find it in search, without clickbait. The title follows the opening-sentence rules of `shorts-hook` (read from there) plus what is specific to a title (short wins, everyday words over names and years, written as a pair with the hook that the hook must not answer, no filler, capitalisation per language), writing 8-10 candidates and picking one with an evidence-based checklist, weak vs strong examples, a table of title + hook pairs the user reviewed, and how to read the result in YouTube Studio. Use whenever you name a video, write its title or caption headline, or the user says a title is weak, boring, unclear or clickbait ("název není dobrý").
 ---
 
 # Video titles
@@ -12,17 +12,13 @@ Two failures kept repeating when agents wrote titles without a skill:
 - **The rules were right and then broken.** Agents set themselves "no clickbait, true, don't repeat the hook", then shipped the spoken hook word for word as the title, or put a claim in the title that they had rejected as a myth for the hook a few lines earlier.
 - **Filler instead of information:** "Worship band still on WhatsApp? Watch this", "Tohle zkus", "The setlist app for church worship bands" (a catalogue label, not a reason to watch).
 
-## 1. The shared rules (same as the opening sentence)
+## 1. The opening-sentence rules apply
 
-These are the rules of `shorts-hook` section 1, applied to the title. If one changes there, change it here too.
+Read and follow `shorts-hook` section 1 ("What worked in review" and "Rules"): the first words do work, concrete beats general, stakes or a real question, a promise the video keeps, true, understandable cold, vary the type across a channel. They live only there, so they can't drift apart; this skill adds what is specific to a title. How they translate:
 
-1. **The first words do work.** Start on the strongest concrete thing: a number, the object, the outcome, the question. Don't open with "This", "So", "Today", "In this video", "Have you ever wondered", "Věděli jste, že", "Dnes si povíme", a date or the bare topic name.
-2. **Concrete beats general.** "Why your battery % suddenly jumps" beats "The truth about batteries".
-3. **Stakes, a result, a contradiction or a real question.** Something is lost, won, broken, saved, or a question the reader actually has.
-4. **A promise the video keeps.** The video answers the title. A title the video doesn't pay off is clickbait: people leave and remember.
-5. **True.** Check the title like any other claim, on its own. A fact you rejected for the hook doesn't come back in the title.
-6. **Understandable cold.** Someone from the video's audience who has never heard of the topic understands every word and why it would matter to them. No unexplained jargon, abbreviation, insider reference, or contradiction of a myth only some people know ("The Chernobyl divers didn't die"). No riddle.
-7. **Vary the type across a channel** when you know its recent titles. Not every title "X is lying to you".
+- **True, on its own.** Check every claim in the title separately. A fact you rejected for the hook doesn't come back in the title.
+- **Cold, without picture or sound.** The title is often read with nothing else: no frame, no voice. Every word, and why it matters, must make sense alone.
+- **A different pattern wins.** For hooks the mismatch won; for titles the plain everyday question did. Every title the user judged good was a short question or plain statement ("Why are bananas radioactive?", "Why do cats land on their feet?", "The man who survived both atomic bombs"). Let the hook carry the mismatch.
 
 ## 2. What is specific to a title
 

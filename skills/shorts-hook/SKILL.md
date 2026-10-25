@@ -1,6 +1,6 @@
 ---
 name: shorts-hook
-description: How to open a vertical short (YouTube Shorts, Reels, TikTok) so people don't swipe away, and how to keep the picture alive after that. Covers the opening sentence (hook types, rules incl. being understandable without any context, weak vs strong rewrites, writing 8-10 candidates and picking one with an evidence-based checklist, other languages such as Czech, sensitive topics, product videos), the three layers of the hook (first frame, on-screen text, spoken line) landing in the first second, motion from frame zero, a visual-change budget for the whole video, the ending and the loop, and a script that measures still stretches and a weak opening in a rendered file. Use for every narrated or faceless short, whenever you write a script's first line or plan the opening, and whenever the user says the hook, opening or first sentence is weak or not catchy ("není dostatečně poutavé"), or that the background or graphics are static, boring or not dynamic enough. Works with any topic and any visual style; the other video skills in this repository apply it to their first line and their render.
+description: How to open a vertical short (YouTube Shorts, Reels, TikTok) so people don't swipe away, and how to keep the picture alive after that. Covers the opening sentence (hook types, rules incl. being understandable without any context, weak vs strong rewrites, writing 8-10 candidates and picking one with an evidence-based checklist, the patterns that passed the user's review, sensitive topics, product videos), the three layers of the hook (first frame, on-screen text, spoken line) landing in the first second, motion from frame zero, a visual-change budget for the whole video, the ending and the loop, and a script that measures still stretches and a weak opening in a rendered file. Use for every narrated or faceless short, whenever you write a script's first line or plan the opening, and whenever the user says the hook, opening or first sentence is weak or not catchy ("není dostatečně poutavé"), or that the background or graphics are static, boring or not dynamic enough. Works with any topic and any visual style; the other video skills in this repository apply it to their first line and their render.
 ---
 
 # Hooks and visual pace for shorts
@@ -16,44 +16,52 @@ This skill fixes both, whatever the topic or visual style. The advice is the con
 
 **Its job:** in about two seconds (5-10 spoken words), make the viewer *need* the next sentence. It does that with stakes, a result or a contradiction. It never does it with setup.
 
+### What worked in review (start here)
+
+The user reviewed 26 English title + hook pairs. These patterns separated the good ones from the weak ones; the full list of verdicts is in `video-title` (section 5).
+
+1. **Two true things side by side that shouldn't go together.** The strongest pattern by far: huge vs. tiny, strong vs. absurd, a cause with the opposite effect.
+   - "Machine guns against 20,000 emus: the emus won."
+   - "NASA lost a Mars spacecraft to a school-level math mistake."
+   - "A war saved the Leaning Tower of Pisa."
+   - "He survived Hiroshima. Then he went home to Nagasaki."
+   - "A falling cat has nothing to push against, yet it flips."
+   - It beat the scene setup ("A thousand emus walked toward a hidden machine gun") and the bare big number ("A $125 million spacecraft vanished behind Mars").
+2. **Something from the viewer's own life, turned on its head.** "Your phone at 0% isn't empty." The abstract version of the same idea ("Your battery percentage is a guess") was judged weak as a hook, although it worked as a title.
+3. **Never give the viewer a task.** "Tickle your own ribs right now", "Look at your plane window's corner": people in the feed want to watch, not act. Refer to their experience ("your phone"), don't instruct them.
+4. **Understandable cold, including why it matters.** Most viewers don't know the event, the name or the field. "Without permission, in fog, a captain began his takeoff" uses plain words, yet the danger lives in aviation knowledge the viewer lacks. Say the danger instead of implying it.
+5. **It stands without the title and doesn't answer it.** In the feed the hook is heard before, or instead of, the title. "An octopus's main heart stops when it swims" only makes sense after reading "three hearts" in the title, and half answers it. "Sharp corners tore two airliners open in midair" answers "Why are plane windows round?" in the first second. Restating an outcome the title already names is fine ("How emus beat Australia's army" + "...the emus won"); giving away the *how* or *why* is not.
+6. **Easy to say.** It sounds like a person talking, not a headline. "Tore two airliners open in midair" was judged clunky. Read it aloud and rewrite anything you stumble on.
+
 ### Rules
 
-1. **The first words do work.** Start on the strongest concrete thing: a number, a name, an object, an outcome. Don't open with "This", "So", "Today", "In this video", "Have you ever wondered", a greeting, a date, or the bare topic name.
+1. **The first words do work.** Start on the strongest concrete thing: a number, an object, an outcome. Don't open with "This", "So", "Today", "In this video", "Have you ever wondered", a greeting, a date, or the bare topic name.
 2. **Concrete beats general.** "A 2-gram fuse" beats "a small part"; "344 steps" beats "many steps". The viewer must be able to picture it.
-   - **Very strong: something the viewer already knows from their own life,** turned on its head. "Your phone at 0% isn't empty." The abstract version of the same idea ("Your battery percentage is a guess") was judged weak as a hook, although it worked well as a title.
-   - **Never ask the viewer to do something.** "Tickle your own ribs right now", "Look at your plane window's corner": people in the feed want to watch, not to act, and an instruction in the first second reads as homework. Refer to their experience ("your phone"), don't give them a task.
 3. **State the stakes for someone:** what is lost, won, broken or saved.
-   - **The strongest tested hooks put two things side by side that shouldn't go together:** "Machine guns against 20,000 emus: the emus won." "NASA lost a Mars spacecraft to a school-level math mistake." "A war saved the Leaning Tower of Pisa." "He survived Hiroshima. Then he went home to Nagasaki." "A falling cat has nothing to push against, yet it flips." Huge vs. tiny, strong vs. absurd, cause vs. the opposite effect. It beat both the scene setup ("A thousand emus walked toward a hidden machine gun") and the bare big number ("A $125 million spacecraft vanished behind Mars").
-   - The mismatch must still be true. "School-level math" and "the emus won" are framings, not facts: keep them only if the payoff shows they're fair (a unit conversion; the army did withdraw).
-4. **Open a loop that this video closes, and don't close it in the hook.** The question the hook raises must be answered inside the video. A hook the video doesn't pay off is clickbait: viewers leave later, and they remember. A hook that already gives the answer ("Sharp corners tore two airliners open in midair" under the title "Why are plane windows round?") leaves nothing to stay for. Restating the outcome the title already names is fine ("How emus beat Australia's army" + "...the emus won"); giving away the *how* or *why* is not.
-   - **The hook stands without the title.** In the feed the hook is heard before, or instead of, the title. "An octopus's main heart stops when it swims" only makes sense if you've read "three hearts" in the title, and it half answers it.
-5. **Easy to say.** It sounds like a person talking, not a headline. Stacked nouns and verb-plus-particle pile-ups ("tore two airliners open in midair") are hard to say and hard to hear; read it aloud and rewrite anything you stumble on.
-6. **True.** A hook that bends a fact poisons the whole video. Check it like any other claim.
-7. **Understandable cold.** The viewer has never heard of the topic and gets one hearing, with no picture they can rely on yet. Every word must make sense to them, and so must why it matters.
-   - "The viewer" means the audience the video is made for. A name or thing everyone in that audience knows (Jágr or kapr for a Czech channel, Einstein for anyone) is fine; a name only fans, locals or one generation know is not.
-   - No name, place, abbreviation or jargon the viewer has to know already. Say what it is instead: "three men", "a nuclear reactor", "a 20-year-old student", not "the Chernobyl divers", "the RBMK" or "Pochodeň číslo jedna".
+4. **Open a loop that this video closes.** The question the hook raises must be answered inside the video. A hook the video doesn't pay off is clickbait: viewers leave later, and they remember.
+5. **True.** A hook that bends a fact poisons the whole video. Check it like any other claim. The mismatch pattern tempts you to exaggerate: "school-level math" and "the emus won" are framings, not facts, so keep them only if the payoff shows they are fair (a unit conversion; the army did withdraw).
+6. **Understandable cold, in detail.** The viewer has never heard of the topic and gets one hearing.
+   - "The viewer" means the audience the video is made for. A name everyone in that audience knows (Hiroshima, NASA, Einstein) is fine; a name only fans, locals or one generation know is not.
+   - No name, place, abbreviation or jargon the viewer has to know already. Say what it is: "three men", "a nuclear reactor", not "the Chernobyl divers" or "the RBMK".
    - A contradiction only works against a belief most people really hold. "The Chernobyl divers didn't die" contradicts a myth from one TV series; whoever hasn't seen it hears nothing.
-   - No reference that only works locally or for insiders ("you know his name from the square").
-   - **Say the danger, don't imply it.** "Without permission, in fog, a captain began his takeoff" is made of plain words, yet most people don't know why that is deadly: the stakes live in aviation knowledge the viewer doesn't have. If the danger only follows from expert knowledge, say it ("...straight at another jumbo jet").
-   - No riddle the listener has to decode. "Deset haléřů ti v hlavě udělá z padesátky čtyřicítku" is clever on paper and a puzzle when heard once.
+   - No riddle the listener has to decode.
    - Test: say it to someone who knows nothing about the topic. Can they repeat in their own words what is at stake? If not, rewrite it.
-8. **One breath, the point first.** No subordinate clause or background before the point. If it runs past ~2.5 s when spoken, cut it or split it.
-9. **The second sentence pays immediately and stays short** (≤ ~12 words, ~3 s). It gives the one line of context the hook made the viewer want, so the hook is fully understood and the question gets sharper. It doesn't answer the question itself (that is the payoff), doesn't re-explain the hook, and isn't the place to unload the date, the full names and the setting at once.
+7. **One breath, the point first.** No subordinate clause or background before the point. If it runs past ~2.5 s when spoken, cut it or split it.
+8. **The second sentence pays immediately and stays short** (≤ ~12 words, ~3 s). It gives the one line of context the hook made the viewer want, so the question gets sharper. It doesn't answer the question itself (that is the payoff), doesn't re-explain the hook, and isn't the place to unload the date, the full names and the setting at once.
 
 ### Hook types
 
-Use several types when you write candidates. Story and explainer channels mostly use the first four.
+Use several types when you write candidates. The mismatch and hidden-fact examples passed the user's review; the rest are illustrations.
 
 | Type | Example | Fits |
 |---|---|---|
+| Mismatch (two things that shouldn't go together) | "A war saved the Leaning Tower of Pisa." | almost anything; the tested winner |
 | Outcome first | "A $10-billion telescope launched broken, on purpose." | explainers, stories with a known ending |
 | In the middle of the action | "Twelve kilometres up, both engines went silent." | true stories, disasters, escapes |
 | Stakes + count | "344 things had to go right. One failure, and it was all lost." | engineering, missions, heists |
-| Contradiction | "The safest seat on a plane is the one nobody wants." | myths, science, "actually" topics |
-| A specific question the video answers | "Why do planes dump fuel before they land?" | explainers; only if the answer is surprising |
-| Hidden fact | "There's a lake in Tanzania so caustic it preserves dead birds like statues." | nature, history, trivia |
-| Number / list | "Three mistakes that almost killed Apollo 13." | lists, how-tos, story roundups |
-| Direct address | "If your Shorts die at 40% watch time, it's your first second." | tutorials, product and creator tips |
+| Contradiction (of a common belief) | "The safest seat on a plane is the one nobody wants." | myths, science, "actually" topics |
+| Hidden fact | "Bananas have set off radiation alarms at ports." | nature, science, trivia |
+| Number / list | "Three mistakes that almost killed Apollo 13." | lists, story roundups |
 
 ### Weak vs strong
 
@@ -62,48 +70,41 @@ Use several types when you write candidates. Story and explainer channels mostly
 | "This telescope had to unfold itself in space. One jam, and it was dead." | the first sentence is setup; the stakes come at second 3 | "344 things had to go right. One jam, and $10 billion was dead." |
 | "In 1983, a Soviet officer named Stanislav Petrov was on duty at a bunker near Moscow." | date, name and place before any reason to care | "One man had minutes to decide whether to start a nuclear war." |
 | "Today let's look at how airplanes stay in the air." | announces a topic and promises nothing | "Every airliner you've flown on can glide with all its engines off." |
-| "Have you ever wondered why the sky is blue?" | a rhetorical question everyone has heard; no stakes | "The sky should be violet. Your eyes are lying to you." |
-| "The Chernobyl divers didn't die." | needs the viewer to know a myth from one TV series | "Three men waded under a destroyed nuclear reactor. All three walked out." |
-| "Your battery percentage is a guess." | an abstract claim; nothing to picture or check | "Your phone at 0% isn't empty." |
-| "Sharp corners tore two airliners open in midair." | hard to say, and it answers the title's question at once | (no tested stronger version yet) |
-| "Tickle your own ribs right now: you'll feel almost nothing." | gives the viewer a task | (no tested stronger version yet) |
-| "A $125 million spacecraft vanished behind Mars." | a big number, but nothing unexpected | "NASA lost a Mars spacecraft to a school-level math mistake." |
-| "An octopus's main heart stops when it swims." | needs the title to make sense, and half answers it | (no tested stronger version yet) |
-| "Without permission, in fog, a captain began his takeoff." | plain words, but the danger needs aviation knowledge | "The flight engineer asked one question. The captain said yes." |
-| "Change the key once, every phone in the band follows." | a feature, not a reason to keep watching | (no tested strong product hook yet) |
-| "Jeho jméno znáš z názvu náměstí. Co chtěl, asi ne." | assumes the viewer knows a square in Prague; many in the audience don't | "Dvacetiletý student chtěl jen dvě věci: konec cenzury a jedněch novin." |
+| "The Chernobyl divers didn't die." | needs the viewer to know a myth from one TV series | "Three men waded under a destroyed nuclear reactor. All three walked out." (reviewed: good) |
+| "Your battery percentage is a guess." | an abstract claim; nothing to picture | "Your phone at 0% isn't empty." (reviewed: good) |
+| "A $125 million spacecraft vanished behind Mars." | a big number, nothing unexpected | "NASA lost a Mars spacecraft to a school-level math mistake." (reviewed: better) |
+| "A thousand emus walked toward a hidden machine gun." | a scene, but no mismatch yet | "Machine guns against 20,000 emus: the emus won." (reviewed: better) |
+| "Without permission, in fog, a captain began his takeoff." | plain words, but the danger needs aviation knowledge | "The flight engineer asked one question. The captain said yes." (reviewed: OK) |
 
 ### How to pick it
 
 1. Write the hook **first**, together with the payoff it promises and the video's title (`video-title`), before the rest of the script. Title and hook are one pair: the title promises, the hook confirms it in the first second.
-2. Write **8-10 candidates across at least four types.** The first idea is usually the setup sentence in disguise.
+2. Write **8-10 candidates across at least four types**, at least two of them mismatches. The first idea is usually the setup sentence in disguise.
 3. Score each candidate. Write the evidence, not a tick: a tick written after you already like the line proves nothing.
-   - **Stakes word:** quote the word that carries the stakes, the result, the contradiction or the tension, and give its position. In a stakes + count hook the count or the mismatch carries it ("one goalie against five", "344 things"). It should land within about the first second of speech: five English words, or ~8 syllables in Czech. A concrete in-the-action scene may take up to ~8 English words (~13 Czech syllables), because the scene itself holds attention.
-   - **Cold:** would someone who knows nothing about the topic understand every word and why it matters? Name any word they wouldn't.
+   - **Stakes word:** quote the word that carries the stakes, the result, the mismatch or the contradiction, and give its position. In a count or mismatch hook the count or the pair carries it. It should land within about the first second of speech (five English words); a concrete in-the-action scene may take up to ~8.
+   - **Cold:** which word, or which unstated danger, would someone who knows nothing about the topic miss?
+   - **Alone:** does it make sense without the title, and does it leave the title's question open?
+   - **No task:** does it ask the viewer to do anything?
    - **Concrete:** what exactly can the viewer picture?
-   - **True:** which fact does it rest on, and is that fact checked? Anything that bends the fact for the punchline (rounding 49,90 down to "forty") fails.
+   - **True:** which fact does it rest on, and is that fact checked? Anything that bends the fact for the punchline fails.
    - **Loop:** which line of the script pays it off?
-   - **Length:** spoken length in seconds (≤ 2.5 s; see "Other languages" for counting).
+   - **Length:** spoken length in seconds (≤ 2.5 s). Read it aloud: any stumble?
 4. Read the best two aloud together with the second sentence and keep the one that makes the second sentence feel necessary.
-5. Tell the user which candidates you considered, so they can pick another.
-6. **Vary the type across a channel.** The five-word rule makes the bare contradiction ("X isn't Y", "your Z is lying to you") the easiest winner. If every short opens like that, the channel sounds like one template. If you know which types the last few videos used (ask the user or look at the channel when you can), prefer another one when it is about as strong. Without that history, at least don't default to the contradiction.
+5. **Get a cold read.** Your own "cold" check is the one agents fail most: you know the topic, so you can't hear the hook as a stranger does. If the environment can start a fresh subagent, give it only the final title and hook (no topic notes, no script) and ask: what is this video about, what is at stake, which word lost you, would you keep watching? If it can't say what is at stake, rewrite. Without subagents, do the same with the user, or at least reread the hook pretending you know nothing about the field.
+6. Tell the user which candidates you considered, so they can pick another.
+7. **Vary the type across a channel.** Any single pattern turns into a template when every short uses it, the mismatch included. If you know which types the last few videos used (ask the user or look at the channel when you can), prefer another one when it is about as strong.
 
-### Other languages (Czech and others)
+### Other languages
 
-The limits above are counted for English. Other languages need their own units.
-
-- **Count syllables, not words.** Czech has longer words and no articles, so five Czech words carry more and take longer. At a brisk narration pace that is about 15-17 syllables for 2.5 s.
-- **Long numbers are slow to say.** "49,90" is "čtyřicet devět devadesát", nine syllables. Put exact numbers in the on-screen text and say a round or shorter form, or move the number out of the hook.
-- **Weak Czech openers**, the equivalents of the English list in rule 1: "Věděli jste, že…", "Dnes si povíme…", "V tomto videu…", "Asi jste si všimli…", "Ahoj, vítejte…", "Možná vás překvapí…".
-- **Address:** pick tykání or vykání once per channel and keep it in the hook, the captions and the title. Tykání is the usual choice for Czech Shorts; follow the channel if it already decided.
+The limits above are counted for English. In languages with longer words, such as Czech, count syllables instead (about 15-17 for 2.5 s), say long numbers in a short form and put the exact figure in the on-screen text, and keep one form of address (for Czech, tykání or vykání) across the hook, captions and title.
 
 ### Sensitive topics
 
 Death, suicide, violence, victims, illness and tragedies. The push for stakes and outcome-first makes tabloid hooks the easy winners here.
 
-- Aim the hook at the person, the motive, the decision or what changed, not at the death or the injury.
+- Aim the hook at the person, the motive, the decision or what changed, not at the death or the injury. "He survived Hiroshima. Then he went home to Nagasaki." passed review.
 - Never describe the method, the pain or the body, in the hook or on frame 0 (no archive photos of the wounded as the first frame).
-- The death toll is stated once, plainly, in the body of the video. It is never the hook's punchline and never the on-screen text; "deadliest" and "583 lives" are the easy stakes words here, and they are the tabloid ones. In the title, name the event (it is also what people search) instead of the number.
+- The death toll is stated once, plainly, in the body of the video. It is never the hook's punchline, the on-screen text or the title; "deadliest" and "583 lives" are the easy stakes words here, and they are the tabloid ones.
 - For suicide or self-immolation, don't present the act as the price paid for a goal or as something that worked ("for these he gave his life"). Follow the media guidelines on reporting suicide (WHO): no method, no glorification, a helpline in the description, checked for the viewer's country.
 - Don't build the hook on copycats or a numbered series of victims.
 - If the line could appear in a tabloid headline, write another one.
@@ -187,7 +188,8 @@ By medium:
 ## Before sending
 
 - The hook was chosen from several written candidates. Its stakes, result or contradiction sit in the first five words, it is true, and the video pays it off.
-- Someone who knows nothing about the topic understands the hook on one hearing: no unexplained name, jargon, insider reference or riddle.
+- Someone who knows nothing about the topic understands the hook on one hearing, including why it matters: no unexplained name, jargon, insider reference or riddle. A cold read (a fresh subagent or the user) confirmed it when one was possible.
+- The hook makes sense without the title, doesn't answer it, and gives the viewer no task.
 - The second sentence is ≤ ~12 words. Spoken length is counted in the language of the video (syllables for Czech).
 - The video's title is written with the `video-title` skill and doesn't repeat the hook word for word.
 - Frame 0 is the most interesting or most promising picture, not a title, logo or empty frame; the picture moves within the first second.
