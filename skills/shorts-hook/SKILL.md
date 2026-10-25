@@ -20,18 +20,21 @@ This skill fixes both, whatever the topic or visual style. The advice is the con
 
 1. **The first words do work.** Start on the strongest concrete thing: a number, a name, an object, an outcome. Don't open with "This", "So", "Today", "In this video", "Have you ever wondered", a greeting, a date, or the bare topic name.
 2. **Concrete beats general.** "A 2-gram fuse" beats "a small part"; "344 steps" beats "many steps". The viewer must be able to picture it.
+   - **Best of all: something the viewer can see or check on their own thing.** "Your phone at 0% isn't empty." "Look at your plane window's corner. There isn't one." Both got the best reactions in testing. The abstract version of the same idea ("Your battery percentage is a guess") was judged weak as a hook, although it worked well as a title.
 3. **State the stakes for someone:** what is lost, won, broken or saved.
-4. **Open a loop that this video closes.** The question the hook raises must be answered inside the video. A hook the video doesn't pay off is clickbait: viewers leave later, and they remember.
-5. **True.** A hook that bends a fact poisons the whole video. Check it like any other claim.
-6. **Understandable cold.** The viewer has never heard of the topic and gets one hearing, with no picture they can rely on yet. Every word must make sense to them, and so must why it matters.
+4. **Open a loop that this video closes, and don't close it in the hook.** The question the hook raises must be answered inside the video. A hook the video doesn't pay off is clickbait: viewers leave later, and they remember. A hook that already gives the answer ("Sharp corners tore two airliners open in midair" under the title "Why are plane windows round?") leaves nothing to stay for.
+5. **Easy to say.** It sounds like a person talking, not a headline. Stacked nouns and verb-plus-particle pile-ups ("tore two airliners open in midair") are hard to say and hard to hear; read it aloud and rewrite anything you stumble on.
+6. **True.** A hook that bends a fact poisons the whole video. Check it like any other claim.
+7. **Understandable cold.** The viewer has never heard of the topic and gets one hearing, with no picture they can rely on yet. Every word must make sense to them, and so must why it matters.
    - "The viewer" means the audience the video is made for. A name or thing everyone in that audience knows (Jágr or kapr for a Czech channel, Einstein for anyone) is fine; a name only fans, locals or one generation know is not.
    - No name, place, abbreviation or jargon the viewer has to know already. Say what it is instead: "three men", "a nuclear reactor", "a 20-year-old student", not "the Chernobyl divers", "the RBMK" or "Pochodeň číslo jedna".
    - A contradiction only works against a belief most people really hold. "The Chernobyl divers didn't die" contradicts a myth from one TV series; whoever hasn't seen it hears nothing.
    - No reference that only works locally or for insiders ("you know his name from the square").
+   - **Say the danger, don't imply it.** "Without permission, in fog, a captain began his takeoff" is made of plain words, yet most people don't know why that is deadly: the stakes live in aviation knowledge the viewer doesn't have. If the danger only follows from expert knowledge, say it ("...straight at another jumbo jet").
    - No riddle the listener has to decode. "Deset haléřů ti v hlavě udělá z padesátky čtyřicítku" is clever on paper and a puzzle when heard once.
    - Test: say it to someone who knows nothing about the topic. Can they repeat in their own words what is at stake? If not, rewrite it.
-7. **One breath, the point first.** No subordinate clause or background before the point. If it runs past ~2.5 s when spoken, cut it or split it.
-8. **The second sentence pays immediately and stays short** (≤ ~12 words, ~3 s). It gives the one line of context the hook made the viewer want, so the hook is fully understood and the question gets sharper. It doesn't answer the question itself (that is the payoff), doesn't re-explain the hook, and isn't the place to unload the date, the full names and the setting at once.
+8. **One breath, the point first.** No subordinate clause or background before the point. If it runs past ~2.5 s when spoken, cut it or split it.
+9. **The second sentence pays immediately and stays short** (≤ ~12 words, ~3 s). It gives the one line of context the hook made the viewer want, so the hook is fully understood and the question gets sharper. It doesn't answer the question itself (that is the payoff), doesn't re-explain the hook, and isn't the place to unload the date, the full names and the setting at once.
 
 ### Hook types
 
@@ -57,6 +60,10 @@ Use several types when you write candidates. Story and explainer channels mostly
 | "Today let's look at how airplanes stay in the air." | announces a topic and promises nothing | "Every airliner you've flown on can glide with all its engines off." |
 | "Have you ever wondered why the sky is blue?" | a rhetorical question everyone has heard; no stakes | "The sky should be violet. Your eyes are lying to you." |
 | "The Chernobyl divers didn't die." | needs the viewer to know a myth from one TV series | "Three men waded under a destroyed nuclear reactor. All three walked out." |
+| "Your battery percentage is a guess." | an abstract claim; nothing to picture or check | "Your phone at 0% isn't empty." |
+| "Sharp corners tore two airliners open in midair." | hard to say, and it answers the title's question at once | "Look at your plane window's corner. There isn't one." |
+| "Without permission, in fog, a captain began his takeoff." | plain words, but the danger needs aviation knowledge | "The flight engineer asked one question. The captain said yes." |
+| "Change the key once, every phone in the band follows." | a feature, not a reason to keep watching | (no tested strong product hook yet) |
 | "Jeho jméno znáš z názvu náměstí. Co chtěl, asi ne." | assumes the viewer knows a square in Prague; many in the audience don't | "Dvacetiletý student chtěl jen dvě věci: konec cenzury a jedněch novin." |
 
 ### How to pick it
@@ -99,7 +106,7 @@ Death, suicide, violence, victims, illness and tragedies. The push for stakes an
 A promo has two extra jobs: the viewer has to understand what the product is quickly, and know where to get it. The `marketing-content` skill covers the content side; this section only adjusts the hook rules.
 
 - An acted typical scene ("two minutes before the service, the bassist is in the wrong key") passes the truth check if it is presented as an example, not as a claimed real event. A claimed statistic ("most bands still play from paper") needs a source.
-- The pain the viewer recognises usually beats the feature as a hook. Show the feature as the second sentence or the payoff.
+- A feature is not a hook ("Change the key once, every phone in the band follows" was judged weak). Neither is a pain scene that needs insider words to feel ("the bassist's in the wrong key": "key" means nothing to a non-musician, and the stakes are mild). The pain must be one the target viewer feels at once, said in their words. No product hook has passed the user's review yet, so test several.
 - One short call to action in the last ~2 s is allowed (the name, where to find it). Still no outro card and no "subscribe".
 
 ## 2. Three layers in the first second

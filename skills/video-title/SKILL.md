@@ -1,6 +1,6 @@
 ---
 name: video-title
-description: How to write the title of a video (YouTube Shorts, long YouTube videos, Reels, TikTok) so people understand it at once, click it and find it in search, without clickbait. The title follows the same core rules as the opening sentence in `shorts-hook` (first words do work, concrete, stakes or a contradiction, a promise the video keeps, true, understandable without any context) plus what is specific to a title (length and truncation, a search term, not copying the spoken hook, no filler, capitalisation per language), writing 8-10 candidates and picking one with an evidence-based checklist, weak vs strong examples in English and Czech, and how to read the result in YouTube Studio. Use whenever you name a video, write its title or caption headline, or the user says a title is weak, boring, unclear or clickbait ("název není dobrý").
+description: How to write the title of a video (YouTube Shorts, long YouTube videos, Reels, TikTok) so people understand it at once, click it and find it in search, without clickbait. The title follows the same core rules as the opening sentence in `shorts-hook` (first words do work, concrete, stakes or a contradiction, a promise the video keeps, true, understandable without any context) plus what is specific to a title (short wins, everyday words over names and years, written as a pair with the hook that the hook must not answer, no filler, capitalisation per language), writing 8-10 candidates and picking one with an evidence-based checklist, weak vs strong examples in English and Czech, and how to read the result in YouTube Studio. Use whenever you name a video, write its title or caption headline, or the user says a title is weak, boring, unclear or clickbait ("název není dobrý").
 ---
 
 # Video titles
@@ -26,19 +26,22 @@ These are the rules of `shorts-hook` section 1, applied to the title. If one cha
 
 ## 2. What is specific to a title
 
-- **Length.** YouTube allows long titles but cuts them in most views, and how much shows depends on the device and the surface. Put the point in the first ~40 characters and keep the whole title under ~60. Check that the cut version still makes sense.
-- **A search term near the front:** the word people would type, such as the name, the object or the question ("49,90", "Jan Palach", "battery percentage"). Here a title differs on purpose from the spoken hook, where an unexplained name is a mistake: in a title a name helps search, so it may lead, but the rest of the title says in plain words what happened or what the video answers. "Jan Palach: what he actually demanded in 1969" works for a reader who has never heard the name; "Jan Palach" alone doesn't.
+- **Short wins.** The shortest title that still makes the promise is the best one. Aim for ~25-40 characters, one idea, no subtitle. "Why are plane windows round?" beats "Why are plane windows round? The 1954 Comet crashes": the added half explains, and explaining is the video's job. YouTube cuts long titles anyway, by an amount that depends on the device.
+- **Plain everyday words, the way people would ask it.** The best search term is usually the everyday question itself ("why are plane windows round", "battery percentage"). A name or an event ("Tenerife 1977") helps only the few who already know it; most viewers have no idea what it is, so it must never carry the title alone. "Tenerife 1977: why the captain thought he was cleared" failed: a place, a year and jargon ("cleared"). Use a name only when most of the audience knows it, or when the rest of the title works without it ("How Tenerife 1977 changed the way pilots talk" passed: "the way pilots talk" carries it).
 - **Complement, don't copy.** The title, the on-screen hook text and the spoken hook make the same promise in different words. A common split: the title carries the searchable question, the hook carries the stakes. A title identical to the spoken hook wastes one of the two.
 - **Question titles** fit explainers well when they are the question people really ask ("Proč všechno stojí 49,90, a ne 50 korun?"). The video must answer it early.
 - **No filler and no shouting:** "Watch this", "You won't believe", "Tohle zkus", "Šokující", "(GONE WRONG)", whole words in capitals, a row of emoji, a trailing "!!!".
 - **Capitalisation and language.** Czech titles capitalise only the first word and proper names ("Proč ceny končí na ,90", not "Proč Ceny Končí Na ,90"). English may use title case or sentence case; keep the channel's choice. Always correct diacritics. Use the same tykání or vykání as the video.
 - **Products.** Don't lead with a product name nobody knows; lead with the pain or the outcome the viewer recognises. The name can come later in the title or in the description.
-- **Sensitive topics** follow `shorts-hook` ("Sensitive topics"): aim at the person, the motive, the decision or what changed, never the method or the injury, no tabloid words. Name the event instead of the death toll ("Tenerife 1977: why the captain thought he was cleared", not "583 died after one misheard OK").
+- **Sensitive topics** follow `shorts-hook` ("Sensitive topics"): aim at the person, the motive, the decision or what changed, never the method or the injury, no tabloid words, no death toll ("583 died after one misheard OK").
 - **Shorts vs long videos.** In the Shorts feed the video starts playing and the hook does most of the work; the title matters for search, for the channel page and for shares. For a long video the title (together with the thumbnail) *is* the hook: spend more effort on it, and make the thumbnail and the title say different things that add up to one promise.
 
 ## 3. How to write it
 
 1. Write the title **together with the hook, as a pair**, once the payoff is known. The title makes the promise, the hook confirms it in the first second: someone who clicked the title must hear at once that this is the video they chose. Present them to the user side by side, as pairs, never as two separate lists.
+   - A good split: **the title is the general question or claim, the hook is a concrete instance the viewer can see or check.** "Why do plane windows have rounded corners?" + "Look at your plane window's corner. There isn't one." / "Your Battery Percentage Is a Guess" + "Your phone at 0% isn't empty." Both pairs passed review.
+   - The hook must not answer the title. "Why are plane windows round?" + "Sharp corners tore two airliners open in midair" gives the answer in the first second.
+   - Both halves point at the same thing. "Why Your Battery % Suddenly Jumps" + "Your battery percentage is a guess" talk past each other: jumps vs. guessing.
 2. Write **8-10 candidates across at least four types**:
 
 | Type | Example |
@@ -51,8 +54,8 @@ These are the rules of `shorts-hook` section 1, applied to the title. If one cha
 | Direct address / pain | "Kapela se domlouvá přes WhatsApp? Neděle nemusí být chaos" |
 
 3. Score each candidate with **evidence, not ticks**:
-   - **First ~40 characters:** quote them. Do they hold the point on their own?
-   - **Search term:** which word would someone type, and where is it?
+   - **Length:** count the characters. Can a word go without losing the promise? Then cut it.
+   - **Everyday words:** would someone type or say it this way? Which word would most viewers not know (a place, a year, a name, jargon)?
    - **Cold:** which word, if any, would a stranger to the topic not understand?
    - **True:** which fact does it rest on, and is it checked? Did this claim fail the check anywhere else in your work?
    - **Paid off:** which line of the script answers it?
@@ -66,8 +69,11 @@ These are the rules of `shorts-hook` section 1, applied to the title. If one cha
 |---|---|---|
 | "The Chernobyl Divers Didn't Die" | the spoken hook word for word; needs the viewer to know a TV myth | "What really happened to the three men under Chernobyl" |
 | "Why Your Phone Dies at 20% in the Cold" | "dies at 20%" is folklore, not a spec; the author had flagged it as such | "Why your phone dies early in the cold" |
-| "Worship band still on WhatsApp? Watch this" | "Watch this" carries nothing | "Every musician in their own key, one setlist" |
-| "The setlist app for church worship bands" | a catalogue label, no reason to watch | "Změň tóninu jednou a přepne se všem v kapele" |
+| "Worship band still on WhatsApp? Watch this" | "Watch this" carries nothing | "No more printed chord sheets on Sunday" |
+| "Every musician, their own key, one setlist" | a feature list; says nothing to someone outside a band | "No more printed chord sheets on Sunday" |
+| "Tenerife 1977: why the captain thought he was cleared" | a place and a year most people don't know, plus jargon | "How Tenerife 1977 changed the way pilots talk" |
+| "Why are plane windows round? The 1954 Comet crashes" | the second half explains instead of promising; too long | "Why are plane windows round?" |
+| "The setlist app for church worship bands" | a catalogue label, no reason to watch | "No more printed chord sheets on Sunday" |
 | "Jan Palach nechtěl obdiv. Chtěl konec cenzury." | an interpretation presented as fact | "Co přesně chtěl Jan Palach v lednu 1969" |
 | "Ceny na ,90: trik, který na tebe funguje" | vague "trik"; says nothing concrete | "Proč všechno stojí 49,90, a ne 50 korun?" |
 
@@ -81,8 +87,9 @@ Tell the user where to look, and that YouTube publishes no benchmarks, so compar
 ## Before sending
 
 - The title was picked from 8-10 written candidates across at least four types, and the user got the pick plus two alternatives.
-- The point sits in the first ~40 characters; the whole is under ~60.
-- A stranger to the topic understands it; the search term is near the front.
+- It is as short as it can be (~25-40 characters), one idea, no subtitle.
+- Most of the audience understands every word; no name, year or jargon carries it alone.
+- It pairs with the hook: same thing, the hook doesn't answer it, and they were shown to the user side by side.
 - Every claim in it is checked, including ones you dropped from the hook.
 - It doesn't repeat the spoken hook or the on-screen text word for word, and has no filler, capitals or emoji.
 - Capitalisation and diacritics are correct for the language, and the address matches the video.
