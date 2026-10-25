@@ -16,11 +16,11 @@ This skill fixes both, whatever the topic or visual style. The advice is the con
 
 **Its job:** in about two seconds (5-10 spoken words), make the viewer *need* the next sentence. It does that with stakes, a result or a contradiction. It never does it with setup.
 
-### What worked in review (start here)
+### Current working ideas (start here; they are hypotheses)
 
-The user reviewed 26 English title + hook pairs. These patterns separated the good ones from the weak ones; the full list of verdicts is in `video-title` (section 5).
+These are ideas, not laws. They come from one person reviewing 26 English title + hook pairs, not from audience data; the full list of verdicts is in `video-title` (section 5). Start from them, and change them when the channel's numbers disagree (see "Keeping the ideas alive" below). Only two things are not up for testing: the hook is true, and sensitive topics are handled with care.
 
-1. **Two true things side by side that shouldn't go together.** The strongest pattern by far: huge vs. tiny, strong vs. absurd, a cause with the opposite effect.
+1. **Two true things side by side that shouldn't go together.** The strongest idea so far: huge vs. tiny, strong vs. absurd, a cause with the opposite effect.
    - "Machine guns against 20,000 emus: the emus won."
    - "NASA lost a Mars spacecraft to a school-level math mistake."
    - "A war saved the Leaning Tower of Pisa."
@@ -28,10 +28,20 @@ The user reviewed 26 English title + hook pairs. These patterns separated the go
    - "A falling cat has nothing to push against, yet it flips."
    - It beat the scene setup ("A thousand emus walked toward a hidden machine gun") and the bare big number ("A $125 million spacecraft vanished behind Mars").
 2. **Something from the viewer's own life, turned on its head.** "Your phone at 0% isn't empty." The abstract version of the same idea ("Your battery percentage is a guess") was judged weak as a hook, although it worked as a title.
-3. **Never give the viewer a task.** "Tickle your own ribs right now", "Look at your plane window's corner": people in the feed want to watch, not act. Refer to their experience ("your phone"), don't instruct them.
+3. **Don't give the viewer a task.** "Tickle your own ribs right now", "Look at your plane window's corner" were judged weak: the feeling is that people in the feed want to watch, not act. Refer to their experience ("your phone"), don't instruct them.
 4. **Understandable cold, including why it matters.** Most viewers don't know the event, the name or the field. "Without permission, in fog, a captain began his takeoff" uses plain words, yet the danger lives in aviation knowledge the viewer lacks. Say the danger instead of implying it.
 5. **It stands without the title and doesn't answer it.** In the feed the hook is heard before, or instead of, the title. "An octopus's main heart stops when it swims" only makes sense after reading "three hearts" in the title, and half answers it. "Sharp corners tore two airliners open in midair" answers "Why are plane windows round?" in the first second. Restating an outcome the title already names is fine ("How emus beat Australia's army" + "...the emus won"); giving away the *how* or *why* is not.
 6. **Easy to say.** It sounds like a person talking, not a headline. "Tore two airliners open in midair" was judged clunky. Read it aloud and rewrite anything you stumble on.
+
+### Keeping the ideas alive
+
+The ideas above and the rules below are the best guess so far. They must never stop the skill from learning.
+
+- **Evidence ranks:** the channel's own numbers (in YouTube Studio: "Viewed vs. swiped away", average percentage viewed) beat the user's verdicts, and the verdicts beat the guides and this skill's illustrations.
+- **One video is noise.** Judge an idea on several shorts, compared with the channel's typical short, not on a single result.
+- **When the numbers disagree, the idea changes.** If hooks built on an idea keep doing worse than the channel's usual, weaken it or drop it here. If a hook that broke an idea keeps doing better, write down what it did as a new idea. Don't defend an idea against the data.
+- **Keep testing.** Each time, write at least one candidate that deliberately breaks a current idea, and now and then publish one. Otherwise the ideas only ever confirm themselves, and every hook starts to sound the same.
+- **Write down where an idea came from** (a review, numbers from N videos) when you add or change one, so the next reader knows how much weight it carries. Add the numbers to the pairs table in `video-title`.
 
 ### Rules
 
@@ -79,7 +89,7 @@ Use several types when you write candidates. The mismatch and hidden-fact exampl
 ### How to pick it
 
 1. Write the hook **first**, together with the payoff it promises and the video's title (`video-title`), before the rest of the script. Title and hook are one pair: the title promises, the hook confirms it in the first second.
-2. Write **8-10 candidates across at least four types**, at least two of them mismatches. The first idea is usually the setup sentence in disguise.
+2. Write **8-10 candidates across at least four types**, including the current strongest idea (the mismatch) and at least one that deliberately breaks a current idea. The first idea is usually the setup sentence in disguise.
 3. Score each candidate. Write the evidence, not a tick: a tick written after you already like the line proves nothing.
    - **Stakes word:** quote the word that carries the stakes, the result, the mismatch or the contradiction, and give its position. In a count or mismatch hook the count or the pair carries it. It should land within about the first second of speech (five English words); a concrete in-the-action scene may take up to ~8.
    - **Cold:** which word, or which unstated danger, would someone who knows nothing about the topic miss?
@@ -189,7 +199,7 @@ By medium:
 
 - The hook was chosen from several written candidates. Its stakes, result or contradiction sit in the first five words, it is true, and the video pays it off.
 - Someone who knows nothing about the topic understands the hook on one hearing, including why it matters: no unexplained name, jargon, insider reference or riddle. A cold read (a fresh subagent or the user) confirmed it when one was possible.
-- The hook makes sense without the title, doesn't answer it, and gives the viewer no task.
+- The hook follows the current working ideas, or breaks one on purpose and you told the user which one and why.
 - The second sentence is ≤ ~12 words. Spoken length is counted in the language of the video (syllables for Czech).
 - The video's title is written with the `video-title` skill and doesn't repeat the hook word for word.
 - Frame 0 is the most interesting or most promising picture, not a title, logo or empty frame; the picture moves within the first second.

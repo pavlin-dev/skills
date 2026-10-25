@@ -14,11 +14,11 @@ Two failures kept repeating when agents wrote titles without a skill:
 
 ## 1. The opening-sentence rules apply
 
-Read and follow `shorts-hook` section 1 ("What worked in review" and "Rules"): the first words do work, concrete beats general, stakes or a real question, a promise the video keeps, true, understandable cold, vary the type across a channel. They live only there, so they can't drift apart; this skill adds what is specific to a title. How they translate:
+Read and follow `shorts-hook` section 1 ("Current working ideas", "Keeping the ideas alive" and "Rules"): the first words do work, concrete beats general, stakes or a real question, a promise the video keeps, true, understandable cold, vary the type across a channel. They live only there, so they can't drift apart; this skill adds what is specific to a title. The title advice below that comes from review (short titles, everyday words) is a working idea too, open to change when the numbers disagree. How they translate:
 
 - **True, on its own.** Check every claim in the title separately. A fact you rejected for the hook doesn't come back in the title.
 - **Cold, without picture or sound.** The title is often read with nothing else: no frame, no voice. Every word, and why it matters, must make sense alone.
-- **A different pattern wins.** For hooks the mismatch won; for titles the plain everyday question did. Every title the user judged good was a short question or plain statement ("Why are bananas radioactive?", "Why do cats land on their feet?", "The man who survived both atomic bombs"). Let the hook carry the mismatch.
+- **A different pattern has won so far.** For hooks the mismatch won; for titles the plain everyday question did. Every title the user judged good was a short question or plain statement ("Why are bananas radioactive?", "Why do cats land on their feet?", "The man who survived both atomic bombs"). Let the hook carry the mismatch.
 
 ## 2. What is specific to a title
 
@@ -76,7 +76,7 @@ Read and follow `shorts-hook` section 1 ("What worked in review" and "Rules"): t
 
 ## 5. Pairs the user reviewed
 
-Real verdicts from the user on English pairs. Prefer these over guesses when you need an example; add new verdicts here.
+Real verdicts from the user on English pairs: evidence, not law. Prefer them over guesses when you need an example, and add new verdicts here. Once a video is published, add its numbers to its row (a "Studio" column: viewed vs. swiped away, average percentage viewed, search views). Where the numbers and the verdict disagree, the numbers win, and the ideas in `shorts-hook` change with them.
 
 | Verdict | Title | Hook |
 |---|---|---|
