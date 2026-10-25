@@ -1,6 +1,6 @@
 ---
 name: shorts-hook
-description: How to open a vertical short (YouTube Shorts, Reels, TikTok) so people don't swipe away, and how to keep the picture alive after that. Covers the opening sentence (hook types, rules incl. being understandable without any context, weak vs strong rewrites, writing 8-10 candidates and picking one with an evidence-based checklist, the patterns that passed the user's review, sensitive topics, product videos), the three layers of the hook (first frame, on-screen text, spoken line) landing in the first second, motion from frame zero, a visual-change budget for the whole video, the ending and the loop, and a script that measures still stretches and a weak opening in a rendered file. Use for every narrated or faceless short, whenever you write a script's first line or plan the opening, and whenever the user says the hook, opening or first sentence is weak or not catchy ("není dostatečně poutavé"), or that the background or graphics are static, boring or not dynamic enough. Works with any topic and any visual style; the other video skills in this repository apply it to their first line and their render.
+description: How to open a vertical short (YouTube Shorts, Reels, TikTok) so people don't swipe away, and how to keep the picture alive after that. Covers the opening sentence (hook types, rules incl. being understandable without any context, weak vs strong rewrites, writing 8-10 candidates and picking one with an evidence-based checklist, working ideas from the author's review that the channel's numbers can overturn, sensitive topics, product videos), the three layers of the hook (first frame, on-screen text, spoken line) landing in the first second, motion from frame zero, a visual-change budget for the whole video, the ending and the loop, and a script that measures still stretches and a weak opening in a rendered file. Use for every narrated or faceless short, whenever you write a script's first line or plan the opening, and whenever the user says the hook, opening or first sentence is weak or not catchy ("není dostatečně poutavé"), or that the background or graphics are static, boring or not dynamic enough. Works with any topic and any visual style; the other video skills in this repository apply it to their first line and their render.
 ---
 
 # Hooks and visual pace for shorts
@@ -18,7 +18,7 @@ This skill fixes both, whatever the topic or visual style. The advice is the con
 
 ### Current working ideas (start here; they are hypotheses)
 
-These are ideas, not laws. They come from one person reviewing 26 English title + hook pairs, not from audience data; the full list of verdicts is in `video-title` (section 5). Start from them, and change them when the channel's numbers disagree (see "Keeping the ideas alive" below). Only two things are not up for testing: the hook is true, and sensitive topics are handled with care.
+These are ideas, not laws. They come from the skill's author reviewing 26 English title + hook pairs, not from audience data; the full list of verdicts is in `video-title` (section 5). Start from them, and change them when the channel's numbers disagree (see "Keeping the ideas alive" below). Only two things are not up for testing: the hook is true, and sensitive topics are handled with care.
 
 1. **Two true things side by side that shouldn't go together.** The strongest idea so far: huge vs. tiny, strong vs. absurd, a cause with the opposite effect.
    - "Machine guns against 20,000 emus: the emus won."
@@ -37,11 +37,11 @@ These are ideas, not laws. They come from one person reviewing 26 English title 
 
 The ideas above and the rules below are the best guess so far. They must never stop the skill from learning.
 
-- **Evidence ranks:** the channel's own numbers (in YouTube Studio: "Viewed vs. swiped away", average percentage viewed) beat the user's verdicts, and the verdicts beat the guides and this skill's illustrations.
+- **Evidence ranks:** the channel's own numbers (in YouTube Studio: "Viewed vs. swiped away", average percentage viewed) beat the author's verdicts and the current user's taste, and those beat the guides and this skill's illustrations.
 - **One video is noise.** Judge an idea on several shorts, compared with the channel's typical short, not on a single result.
-- **When the numbers disagree, the idea changes.** If hooks built on an idea keep doing worse than the channel's usual, weaken it or drop it here. If a hook that broke an idea keeps doing better, write down what it did as a new idea. Don't defend an idea against the data.
+- **When the numbers disagree, the idea changes.** If hooks built on an idea keep doing worse than the channel's usual, weaken or drop it for this channel. If a hook that broke an idea keeps doing better, write down what it did as a new idea. Don't defend an idea against the data.
 - **Keep testing.** Each time, write at least one candidate that deliberately breaks a current idea, and now and then publish one. Otherwise the ideas only ever confirm themselves, and every hook starts to sound the same.
-- **Write down where an idea came from** (a review, numbers from N videos) when you add or change one, so the next reader knows how much weight it carries. Add the numbers to the pairs table in `video-title`.
+- **Write it down outside this skill.** An installed skill is overwritten on update, so keep the channel's own ideas, verdicts and numbers in the project: the strategy file from `marketing-strategy` if there is one, or a notes file next to the videos. Note where each idea came from (a review, numbers from N videos), so the next reader knows how much weight it carries. Ideas that hold up across channels belong in this skill's repository.
 
 ### Rules
 
@@ -61,7 +61,7 @@ The ideas above and the rules below are the best guess so far. They must never s
 
 ### Hook types
 
-Use several types when you write candidates. The mismatch and hidden-fact examples passed the user's review; the rest are illustrations.
+Use several types when you write candidates. The mismatch and hidden-fact examples passed the author's review; the rest are illustrations.
 
 | Type | Example | Fits |
 |---|---|---|
@@ -124,7 +124,7 @@ Death, suicide, violence, victims, illness and tragedies. The push for stakes an
 A promo has two extra jobs: the viewer has to understand what the product is quickly, and know where to get it. The `marketing-content` skill covers the content side; this section only adjusts the hook rules.
 
 - An acted typical scene ("two minutes before the service, the bassist is in the wrong key") passes the truth check if it is presented as an example, not as a claimed real event. A claimed statistic ("most bands still play from paper") needs a source.
-- A feature is not a hook ("Change the key once, every phone in the band follows" was judged weak). Neither is a pain scene that needs insider words to feel ("the bassist's in the wrong key": "key" means nothing to a non-musician, and the stakes are mild). The pain must be one the target viewer feels at once, said in their words. No product hook has passed the user's review yet, so test several.
+- A feature is not a hook ("Change the key once, every phone in the band follows" was judged weak). Neither is a pain scene that needs insider words to feel ("the bassist's in the wrong key": "key" means nothing to a non-musician, and the stakes are mild). The pain must be one the target viewer feels at once, said in their words. No product hook has passed the author's review yet, so test several.
 - One short call to action in the last ~2 s is allowed (the name, where to find it). Still no outro card and no "subscribe".
 
 ## 2. Three layers in the first second

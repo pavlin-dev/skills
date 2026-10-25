@@ -1,6 +1,6 @@
 ---
 name: video-title
-description: How to write the title of a video (YouTube Shorts, long YouTube videos, Reels, TikTok) so people understand it at once, click it and find it in search, without clickbait. The title follows the opening-sentence rules of `shorts-hook` (read from there) plus what is specific to a title (short wins, everyday words over names and years, written as a pair with the hook that the hook must not answer, no filler, capitalisation per language), writing 8-10 candidates and picking one with an evidence-based checklist, weak vs strong examples, a table of title + hook pairs the user reviewed, and how to read the result in YouTube Studio. Use whenever you name a video, write its title or caption headline, or the user says a title is weak, boring, unclear or clickbait ("název není dobrý").
+description: How to write the title of a video (YouTube Shorts, long YouTube videos, Reels, TikTok) so people understand it at once, click it and find it in search, without clickbait. The title follows the opening-sentence rules of `shorts-hook` (read from there) plus what is specific to a title (short wins, everyday words over names and years, written as a pair with the hook that the hook must not answer, no filler, capitalisation per language), writing 8-10 candidates and picking one with an evidence-based checklist, weak vs strong examples, a table of title + hook pairs the author reviewed, and how to read the result in YouTube Studio. Use whenever you name a video, write its title or caption headline, or the user says a title is weak, boring, unclear or clickbait ("název není dobrý").
 ---
 
 # Video titles
@@ -18,7 +18,7 @@ Read and follow `shorts-hook` section 1 ("Current working ideas", "Keeping the i
 
 - **True, on its own.** Check every claim in the title separately. A fact you rejected for the hook doesn't come back in the title.
 - **Cold, without picture or sound.** The title is often read with nothing else: no frame, no voice. Every word, and why it matters, must make sense alone.
-- **A different pattern has won so far.** For hooks the mismatch won; for titles the plain everyday question did. Every title the user judged good was a short question or plain statement ("Why are bananas radioactive?", "Why do cats land on their feet?", "The man who survived both atomic bombs"). Let the hook carry the mismatch.
+- **A different pattern has won so far.** For hooks the mismatch won; for titles the plain everyday question did. Every title judged good in the author's review was a short question or plain statement ("Why are bananas radioactive?", "Why do cats land on their feet?", "The man who survived both atomic bombs"). Let the hook carry the mismatch.
 
 ## 2. What is specific to a title
 
@@ -35,7 +35,7 @@ Read and follow `shorts-hook` section 1 ("Current working ideas", "Keeping the i
 ## 3. How to write it
 
 1. Write the title **together with the hook, as a pair**, once the payoff is known. The title makes the promise, the hook confirms it in the first second: someone who clicked the title must hear at once that this is the video they chose. Present them to the user side by side, as pairs, never as two separate lists.
-   - A good split: **the title is the everyday question, the hook is a surprising concrete fact or mismatch that makes the question urgent.** "Why are bananas radioactive?" + "Bananas have set off radiation alarms at ports." / "Your Battery Percentage Is a Guess" + "Your phone at 0% isn't empty." See section 5 for all pairs the user reviewed.
+   - A good split: **the title is the everyday question, the hook is a surprising concrete fact or mismatch that makes the question urgent.** "Why are bananas radioactive?" + "Bananas have set off radiation alarms at ports." / "Your Battery Percentage Is a Guess" + "Your phone at 0% isn't empty." See section 5 for all reviewed pairs.
    - The hook must work on its own, because in the feed it is heard before the title is read. "Why does an octopus have three hearts?" + "An octopus's main heart stops when it swims": the hook leans on the title.
    - The hook must not answer the title. "Why are plane windows round?" + "Sharp corners tore two airliners open in midair" gives the answer in the first second.
    - Both halves point at the same thing. "Why Your Battery % Suddenly Jumps" + "Your battery percentage is a guess" talk past each other: jumps vs. guessing.
@@ -74,9 +74,9 @@ Read and follow `shorts-hook` section 1 ("Current working ideas", "Keeping the i
 | "Jan Palach nechtěl obdiv. Chtěl konec cenzury." | an interpretation presented as fact | "Co přesně chtěl Jan Palach v lednu 1969" |
 | "Ceny na ,90: trik, který na tebe funguje" | vague "trik"; says nothing concrete | "Proč všechno stojí 49,90, a ne 50 korun?" |
 
-## 5. Pairs the user reviewed
+## 5. Pairs the author reviewed
 
-Real verdicts from the user on English pairs: evidence, not law. Prefer them over guesses when you need an example, and add new verdicts here. Once a video is published, add its numbers to its row (a "Studio" column: viewed vs. swiped away, average percentage viewed, search views). Where the numbers and the verdict disagree, the numbers win, and the ideas in `shorts-hook` change with them.
+Verdicts from the skill's author on English pairs: evidence, not law. Prefer them over guesses when you need an example. Keep the current channel's own verdicts and numbers (viewed vs. swiped away, average percentage viewed, search views) in the project's notes, as `shorts-hook` describes under "Keeping the ideas alive". Where the numbers and a verdict disagree, the numbers win.
 
 | Verdict | Title | Hook |
 |---|---|---|
