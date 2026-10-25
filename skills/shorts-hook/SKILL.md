@@ -1,6 +1,6 @@
 ---
 name: shorts-hook
-description: How to open a vertical short (YouTube Shorts, Reels, TikTok) so people don't swipe away, and how to keep the picture alive after that. Covers the opening sentence (hook types, rules, weak vs strong rewrites, writing 8-10 candidates and picking one with a checklist), the three layers of the hook (first frame, on-screen text, spoken line) landing in the first second, motion from frame zero, a visual-change budget for the whole video, the ending and the loop, and a script that measures still stretches and a weak opening in a rendered file. Use for every narrated or faceless short, whenever you write a script's first line or plan the opening, and whenever the user says the hook, opening or first sentence is weak or not catchy ("není dostatečně poutavé"), or that the background or graphics are static, boring or not dynamic enough. Works with any topic and any visual style; the other video skills in this repository apply it to their first line and their render.
+description: How to open a vertical short (YouTube Shorts, Reels, TikTok) so people don't swipe away, and how to keep the picture alive after that. Covers the opening sentence (hook types, rules incl. being understandable without any context, weak vs strong rewrites, writing 8-10 candidates and picking one with an evidence-based checklist, other languages such as Czech, sensitive topics, product videos), the three layers of the hook (first frame, on-screen text, spoken line) landing in the first second, motion from frame zero, a visual-change budget for the whole video, the ending and the loop, and a script that measures still stretches and a weak opening in a rendered file. Use for every narrated or faceless short, whenever you write a script's first line or plan the opening, and whenever the user says the hook, opening or first sentence is weak or not catchy ("není dostatečně poutavé"), or that the background or graphics are static, boring or not dynamic enough. Works with any topic and any visual style; the other video skills in this repository apply it to their first line and their render.
 ---
 
 # Hooks and visual pace for shorts
@@ -23,8 +23,14 @@ This skill fixes both, whatever the topic or visual style. The advice is the con
 3. **State the stakes for someone:** what is lost, won, broken or saved.
 4. **Open a loop that this video closes.** The question the hook raises must be answered inside the video. A hook the video doesn't pay off is clickbait: viewers leave later, and they remember.
 5. **True.** A hook that bends a fact poisons the whole video. Check it like any other claim.
-6. **One breath, the point first.** No subordinate clause or background before the point. If it runs past ~2.5 s when spoken, cut it or split it.
-7. **The second sentence pays immediately.** It gives the one line of context the hook made the viewer want. It doesn't re-explain the hook.
+6. **Understandable cold.** The viewer has never heard of the topic and gets one hearing, with no picture they can rely on yet. Every word must make sense to them, and so must why it matters.
+   - No name, place, abbreviation or jargon the viewer has to know already. Say what it is instead: "three men", "a nuclear reactor", "a 20-year-old student", not "the Chernobyl divers", "the RBMK" or "Pochodeň číslo jedna".
+   - A contradiction only works against a belief most people really hold. "The Chernobyl divers didn't die" contradicts a myth from one TV series; whoever hasn't seen it hears nothing.
+   - No reference that only works locally or for insiders ("you know his name from the square").
+   - No riddle the listener has to decode. "Deset haléřů ti v hlavě udělá z padesátky čtyřicítku" is clever on paper and a puzzle when heard once.
+   - Test: say it to someone who knows nothing about the topic. Can they repeat in their own words what is at stake? If not, rewrite it.
+7. **One breath, the point first.** No subordinate clause or background before the point. If it runs past ~2.5 s when spoken, cut it or split it.
+8. **The second sentence pays immediately and stays short** (≤ ~12 words, ~3 s). It gives the one line of context the hook made the viewer want. It doesn't re-explain the hook, and it isn't the place to unload the date, the full names and the setting at once.
 
 ### Hook types
 
@@ -32,7 +38,7 @@ Use several types when you write candidates. Story and explainer channels mostly
 
 | Type | Example | Fits |
 |---|---|---|
-| Outcome first | "This $10-billion telescope launched broken, on purpose." | explainers, stories with a known ending |
+| Outcome first | "A $10-billion telescope launched broken, on purpose." | explainers, stories with a known ending |
 | In the middle of the action | "Twelve kilometres up, both engines went silent." | true stories, disasters, escapes |
 | Stakes + count | "344 things had to go right. One failure, and it was all lost." | engineering, missions, heists |
 | Contradiction | "The safest seat on a plane is the one nobody wants." | myths, science, "actually" topics |
@@ -49,19 +55,50 @@ Use several types when you write candidates. Story and explainer channels mostly
 | "In 1983, a Soviet officer named Stanislav Petrov was on duty at a bunker near Moscow." | date, name and place before any reason to care | "One man had minutes to decide whether to start a nuclear war." |
 | "Today let's look at how airplanes stay in the air." | announces a topic and promises nothing | "Every airliner you've flown on can glide with all its engines off." |
 | "Have you ever wondered why the sky is blue?" | a rhetorical question everyone has heard; no stakes | "The sky should be violet. Your eyes are lying to you." |
+| "The Chernobyl divers didn't die." | needs the viewer to know a myth from one TV series | "Three men waded under a destroyed nuclear reactor. All three walked out." |
+| "Jeho jméno znáš z názvu náměstí. Co chtěl, asi ne." | only works for people who know Prague | "Dvacetiletý student chtěl jen dvě věci: konec cenzury a jedněch novin." |
 
 ### How to pick it
 
 1. Write the hook **first**, together with the payoff it promises, before the rest of the script.
 2. Write **8-10 candidates across at least four types.** The first idea is usually the setup sentence in disguise.
-3. Score each candidate:
-   - Are the stakes, the result or the contradiction inside the first five words?
-   - Is it concrete?
-   - Is it true?
-   - Does this video close the loop?
-   - Can it be spoken in ≤ 2.5 s?
+3. Score each candidate. Write the evidence, not a tick: a tick written after you already like the line proves nothing.
+   - **Stakes word:** quote the word that carries the stakes, the result or the contradiction, and give its position. It should be within the first five words; a concrete in-the-action scene may take up to ~8, because the scene itself holds attention.
+   - **Cold:** would someone who knows nothing about the topic understand every word and why it matters? Name any word they wouldn't.
+   - **Concrete:** what exactly can the viewer picture?
+   - **True:** which fact does it rest on, and is that fact checked? Anything that bends the fact for the punchline (rounding 49,90 down to "forty") fails.
+   - **Loop:** where in the video is it paid off?
+   - **Length:** spoken length in seconds (≤ 2.5 s; see "Other languages" for counting).
 4. Read the best two aloud together with the second sentence and keep the one that makes the second sentence feel necessary.
 5. Tell the user which candidates you considered, so they can pick another.
+6. **Vary the type across a channel.** The five-word rule makes the bare contradiction ("X isn't Y", "your Z is lying to you") the easiest winner. If every short opens like that, the channel sounds like one template. Check which types the last few videos used and prefer another one when it is about as strong.
+
+### Other languages (Czech and others)
+
+The limits above are counted for English. Other languages need their own units.
+
+- **Count syllables, not words.** Czech has longer words and no articles, so five Czech words carry more and take longer. At a brisk narration pace that is about 15-17 syllables for 2.5 s.
+- **Long numbers are slow to say.** "49,90" is "čtyřicet devět devadesát", nine syllables. Put exact numbers in the on-screen text and say a round or shorter form, or move the number out of the hook.
+- **Weak Czech openers**, the equivalents of the English list in rule 1: "Věděli jste, že…", "Dnes si povíme…", "V tomto videu…", "Asi jste si všimli…", "Ahoj, vítejte…", "Možná vás překvapí…".
+- **Address:** pick tykání or vykání once per channel and keep it in the hook, the captions and the title. Tykání is the usual choice for Czech Shorts; follow the channel if it already decided.
+
+### Sensitive topics
+
+Death, suicide, violence, victims, illness and tragedies. The push for stakes and outcome-first makes tabloid hooks the easy winners here.
+
+- Aim the hook at the person, the motive, the decision or what changed, not at the death or the injury.
+- Never describe the method, the pain or the body, in the hook or on frame 0 (no archive photos of the wounded as the first frame).
+- For suicide or self-immolation, don't present the act as the price paid for a goal or as something that worked ("for these he gave his life"). Follow the media guidelines on reporting suicide (WHO): no method, no glorification, a helpline in the description, checked for the viewer's country.
+- Don't build the hook on copycats or a numbered series of victims.
+- If the line could appear in a tabloid headline, write another one.
+
+### Product videos
+
+A promo has two extra jobs: the viewer has to understand what the product is quickly, and know where to get it. The `marketing-content` skill covers the content side; this section only adjusts the hook rules.
+
+- An acted typical scene ("two minutes before the service, the bassist is in the wrong key") passes the truth check if it is presented as an example, not as a claimed real event. A claimed statistic ("most bands still play from paper") needs a source.
+- The pain the viewer recognises usually beats the feature as a hook. Show the feature as the second sentence or the payoff.
+- One short call to action in the last ~2 s is allowed (the name, where to find it). Still no outro card and no "subscribe".
 
 ## 2. Three layers in the first second
 
@@ -134,6 +171,9 @@ By medium:
 ## Before sending
 
 - The hook was chosen from several written candidates. Its stakes, result or contradiction sit in the first five words, it is true, and the video pays it off.
+- Someone who knows nothing about the topic understands the hook on one hearing: no unexplained name, jargon, insider reference or riddle.
+- The second sentence is ≤ ~12 words. Spoken length is counted in the language of the video (syllables for Czech).
+- The video's title is written with the `video-title` skill and doesn't repeat the hook word for word.
 - Frame 0 is the most interesting or most promising picture, not a title, logo or empty frame; the picture moves within the first second.
 - The voice starts at ~0.2 s; the hook text sits in the upper third for at least 2 s.
 - `motion_audit.py` lists no still stretch longer than ~3 s (or 5 s for a calm explainer), and every change is tied to the narration.
