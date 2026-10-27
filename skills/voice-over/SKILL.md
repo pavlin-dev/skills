@@ -1,6 +1,6 @@
 ---
 name: voice-over
-description: How to make a voice-over (narration) for a video, reel, explainer or ad - writing the script for the ear, generating the voice with Google's Gemini TTS (AI Studio, https://aistudio.google.com/generate-speech), checking the take without being able to listen, splitting it into lines with word timings for captions and scene cuts, and mixing it under music. Use whenever a video needs narration, a voice, a "voice over", a spoken story, or when the user says the voice sounds robotic or bad.
+description: How to make a voice-over (narration) for a video, reel, explainer or ad - writing the script for the ear, generating the voice with Google's Gemini TTS (AI Studio, https://aistudio.google.com/generate-speech), checking the take without being able to listen, keeping the voice one continuous take (the video is fitted to the voice, never the voice cut to fit the video), splitting it into lines with word timings for captions and scene cuts, and mixing it under music. Use whenever a video needs narration, a voice, a "voice over", a spoken story, or when the user says the voice sounds robotic, bad, choppy or cut up ("sekaný", "rozstříhaný").
 ---
 
 # Voice-over
@@ -35,7 +35,7 @@ Give the user these steps (the UI changes; if a button is not where described, a
    Leave about one second of silence between lines.
    ```
    Add per-moment notes for the key lines ("nic." flat and deadpan; "Tmavovláska!" sudden excitement).
-5. Paste the **whole script in one run**, one line per row. One take keeps the voice, energy and room consistent; splitting comes later (section 4).
+5. Paste the **whole script in one run**, one line per row. One take keeps the voice, energy and room consistent; splitting comes later (section 5), and only for timing: the voice track stays one piece.
 6. Use **audio tags** inside the text, in English even for other languages: `<short pause>`, `<long pause>`, `<laugh>`, `<sigh>`, `<breath>`.
 7. **Run**, listen, regenerate or adjust the style until it sounds right.
 8. **Download** the WAV: the download icon or the ⋮ menu next to the player, or right-click the player and "Save audio as…". The user then sends the file to you.
@@ -54,7 +54,7 @@ If there is no API key and the user can't be asked right now (you run unattended
 
 1. Finish everything that doesn't depend on the take: the script, the visuals, the sound effects and the music edit, timed to a placeholder take.
 2. Hand over the exact text to paste and the style instructions (section 2), and say clearly that the video waits for the real take.
-3. When the take arrives, re-run sections 3-4; the scenes and the mix follow the new word times.
+3. When the take arrives, re-run sections 3-5; the scenes and the mix follow the new word times.
 
 A placeholder render is fine as a draft for timing, labelled as such.
 
@@ -73,13 +73,25 @@ You can't listen, so check what you can and ask the user for the rest:
 - **Length:** compare the take's duration with the planned video length.
 - **Ask the user to listen** for what a transcript can't show: wrong stress, English accent, the brand name, whether the emotion lands, clicks or artefacts. Name the exact lines `LISTEN:` flagged.
 
-## 4. Split into lines and time everything to the words
+## 4. The voice runs in one piece: fit the video to the voice
+
+The most common way to ruin a good take is to cut it to fit the picture. Agents keep doing it: the scenes are planned first, then the voice is chopped into lines or words, the pieces are moved, sped up or padded with silence until they land on the cuts. Every cut is audible: a breath that stops mid-way, the tail of a word clipped, the room tone switching to dead silence between lines, a jump in pitch or pace. The result sounds edited and robotic even when the take was great.
+
+- **The take is the master clock.** Get the word times from the take, then place scenes, captions, cuts and effects on them. If a scene is too short or too long for its line, change the scene (hold, slow the camera move, add a beat), never the voice.
+- **Never cut inside a line**, and never cut a line into words or phrases to re-time them. No per-line speed changes (`atempo`, rubberband, time-stretch), no reordering, no stitching lines from different takes.
+- **The voice track is one continuous piece of the take**, including the breaths and the quiet between lines. `vo_timeline.py` renders it that way; never build it by joining the per-line `<id>.wav` files (they are for previewing a line only), and never with silence between pieces.
+- **Wrong length? Change the script or the take, not the audio.** Too long: cut words and generate again, or ask for a faster pace in the style. Missing a pause: add `<short pause>` / `<long pause>` and regenerate. If only one line is wrong, regenerate the whole take (or at least whole sentences with the same voice and style) rather than patching one word in.
+- **If you must change a pause** (a beat before a punchline the voice ran into, a TTS pause that drags), change it only in the silence between two lines, with a crossfade, and keep it rare: `--extra`, `--max-gap`, `--min-gap` below do exactly that and print each splice. List the splices for the user to listen to. `--squeeze` in `vo_align.py` shortens every pause in the whole take; use it only for engines that leave ~0.8 s after every sentence, not for a performed take.
+- **A whole-take speed change is the only allowed speed change**, and only within about ±5 % (`ffmpeg -af atempo=1.04` on the full take before `vo_align.py`); more sounds unnatural.
+- **Check it:** play the finished `vo.wav` against the take in your head: same words, same breaths, same order. If `vo_timeline.py` printed no splices, `vo.wav` is the take itself.
+
+## 5. Split into lines and time everything to the words
 
 ```
 python3 scripts/vo_align.py take.wav script.txt vo/ [--model medium] [--lang cs] [--squeeze 0.35]
 ```
 
-`script.txt` holds one line per row as `id|text` (audio tags allowed). The script transcribes the take with faster-whisper (`pip install faster-whisper numpy`, ffmpeg needed; the model downloads on first use), aligns it to the script word by word, and writes `vo/<id>.wav` per line plus `vo/align.json` (start, end, duration, and each word's time relative to its line). `--squeeze` first shortens every silence longer than the given seconds (for TTS takes with long pauses after each sentence; it shortens performed dramatic pauses too, so add those back with `--extra` below).
+`script.txt` holds one line per row as `id|text` (audio tags allowed). The script transcribes the take with faster-whisper (`pip install faster-whisper numpy`, ffmpeg needed; the model downloads on first use), aligns it to the script word by word, and writes `vo/take.wav` (the whole take), `vo/<id>.wav` per line (for previewing) and `vo/align.json` (start, end, duration, and each word's time relative to its line). `--squeeze` first shortens every silence longer than the given seconds (only for TTS engines with long pauses after each sentence; see section 4).
 
 Then lay the lines out on the video's timeline:
 
@@ -87,20 +99,21 @@ Then lay the lines out on the video's timeline:
 python3 scripts/vo_timeline.py vo/ [--extra <id>=0.9] [--max-gap 0.8] [--show "tisíc devět set osmdesát tři,=1983,"]
 ```
 
-It keeps the gaps the voice performed (at least `--min-gap`, default 0.1 s, since each line already has ~0.12 s of padding on both sides; at most `--max-gap` if set), adds `--extra` silence before chosen lines, fills in words whisper missed, and writes `timeline.json` (every line and word with absolute `t0`/`t1`) and `vo.wav`. `--show` maps how the narrator says something to how the caption writes it: the matched words get a `show` field (the first the caption text, the rest empty), and captions print `show` when present. Build everything from those numbers, not from guesses:
+It renders `vo.wav` from the take in one piece and keeps every gap as performed. Only if asked, it adds `--extra` silence before chosen lines, shortens pauses longer than `--max-gap` or lengthens ones shorter than `--min-gap`, each as a crossfaded splice in the middle of the pause (printed as `splice before <id>`). It fills in words whisper missed and writes `timeline.json` (every line and word with absolute `t0`/`t1`). `--show` maps how the narrator says something to how the caption writes it: the matched words get a `show` field (the first the caption text, the rest empty), and captions print `show` when present. Build everything from those numbers, not from guesses:
 
-- Place the lines one after another with **0.2-0.4 s** gaps; keep a longer gap (0.8-1.2 s) before a punchline, as the voice performed it.
+- Keep the pauses the voice performed. A punchline needs a longer gap (0.8-1.2 s): get it from the take (`<long pause>`), or as one `--extra` splice.
 - **Captions** change on the word times (a new caption chunk starts when its first word is spoken). Captions are always needed: feeds autoplay muted.
 - **Visual beats** land on words: the screen switches to the product on the line that names it, a highlight pops on the word it highlights.
 - Typing or other on-screen text that the voice reads should run in sync with the spoken words.
-- If the video is music-led (beat-synced), fit the VO into the bars; if it is a story, the voice leads and the music is a bed under it.
+- If the video is music-led (beat-synced), move the picture and the music edit to the voice, not the voice to the bars; if it is a story, the voice leads and the music is a bed under it.
 
-## 5. Mix
+## 6. Mix
 
 Follow the `sound-design` skill in this repository: levels relative to the voice (music about 16 dB under it, effects 15, ambience 25-30), few effects and only on story beats, nothing bright in 2.5-5 kHz, music cut to the story, master to about -14 LUFS. Its `scripts/mix.py` measures and sets every stem. Licensed music only (see the `engaging-video` skill).
 
 ## Before sending
 
+- The voice runs smoothly: `vo.wav` is the take in one piece, no cuts inside lines, no per-line speed changes, every splice `vo_timeline.py` printed is listed for the user to listen to.
 - Every caption matches what the voice actually says (including the gender forms) and appears with it.
 - The `LISTEN:` lines and anything you could not check are listed for the user.
 - The user knows which engine, model and voice made the take, and the music source and licence.

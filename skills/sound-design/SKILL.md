@@ -73,6 +73,7 @@ Needs: ffmpeg, `pip install numpy`.
 
 ## Before sending
 
+- The voice is one continuous take (`voice-over` skill, section 4): never cut, re-time or speed up the voice to fit effects, music or picture; move those to the voice instead.
 - Printed stem levels match the hierarchy (music ~-16, effects ~-15, ambience ~-25 or lower vs the voice); master -16 to -14 LUFS, peaks under -1 dBTP.
 - No effect on top of a key word; whooshes only on big changes; no hissy noise.
 - Music source, licence and attribution line told to the user; say you could not listen and ask them to check on a phone.

@@ -9,7 +9,10 @@ Audio tags like <long pause> or <laugh> are ignored for matching.
 
 The take is transcribed with faster-whisper (word timestamps), the transcript is
 aligned to the script word by word (fuzzy, so small mis-hearings don't matter), and:
-  <out_dir>/<id>.wav    one file per line (48 kHz mono, short fades)
+  <out_dir>/take.wav    the whole take (48 kHz mono, squeezed if --squeeze); vo_timeline.py
+                        renders the voice track from it in one piece, so it is never choppy
+  <out_dir>/<id>.wav    one file per line (48 kHz mono, short fades), for previewing a line;
+                        never build the voice track by joining these
   <out_dir>/align.json  per line: start/end in the take, duration, and each script
                         word with its time relative to the line start
   stdout                the transcript next to the script, for checking the take
@@ -76,6 +79,8 @@ def main():
                 match[i1 + k] = j1 + k
 
     os.makedirs(a.out_dir, exist_ok=True)
+    subprocess.run(["ffmpeg", "-nostdin", "-v", "error", "-y", "-i", a.take, "-ar", "48000", "-ac", "1",
+                    os.path.join(a.out_dir, "take.wav")], check=True)
     out = []
     for li, (lid, text) in enumerate(lines):
         idx = [k for k, (l, _) in enumerate(script) if l == li]
