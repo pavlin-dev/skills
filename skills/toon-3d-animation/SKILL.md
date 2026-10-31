@@ -135,14 +135,8 @@ The first cut was "not dynamic, the characters should feel alive". What fixed it
 6. Render: `node scripts/render.mjs <dir>/index.html out.mp4 --fps 24`.
    - Each frame is rendered four times (colour, IDs for the ink, depth of field, glow): about 3 s per frame on 4 CPU cores with software WebGL, so a 22 s video at 30 fps took about half an hour.
    - For faster drafts set `LOOK.dof = LOOK.bloom = false` or lower `SS` in `toon.js`.
-7. Sound: without it the world on screen is dead, and voice plus music alone sounds poor. Follow `sound-design` section 2: a bed of the place under everything, foley for every action the characters do, accents on the beats, people reacting. List the sounds per shot while building it, for example:
-   - a prison: a low hum and far-off doors (bed), footsteps on concrete, keys, the cell door's clang and lock, a metal bunk creaking, a guard's radio crackle;
-   - a courtroom: a murmuring room (bed), a gavel, a chair scraping, papers, a crowd's gasp and laughter on the punchline;
-   - a living room or an office: room tone, steps on wood or carpet, a sofa creak, a cup on a table, a door, keyboard and phone taps.
-
-   Effects that follow the animation:
-   - download the recordings with `sound-design`'s `scripts/find_sfx.py`;
-   - `scripts/word_cues.py timeline.json spec.json cues.json` places them on words (recordings as `"file"` entries, foley on the frame of its action: `"at"` a word plus `"offset"`), plus whooshes on cuts, pops on reveals and typing ticks;
+7. Sound: done by `sound-design` (which sounds, where to get them, the mix). From this skill it needs only the times of the animation:
+   - `scripts/word_cues.py timeline.json spec.json cues.json` turns words into cue times: recordings as `"file"` entries, an action's sound on its frame (`"at"` a word plus `"offset"`), whooshes on cuts, pops on reveals, typing ticks;
    - then `sound-design`'s `sfx_stems.py` and `mix.py --video`.
 8. Before sending, check:
    - Every character moves in every frame, and nobody stands frozen in the background.

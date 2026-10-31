@@ -38,6 +38,12 @@ Four layers, from the bottom:
 
 How much, for a 30-45 s short with characters on screen: the bed all the time, foley for each visible action (often 20-40 cues), 8-15 accents, a few reactions. Go through the shot list: every shot has at least its bed and one sound of something happening in it. A shot where things move in silence is the "poor" one.
 
+Write the sounds down per shot while the picture is being built. Examples by place:
+- a prison: a low hum and far-off doors (bed), footsteps on concrete, keys, the cell door's clang and lock, a metal bunk creaking, a guard's radio crackle;
+- a courtroom: a murmuring room (bed), a gavel, a chair scraping, papers, a crowd's gasp and laughter on the punchline;
+- a living room or an office: room tone, steps on wood or carpet, a sofa creak, a cup on a table, a door, keyboard and phone taps;
+- outdoors: traffic or birds and wind (bed), steps on the right ground, a car door, a bicycle bell, a dog far away.
+
 Still true:
 - An accent that lands on a spoken key word competes with it: move it into the gap before or after the word. Foley at its low level may sit under words.
 - Whooshes only on real scene changes, low and airy.
