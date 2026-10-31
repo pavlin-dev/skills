@@ -22,17 +22,25 @@ cues.json: a list of {"t": seconds, "sfx": name, ...options}
     scrape {"dur": 2.6}              something dragging, decaying
   every cue also takes "gain" (relative, default 1)
 
+real recordings (prefer them: find_sfx.py finds and downloads them), any format ffmpeg reads:
+    {"t": 3.2, "file": "sfx/door.ogg"}       placed at t; "stem": "fx" (default) or "amb" for beds
+    "sync": 0.09      start that much earlier, so the sound's hit meets t (sfx-kit gives it per sound)
+    "rate": 1.1       play faster/slower (pitch moves with it); "vary": 1.5 = random +-1.5 semitones,
+                      so repeated footsteps or taps don't sound like one sample on repeat
+    "dur": 12         trim to this length, or loop a bed (room tone, crowd) to fill it; "fade": 0.3 s at both ends
+    "take": [...]     a list of files: one is picked per cue in turn (round-robin footsteps)
+
 Noise is band-limited with a pink tilt and kept out of 2.5-5 kHz where speech intelligibility
 lives, so beds do not hiss over the voice. Needs `pip install numpy`.
 """
-import json, sys, wave
+import json, subprocess, sys, wave
 
 if len(sys.argv) < 3 or sys.argv[1] in ('-h', '--help'):
     print(__doc__); sys.exit(0 if len(sys.argv) > 1 and sys.argv[1] in ('-h', '--help') else 1)
 import numpy as np
 
 cues = json.load(open(sys.argv[1])); prefix = sys.argv[2]
-dur = float(sys.argv[sys.argv.index('--duration') + 1]) if '--duration' in sys.argv else max(c['t'] + c.get('dur', 1.5) for c in cues) + 0.5
+dur = float(sys.argv[sys.argv.index('--duration') + 1]) if '--duration' in sys.argv else max(c['t'] + c.get('dur', 3) for c in cues) + 0.5
 SR = 48000; N = int(dur * SR)
 fx, amb = np.zeros(N), np.zeros(N)
 rng = np.random.default_rng(7)
@@ -91,7 +99,24 @@ def scrape(c):
 
 FX = {'tick': tick, 'click': click, 'pop': pop, 'ding': ding, 'chime': chime, 'thud': thud, 'whoosh': whoosh}
 AMB = {'engine': engine, 'wind': wind, 'buzz': buzz, 'scrape': scrape}
+_dec, _rr = {}, {}
+def sample(c):
+    files = c['take'] if 'take' in c else [c['file']]
+    k = json.dumps(files); i = _rr.get(k, 0); _rr[k] = i + 1; path = files[i % len(files)]
+    if path not in _dec:
+        raw = subprocess.run(['ffmpeg', '-v', 'error', '-i', path, '-ac', '1', '-ar', str(SR), '-f', 'f32le', '-'], capture_output=True, check=True).stdout
+        _dec[path] = np.frombuffer(raw, dtype=np.float32).astype(float)
+    x = _dec[path]
+    rate = c.get('rate', 1.0) * (2 ** (rng.uniform(-1, 1) * c['vary'] / 12) if c.get('vary') else 1)
+    if rate != 1: x = np.interp(np.arange(0, len(x) - 1, rate), np.arange(len(x)), x)
+    if 'dur' in c:
+        n = int(c['dur'] * SR); x = np.tile(x, int(np.ceil(n / max(1, len(x)))))[:n]
+    f = int(c.get('fade', 0.3 if 'dur' in c else 0.005) * SR)
+    return x * env(len(x), f / SR, max(f, int(0.01 * SR)) / SR)
+
 for c in cues:
+    if 'file' in c or 'take' in c:
+        put(amb if c.get('stem') == 'amb' else fx, c['t'] - c.get('sync', 0), sample(c), c.get('gain', 1.0)); continue
     name = c['sfx']
     if name in FX: put(fx, c['t'], FX[name](c), c.get('gain', 1.0))
     elif name in AMB: put(amb, c['t'], AMB[name](c), c.get('gain', 1.0))
