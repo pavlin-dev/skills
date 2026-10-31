@@ -61,7 +61,8 @@ python3 scripts/find_sfx.py get oculus:DOORMetl_HatchClose_OS_01 --out sfx
 
 - **sfx-kit** (CC0, no credit): whooshes, impacts, pops, UI, paper and fabric foley, mechanisms, applause, clocks, money. Each sound has a sync point: `get` prints it, put it into the cue as `sync`.
 - **Oculus Audio Pack 1** (CC BY 4.0): footsteps on six surfaces, doors, voices and efforts, room tone and crowd loops, cartoon boings, cloth, metal, tools, vehicles.
-- **Freesound** (CC0 and CC BY only) with a free API key in `FREESOUND_API_KEY`: for anything specific the two libraries don't have (a gavel, a cell door clang, a courtroom gasp). Ask the user to create the key if a sound is missing; don't fake it with a synthesized one.
+- **AtomCut library** (about 100 packs from OpenGameArt and Kenney, mostly CC0, the licence is printed per sound): door sets, footsteps on many surfaces, keys and locks, creaks, hits, wood and metal, vocal grunts. Only names, no descriptions: search with plain words ("door close", "keys", "lock").
+- **Freesound** (CC0 and CC BY only), optional, with a free API key in `FREESOUND_API_KEY`: far more sounds. The three libraries above need no key and cover most foley; some users don't want to create keys, so don't require it. When a sound is missing (a gavel, a crowd gasp), use the nearest real one ("wood knock", "applause small") rather than a synthesized one.
 - Search by what it is made of and what happens ("wood knock" when there's no "gavel"). Several takes of one sound are round-robin material for footsteps and taps.
 - `get` collects the credit lines into `sfx/CREDITS.md`. Give them to the user for the video's description; CC BY requires it.
 
