@@ -32,6 +32,8 @@ It works because it is deliberately simple: no fingers, no anatomy, no uncanny f
     - an upper lid line only when the eye is really half closed. A lid line on an open eye turns small eyes into a "T";
     - a small nose, a small mouth that opens on the voice.
     - Kinds: smile, happy, proud, sly, flat, grim, surprised, scared, angry, pain, sleep, shrug, awe, wistful, talk.
+    - **Round white eyes** (`EYES.round`), the look of popular shorts in this style: big white eyes with a thick outline and a round black pupil with a catchlight, no nose, and open mouths that are dark red inside with white upper teeth and a pink tongue. Pupils look where the face says (`gx`, `gy` in `FACES`, -1..1). A half-closed eye is cut by a straight lid line (a bored guard); a fully open one keeps its whole outline (cut at the top, it "looks clipped"). Extra kinds for it: worried (raised inner brows, wavy mouth), dizzy (spiral eyes, big grin), bored, glad.
+    - **Skin tones:** in this look heads are skin-coloured instead of white. Set both colour and emissive of the head material: `c.head.material.color.set(tone); c.head.material.emissive.set(tone)`, and vary the tones across the cast.
   - **Hair:** a mass of rounded locks with a fixed hairline well above the brows, so it never covers the eyes, from any camera height or head angle. Hair over the eyes "looks like a mistake".
     - Flat two-tone colour, no gloss: a smooth highlight band and soft shading read "too realistic, it shines".
     - Drawn lines in a darker shade of the hair colour (not black): the groove between locks, strokes up from the tips, one flat lighter stroke per lock.
@@ -110,7 +112,8 @@ The first cut was "not dynamic, the characters should feel alive". What fixed it
 
 ## 5. Build and render
 
-1. `scripts/setup.sh <dir>` copies the template (`index.html`, `toon.js`, `props.js`, an example `story.js`, an example `timeline.json`, the model sheet `sheet.html` + `sheet.js`) and downloads three.js r170 and the Inter font.
+1. Rendering needs ffmpeg and Playwright with a Chromium: `npm i playwright && npx playwright install chromium` in the project folder (or a global install; `CHROME_PATH` points to another browser).
+   `scripts/setup.sh <dir>` copies the template (`index.html`, `toon.js`, `props.js`, an example `story.js`, an example `timeline.json`, the model sheet `sheet.html` + `sheet.js`) and downloads three.js r170 and the Inter font.
 2. Replace `timeline.json` with your voice-over's timeline:
 
    ```

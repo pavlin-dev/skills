@@ -91,6 +91,11 @@ const FACES = {
   awe:       { br: 22, bt: -0.15, lid: 0, lt: 0, es: 1.3, m: 'o', shine: true },
   wistful:   { br: 6, bt: -0.25, lid: 0.45, lt: -0.25, es: 1, m: 'smile' },
   talk:      { br: 8, bt: 0, lid: 0, lt: 0, es: 1, m: 'smile' },
+  // for EYES.round (white eyes with pupils): gx/gy = where the pupils look (-1..1), spiral = dizzy-happy rings
+  worried:   { br: 20, bt: -0.42, lid: 0, lt: 0, es: 1.05, m: 'wavy', gx: 0.15, gy: 0.1 },
+  dizzy:     { br: 18, bt: -0.15, lid: 0, lt: 0, es: 1.05, m: 'grin', spiral: true },
+  bored:     { br: 2, bt: 0, lid: 0.5, lt: -0.06, es: 1, m: 'smallflat', gy: 0.35 },
+  glad:      { br: 14, bt: -0.12, lid: 0, lt: 0, es: 1, m: 'grin', gy: -0.05 },
 };
 // eye styles: size (rx, ry), spacing (ex) and catchlights (shine: 0, 1 or 2 white dots, hr = their size)
 export const EYES = {
@@ -100,6 +105,8 @@ export const EYES = {
   tall2:    { rx: 22, ry: 38, ex: 88, shine: 2, hr: 8 },
   small:    { rx: 14, ry: 20, ex: 80, shine: 1, hr: 5 },
   cute:     { rx: 30, ry: 42, ex: 94, shine: 2, hr: 11 },
+  // like the reference shorts: big white eyes with a thick outline and a round black pupil, no nose, mouths with teeth and tongue
+  round:    { rx: 46, ry: 50, ex: 74, shine: 1, hr: 6, sclera: true, pr: 21 },
 };
 export function drawFace(x, spec, s = 512, E = EYES.tallDot) {
   const parts = spec.split('|'), F = FACES[parts[0]] || FACES.smile, blink = parts.includes('b'), half = parts.includes('h');
@@ -119,21 +126,38 @@ export function drawFace(x, spec, s = 512, E = EYES.tallDot) {
     if (lid >= 0.95) { x.lineWidth = 18; x.beginPath(); if (F.arc && !blink) { x.arc(exx, ey + 18, 30, Math.PI * 1.15, Math.PI * 1.85); } else { x.moveTo(exx - 30, ey + 4); x.quadraticCurveTo(exx, ey + 18, exx + 30, ey + 4); } x.stroke(); continue; }
     if (F.arc) { x.lineWidth = 18; x.beginPath(); x.arc(exx, ey + 18, 30, Math.PI * 1.15, Math.PI * 1.85); x.stroke(); continue; }
     const tilt = F.lt * sd * 30, ly = ey - ry + 2 * ry * lid;
+    if (E.sclera) { // white eye: clipped under the lid, pupil looks where gx/gy say, outline drawn last
+      const cy = lid > 0.05 ? ly : ey - ry - 20; // fully open: clip above the outline, so its top isn't cut off
+      x.save(); x.beginPath(); x.moveTo(exx - rx - 16, cy + (lid > 0.05 ? tilt : 0)); x.lineTo(exx + rx + 16, cy - (lid > 0.05 ? tilt : 0)); x.lineTo(exx + rx + 16, ey + ry + 16); x.lineTo(exx - rx - 16, ey + ry + 16); x.closePath(); x.clip();
+      x.fillStyle = '#fff'; x.beginPath(); x.ellipse(exx, ey, rx, ry, 0, 0, 7); x.fill(); x.fillStyle = '#141414';
+      const px = exx + (F.gx ?? 0) * rx * 0.42, py = ey + (F.gy ?? 0) * ry * 0.42, pr = E.pr * F.es * (F.small ? 0.65 : 1);
+      if (F.spiral) { x.lineWidth = 7; for (const r of [8, 18, 28]) { x.beginPath(); x.arc(exx, ey, r, 0, 7); x.stroke(); } }
+      else { x.beginPath(); x.arc(px, py, pr, 0, 7); x.fill(); x.fillStyle = '#fff'; x.beginPath(); x.arc(px - pr * 0.35, py - pr * 0.4, E.hr, 0, 7); x.fill(); x.fillStyle = '#141414'; }
+      x.lineWidth = 11; x.beginPath(); x.ellipse(exx, ey, rx, ry, 0, 0, 7); x.stroke(); x.restore();
+      if (lid > 0.05) { x.lineWidth = 12; x.beginPath(); x.moveTo(exx - rx - 4, ly + tilt); x.lineTo(exx + rx + 4, ly - tilt); x.stroke(); }
+      continue; }
     x.save(); x.beginPath(); x.moveTo(exx - rx - 12, ly + tilt); x.lineTo(exx + rx + 12, ly - tilt); x.lineTo(exx + rx + 12, ey + ry + 4); x.lineTo(exx - rx - 12, ey + ry + 4); x.closePath(); x.clip();
     x.beginPath(); x.ellipse(exx, ey, rx, ry, 0, 0, 7); x.fill();
     const sh = Math.max(E.shine, F.shine ? 2 : F.small ? 1 : 0); if (sh) { x.fillStyle = '#fff'; const hr = (F.small ? 1.4 : 1) * E.hr * F.es; x.beginPath(); x.arc(exx - rx * 0.3, ey - ry * 0.38, hr, 0, 7); x.fill(); if (sh > 1) { x.beginPath(); x.arc(exx + rx * 0.32, ey + ry * 0.3, hr * 0.5, 0, 7); x.fill(); } x.fillStyle = '#141414'; }
     x.restore();
     if (lid > 0.25) { x.lineWidth = Math.min(14, 6 + rx * 0.3); const o = Math.min(8, rx * 0.3); x.beginPath(); x.moveTo(exx - rx - o, ly + tilt); x.lineTo(exx + rx + o, ly - tilt); x.stroke(); } // a lid line only when the eye is really half closed
   }
-  // a small nose
-  x.lineWidth = 10; x.beginPath(); x.arc(cx + 4, ey + 52, 12, 0.1 * Math.PI, 0.9 * Math.PI); x.stroke();
+  // a small nose (none with white eyes)
+  if (!E.sclera) { x.lineWidth = 10; x.beginPath(); x.arc(cx + 4, ey + 52, 12, 0.1 * Math.PI, 0.9 * Math.PI); x.stroke(); }
   // mouth
   x.lineWidth = 14; x.beginPath();
   const m = open > 0 && ['smile', 'flat', 'smirk', 'crooked', 'frown'].includes(F.m) ? 'talk' : F.m;
-  if (m === 'talk') { const h = 10 + 46 * open; x.moveTo(cx - 42, my - 6); x.quadraticCurveTo(cx, my + 2, cx + 42, my - 6); x.quadraticCurveTo(cx + 34, my - 6 + h, cx, my - 4 + h); x.quadraticCurveTo(cx - 34, my - 6 + h, cx - 42, my - 6); x.fill(); }
+  if (E.sclera && (m === 'talk' || m === 'grin')) { // an open mouth with dark inside, upper teeth and a tongue, outlined
+    const h = m === 'grin' ? 64 : 16 + 44 * open, w = m === 'grin' ? 62 : 44, P = new Path2D();
+    P.moveTo(cx - w, my - 12); P.quadraticCurveTo(cx, my - 2, cx + w, my - 12); P.quadraticCurveTo(cx + w * 0.85, my - 12 + h, cx, my - 10 + h); P.quadraticCurveTo(cx - w * 0.85, my - 12 + h, cx - w, my - 12);
+    x.save(); x.fillStyle = '#5b1d1d'; x.fill(P); x.clip(P); x.fillStyle = '#fff'; x.fillRect(cx - w, my - 30, 2 * w, 30 + h * 0.18);
+    x.fillStyle = '#e0607a'; x.beginPath(); x.ellipse(cx, my - 10 + h, w * 0.55, h * 0.38, 0, 0, 7); x.fill(); x.restore();
+    x.lineWidth = 10; x.stroke(P); x.beginPath(); }
+  else if (m === 'talk') { const h = 10 + 46 * open; x.moveTo(cx - 42, my - 6); x.quadraticCurveTo(cx, my + 2, cx + 42, my - 6); x.quadraticCurveTo(cx + 34, my - 6 + h, cx, my - 4 + h); x.quadraticCurveTo(cx - 34, my - 6 + h, cx - 42, my - 6); x.fill(); }
   if (m === 'smile') { x.arc(cx, my - 40, 46, 0.25 * Math.PI, 0.75 * Math.PI); x.stroke(); }
-  if (m === 'grin') { x.moveTo(cx - 60, my - 14); x.quadraticCurveTo(cx, my - 4, cx + 60, my - 14); x.quadraticCurveTo(cx + 50, my + 44, cx, my + 46); x.quadraticCurveTo(cx - 50, my + 44, cx - 60, my - 14); x.fill(); }
+  if (!E.sclera && m === 'grin') { x.moveTo(cx - 60, my - 14); x.quadraticCurveTo(cx, my - 4, cx + 60, my - 14); x.quadraticCurveTo(cx + 50, my + 44, cx, my + 46); x.quadraticCurveTo(cx - 50, my + 44, cx - 60, my - 14); x.fill(); }
   if (m === 'smirk') { x.moveTo(cx - 36, my); x.quadraticCurveTo(cx + 6, my + 14, cx + 44, my - 16); x.stroke(); }
+  if (m === 'smallflat') { x.lineWidth = 11; x.moveTo(cx - 14, my); x.lineTo(cx + 14, my); x.stroke(); }
   if (m === 'flat') { x.moveTo(cx - 22, my); x.lineTo(cx + 22, my); x.stroke(); }
   if (m === 'frown') { x.moveTo(cx - 36, my + 12); x.quadraticCurveTo(cx, my - 14, cx + 36, my + 12); x.stroke(); }
   if (m === 'crooked') { x.moveTo(cx - 40, my + 6); x.quadraticCurveTo(cx - 10, my - 8, cx + 10, my + 4); x.quadraticCurveTo(cx + 26, my + 12, cx + 42, my - 4); x.stroke(); }
