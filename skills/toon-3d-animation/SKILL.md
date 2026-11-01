@@ -135,8 +135,8 @@ The first cut was "not dynamic, the characters should feel alive". What fixed it
 6. Render: `node scripts/render.mjs <dir>/index.html out.mp4 --fps 24`.
    - Each frame is rendered four times (colour, IDs for the ink, depth of field, glow): about 3 s per frame on 4 CPU cores with software WebGL, so a 22 s video at 30 fps took about half an hour.
    - For faster drafts set `LOOK.dof = LOOK.bloom = false` or lower `SS` in `toon.js`.
-7. Effects that follow the animation:
-   - `scripts/word_cues.py timeline.json spec.json cues.json` for a whoosh on cuts, a thud on impacts, a pop on reveals and typing ticks;
+7. Sound: done by `sound-design` (which sounds, where to get them, the mix). From this skill it needs only the times of the animation:
+   - `scripts/word_cues.py timeline.json spec.json cues.json` turns words into cue times: recordings as `"file"` entries, an action's sound on its frame (`"at"` a word plus `"offset"`), whooshes on cuts, pops on reveals, typing ticks;
    - then `sound-design`'s `sfx_stems.py` and `mix.py --video`.
 8. Before sending, check:
    - Every character moves in every frame, and nobody stands frozen in the background.
