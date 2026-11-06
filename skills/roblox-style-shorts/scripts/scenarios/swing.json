@@ -1,0 +1,538 @@
+{
+ "id": "swing",
+ "fps": 15,
+ "size": [
+  540,
+  960
+ ],
+ "samples": 16,
+ "cast": {
+  "kid": {
+   "shirt": "#FF8A2B",
+   "pants": "#2B3A67",
+   "scale": 0.7,
+   "extras": [
+    "kid_hair"
+   ],
+   "face": {}
+  },
+  "mom": {
+   "shirt": "#2BB5A8",
+   "pants": "#4A6FA5",
+   "scale": 1.08,
+   "extras": [
+    "mom_hair"
+   ],
+   "face": {
+    "lashes": true
+   }
+  },
+  "dad": {
+   "shirt": "#C8323C",
+   "pants": "#8C7B5A",
+   "scale": 1.12,
+   "belly": 0.05,
+   "face": {
+    "mustache": true
+   }
+  }
+ },
+ "set": {
+  "swing": {
+   "loc": [
+    0,
+    0
+   ],
+   "pivot_h": 2.6,
+   "length": 2.0,
+   "width": 3.6
+  },
+  "trees": [
+   [
+    -6,
+    9,
+    5.0
+   ],
+   [
+    7,
+    11,
+    5.5
+   ],
+   [
+    -12,
+    14,
+    6.0
+   ],
+   [
+    2,
+    16,
+    4.8
+   ],
+   [
+    13,
+    6,
+    5.2
+   ]
+  ],
+  "climbing_frame": [
+   -5.5,
+   4.5
+  ],
+  "bench": [
+   5.5,
+   3.5
+  ],
+  "lamp": [
+   3.2,
+   6.0
+  ],
+  "posters": [
+   {
+    "poster": {
+     "photo": "assets/photos/chelsea.png"
+    },
+    "pos": [
+     3.2,
+     5.925,
+     1.55
+    ],
+    "width": 0.42,
+    "rot": 3
+   }
+  ]
+ },
+ "shots": [
+  {
+   "id": "mom",
+   "caption": "When I'm with mom",
+   "duration": 4.0,
+   "parent": "mom",
+   "parent_pos": [
+    0.55,
+    1.15
+   ],
+   "amp_deg": 18,
+   "action": "gentle_push",
+   "faces": {
+    "kid": [
+     [
+      0,
+      "happy",
+      [
+       0,
+       0.2
+      ]
+     ],
+     [
+      0.9,
+      "laugh"
+     ],
+     [
+      2.0,
+      "happy",
+      [
+       0.5,
+       0.3
+      ]
+     ],
+     [
+      2.9,
+      "laugh"
+     ]
+    ],
+    "mom": [
+     [
+      0,
+      "happy",
+      [
+       -0.5,
+       -0.4
+      ]
+     ],
+     [
+      1.9,
+      "laugh"
+     ],
+     [
+      3.0,
+      "happy",
+      [
+       -0.5,
+       -0.4
+      ]
+     ]
+    ]
+   },
+   "camera": [
+    {
+     "until": 1.9,
+     "from": {
+      "loc": [
+       2.6,
+       -4.6,
+       1.35
+      ],
+      "target": [
+       0.2,
+       0.35,
+       1.2
+      ],
+      "lens": 25
+     },
+     "to": {
+      "loc": [
+       2.4,
+       -4.25,
+       1.37
+      ],
+      "target": [
+       0.2,
+       0.35,
+       1.2
+      ],
+      "lens": 26
+     },
+     "shake": 0.08
+    },
+    {
+     "until": 99,
+     "from": {
+      "loc": [
+       2.3,
+       -3.2,
+       0.95
+      ],
+      "target": {
+       "actor": "kid",
+       "offset": [
+        0,
+        0,
+        1.0
+       ],
+       "mix": 0.3,
+       "base": [
+        0.12,
+        0.45,
+        1.3
+       ]
+      },
+      "lens": 27
+     },
+     "to": {
+      "loc": [
+       2.1,
+       -2.9,
+       0.98
+      ],
+      "target": {
+       "actor": "kid",
+       "offset": [
+        0,
+        0,
+        1.0
+       ],
+       "mix": 0.3,
+       "base": [
+        0.12,
+        0.45,
+        1.3
+       ]
+      },
+      "lens": 29
+     },
+     "shake": 0.1
+    }
+   ]
+  },
+  {
+   "id": "dad",
+   "caption": "When I'm with dad",
+   "duration": 5.6,
+   "parent": "dad",
+   "parent_pos": [
+    0.55,
+    1.15
+   ],
+   "amp_deg": 18,
+   "action": "launch",
+   "launch": {
+    "windup_at": 1.45,
+    "shove_at_back_extreme": 1,
+    "max_deg": 92,
+    "release_deg": 70,
+    "boost": 2.3,
+    "reenter_at": 3.45,
+    "reenter_from_z": 5.2,
+    "land_xy": [
+     -0.75,
+     -1.45
+    ],
+    "step_aside_x": 1.0
+   },
+   "faces": {
+    "kid": [
+     [
+      0,
+      "happy",
+      [
+       0,
+       0.2
+      ]
+     ],
+     [
+      1.3,
+      "neutral",
+      [
+       0.8,
+       0.2
+      ]
+     ],
+     [
+      1.75,
+      "scared",
+      [
+       0.8,
+       0.1
+      ]
+     ],
+     [
+      2.15,
+      "shocked",
+      [
+       0,
+       0.6
+      ]
+     ],
+     [
+      2.6,
+      "scared",
+      [
+       0,
+       0.8
+      ]
+     ]
+    ],
+    "dad": [
+     [
+      0,
+      "smug",
+      [
+       -0.5,
+       -0.4
+      ]
+     ],
+     [
+      1.55,
+      "smug",
+      [
+       0.5,
+       0.0
+      ]
+     ],
+     [
+      2.2,
+      "proud"
+     ],
+     [
+      4.45,
+      "shocked",
+      [
+       -0.8,
+       -0.6
+      ]
+     ],
+     [
+      5.0,
+      "smug",
+      [
+       0.5,
+       0.0
+      ]
+     ]
+    ]
+   },
+   "camera": [
+    {
+     "until": 1.45,
+     "from": {
+      "loc": [
+       2.6,
+       -4.6,
+       1.35
+      ],
+      "target": [
+       0.2,
+       0.35,
+       1.2
+      ],
+      "lens": 25
+     },
+     "to": {
+      "loc": [
+       2.45,
+       -4.3,
+       1.37
+      ],
+      "target": [
+       0.2,
+       0.35,
+       1.2
+      ],
+      "lens": 26
+     },
+     "shake": 0.08
+    },
+    {
+     "until": 2.07,
+     "from": {
+      "loc": [
+       1.85,
+       -1.65,
+       1.48
+      ],
+      "target": [
+       0.3,
+       0.55,
+       1.4
+      ],
+      "lens": 27
+     },
+     "to": {
+      "loc": [
+       1.65,
+       -1.4,
+       1.5
+      ],
+      "target": [
+       0.3,
+       0.6,
+       1.42
+      ],
+      "lens": 31
+     },
+     "shake": 0.25
+    },
+    {
+     "until": 3.2,
+     "from": {
+      "loc": [
+       2.7,
+       -5.0,
+       1.4
+      ],
+      "target": {
+       "actor": "kid",
+       "offset": [
+        0,
+        0,
+        0.6
+       ],
+       "mix": 0.4,
+       "base": [
+        0.2,
+        0.0,
+        1.4
+       ]
+      },
+      "lens": 23
+     },
+     "to": {
+      "loc": [
+       2.9,
+       -5.4,
+       1.2
+      ],
+      "target": {
+       "actor": "kid",
+       "offset": [
+        0,
+        0,
+        0.6
+       ],
+       "mix": 0.4,
+       "base": [
+        0.2,
+        -0.3,
+        2.0
+       ]
+      },
+      "lens": 23
+     },
+     "shake": 0.35
+    },
+    {
+     "until": 4.75,
+     "from": {
+      "loc": [
+       0.15,
+       -3.9,
+       0.32
+      ],
+      "target": [
+       -0.35,
+       -0.85,
+       1.05
+      ],
+      "lens": 20
+     },
+     "to": {
+      "loc": [
+       0.1,
+       -3.7,
+       0.3
+      ],
+      "target": [
+       -0.4,
+       -0.95,
+       0.95
+      ],
+      "lens": 21
+     },
+     "shake": 0.12
+    },
+    {
+     "until": 99,
+     "from": {
+      "loc": [
+       1.55,
+       -0.3,
+       1.62
+      ],
+      "target": {
+       "actor": "parent",
+       "offset": [
+        0,
+        0,
+        1.6
+       ]
+      },
+      "lens": 30
+     },
+     "to": {
+      "loc": [
+       1.45,
+       -0.1,
+       1.68
+      ],
+      "target": {
+       "actor": "parent",
+       "offset": [
+        0,
+        0,
+        1.72
+       ]
+      },
+      "lens": 40
+     },
+     "shake": 0.1
+    }
+   ]
+  }
+ ],
+ "music": {
+  "file": "assets/music_ukulele_reasanka_cc0.mp3",
+  "gain": 0.8,
+  "mute_from": 6.7,
+  "resume_at": 8.38
+ }
+}

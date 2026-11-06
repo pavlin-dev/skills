@@ -1,0 +1,15 @@
+All bundled audio is CC0 1.0 (public domain), obtained via the SoundSafari/CC0-1.0-Music collection on GitHub
+(https://github.com/SoundSafari/CC0-1.0-Music). Files are trimmed excerpts of the originals.
+
+assets/music_ukulele_reasanka_cc0.mp3   "short ukulele loop" by reasanka        freesound.org #383023
+assets/sfx/ambience_schoolyard.ogg      "bangalore_schulhof" by nikitralala      freesound.org #239019 (26-38 s)
+assets/sfx/thud.wav                     "lewes kik bangs thuds" by victormalloy  freesound.org #113615 (18.55 s)
+assets/sfx/footsteps.wav                "footstepspan" by noiselvr               freesound.org #266451
+
+All other sound effects (creaks, whooshes, slide whistles, thumps, clank, sting, pop) are synthesized by audio_mix.py.
+
+Photos (bundled with scikit-image sample data):
+assets/photos/chelsea.png            cat "Chelsea", CC0 by Stefan van der Walt
+assets/photos/coffee.png             coffee cup, CC0 by Rachel Michetti (courtesy of Pikolo Espresso Bar)
+assets/photos/rocket.png             DSCOVR launch on Falcon 9, SpaceX, released into the public domain
+assets/photos/hubble_deep_field.png  Hubble eXtreme Deep Field, NASA, public domain
