@@ -1,0 +1,314 @@
+{
+  "title": "General-parser - architektura",
+  "projects": [
+    {
+      "name": "General-parser",
+      "mods": [
+        {
+          "id": "route",
+          "n": "Rozpoznání",
+          "d": "Má na starost poznat, co přišlo, a vybrat cestu.",
+          "line": [
+            [
+              "Přijetí",
+              "odkaz nebo soubor"
+            ],
+            [
+              "Stažení stránky",
+              "⇄ weby"
+            ],
+            [
+              "Výběr cesty",
+              "scraper, soubor, YouTube, nebo AI"
+            ]
+          ]
+        },
+        {
+          "id": "scrap",
+          "n": "Scrapery",
+          "d": "Má na starost vytáhnout píseň ze známých webů.",
+          "line": [
+            [
+              "Scraper pro doménu",
+              "jen známé weby"
+            ],
+            [
+              "Název a akordy z HTML",
+              "bez sítě"
+            ],
+            [
+              "Výsledek",
+              "píseň"
+            ]
+          ]
+        },
+        {
+          "id": "file",
+          "n": "Soubory",
+          "d": "Má na starost přečíst píseň z PDF a skenu.",
+          "line": [
+            [
+              "Text z PDF",
+              "přesný text, bez OCR"
+            ],
+            [
+              "Sken",
+              "⇄ AI opraví písmena"
+            ],
+            [
+              "Výsledek",
+              "píseň"
+            ]
+          ]
+        },
+        {
+          "id": "yt",
+          "n": "YouTube",
+          "d": "Má na starost najít píseň u videa.",
+          "line": [
+            [
+              "Popis a komentáře",
+              "⇄ YouTube API"
+            ],
+            [
+              "Odkazy z popisu",
+              "další stránky s akordy"
+            ],
+            [
+              "Výsledek",
+              "píseň"
+            ]
+          ]
+        },
+        {
+          "id": "ai",
+          "n": "AI záloha",
+          "d": "Má na starost poradit si s neznámým webem.",
+          "line": [
+            [
+              "Neznámý web",
+              "⇄ AI vytáhne píseň"
+            ],
+            [
+              "Ověření proti zdroji",
+              "nic si nevymýšlí"
+            ],
+            [
+              "Výsledek",
+              "píseň"
+            ]
+          ]
+        },
+        {
+          "id": "qual",
+          "n": "Kontrola kvality",
+          "d": "Má na starost ohodnotit každou píseň jistotou.",
+          "line": [
+            [
+              "Kontrola",
+              "akordy, délka, struktura"
+            ],
+            [
+              "Jistota",
+              "od 0 do 1"
+            ],
+            [
+              "Výsledek",
+              "písně s jistotou"
+            ]
+          ]
+        }
+      ],
+      "io": [
+        {
+          "id": "in",
+          "n": "Volající",
+          "note": "vstup · Updater, Backend",
+          "kind": "in"
+        },
+        {
+          "id": "out",
+          "n": "Volající",
+          "note": "výstup · dostane písně",
+          "kind": "out"
+        }
+      ],
+      "svc": [
+        {
+          "id": "web",
+          "n": "Weby"
+        },
+        {
+          "id": "or",
+          "n": "OpenRouter (AI)"
+        },
+        {
+          "id": "yta",
+          "n": "YouTube API"
+        }
+      ],
+      "flows": [
+        [
+          "in",
+          "route",
+          "odkaz"
+        ],
+        [
+          "route",
+          "scrap",
+          "stránka"
+        ],
+        [
+          "route",
+          "file",
+          "soubor"
+        ],
+        [
+          "route",
+          "yt",
+          "video"
+        ],
+        [
+          "route",
+          "ai",
+          "stránka"
+        ],
+        [
+          "scrap",
+          "qual",
+          "píseň"
+        ],
+        [
+          "file",
+          "qual",
+          "píseň"
+        ],
+        [
+          "yt",
+          "qual",
+          "píseň"
+        ],
+        [
+          "ai",
+          "qual",
+          "píseň"
+        ],
+        [
+          "qual",
+          "out",
+          "písně"
+        ]
+      ],
+      "uses": [
+        [
+          "route",
+          "web",
+          "adresa",
+          "stránka"
+        ],
+        [
+          "file",
+          "or",
+          "sken",
+          "opravy"
+        ],
+        [
+          "yt",
+          "yta",
+          "video",
+          "popis"
+        ],
+        [
+          "ai",
+          "or",
+          "stránka",
+          "píseň"
+        ]
+      ],
+      "scen": [
+        [
+          "Odkaz na neznámý web",
+          [
+            [
+              "in",
+              "route",
+              "neznamy-web.cz",
+              "Volající pošle odkaz na web, který neznáme."
+            ],
+            [
+              "route",
+              "web",
+              "neznamy-web.cz",
+              "Rozpoznání stránku stáhne."
+            ],
+            [
+              "web",
+              "route",
+              "HTML",
+              "Web vrátí stránku."
+            ],
+            [
+              "route",
+              "ai",
+              "HTML",
+              "Scraper pro tuhle doménu nemáme, jde to AI záloze."
+            ],
+            [
+              "ai",
+              "or",
+              "HTML",
+              "AI záloha požádá model o vytažení písně."
+            ],
+            [
+              "or",
+              "ai",
+              "Oceány + akordy",
+              "Model vrátí píseň."
+            ],
+            [
+              "ai",
+              "qual",
+              "Oceány",
+              "Ověří se proti zdroji a jde na kontrolu."
+            ],
+            [
+              "qual",
+              "out",
+              "Oceány · 0,8",
+              "Volající dostane píseň s jistotou 0,8."
+            ]
+          ]
+        ],
+        [
+          "PDF se zpěvníkem",
+          [
+            [
+              "in",
+              "route",
+              "zpevnik.pdf",
+              "Volající pošle PDF."
+            ],
+            [
+              "route",
+              "file",
+              "zpevnik.pdf",
+              "Je to soubor, jde do Souborů."
+            ],
+            [
+              "file",
+              "qual",
+              "12 písní",
+              "Text PDF je přesný, AI není potřeba."
+            ],
+            [
+              "qual",
+              "out",
+              "12 písní · 0,95",
+              "Volající dostane 12 písní s vysokou jistotou."
+            ]
+          ]
+        ]
+      ]
+    }
+  ]
+}

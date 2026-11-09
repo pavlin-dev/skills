@@ -1,0 +1,452 @@
+<title>/*__TITLE__*/</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* architecture-map engine: do not hand-edit per project, feed it a model via scripts/build.mjs.
+   Layout: the page computes the picture: grid placement search for parts, perimeter slots for services and inputs/outputs, right-angle routing that avoids boxes and other lines */
+:root {
+	--bg: #f4f5f7; --ink: #1c2130; --muted: #6a7287; --line: #d0d5df; --card: #ffffff; --soft: #eceef2; --help: #7d8598;
+	--own: #2f5bd3; --own-soft: #e7edfc; --soon: #b7791f; --tok: #e0533a;
+	--c1: #2f5bd3; --c2: #0f8a6a; --c3: #8a4bd6; --c4: #c2410c; --c5: #0e7490; --c6: #a21caf;
+	--c1s: #eef2fd; --c2s: #e8f6f1; --c3s: #f4ecfc; --c4s: #fdf0e9; --c5s: #e6f4f7; --c6s: #faeefa;
+	--sans: 'IBM Plex Sans', system-ui, -apple-system, Segoe UI, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme="light"]) {
+		--bg: #12151c; --ink: #e6e9f0; --muted: #8f98ab; --line: #343b4d; --card: #1b2030; --soft: #232834; --help: #8f98ab;
+		--own: #6f90ff; --own-soft: #1d2747; --soon: #e0a84a; --tok: #ff7a5c;
+		--c1: #6f90ff; --c2: #3cc79f; --c3: #b88cf0; --c4: #f59e6b; --c5: #4cc3d9; --c6: #e07ae8;
+		--c1s: #18213c; --c2s: #112b23; --c3s: #241b35; --c4s: #2e1d12; --c5s: #0f2a30; --c6s: #2c1530; color-scheme: dark;
+	}
+}
+:root[data-theme="dark"] {
+	--bg: #12151c; --ink: #e6e9f0; --muted: #8f98ab; --line: #343b4d; --card: #1b2030; --soft: #232834; --help: #8f98ab;
+	--own: #6f90ff; --own-soft: #1d2747; --soon: #e0a84a; --tok: #ff7a5c;
+	--c1: #6f90ff; --c2: #3cc79f; --c3: #b88cf0; --c4: #f59e6b; --c5: #4cc3d9; --c6: #e07ae8;
+	--c1s: #18213c; --c2s: #112b23; --c3s: #241b35; --c4s: #2e1d12; --c5s: #0f2a30; --c6s: #2c1530; color-scheme: dark;
+}
+* { box-sizing: border-box }
+body { background: var(--bg); color: var(--ink); font-family: var(--sans); padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 18px 40px }
+h1 { font-size: 20px; margin: 0 0 4px }
+.lead { color: var(--muted); font-size: 13.5px; margin: 0 0 14px; max-width: 95ch }
+.row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-bottom: 8px }
+button.b { font: inherit; font-size: 14px; border: 1px solid var(--line); background: var(--card); color: var(--ink); padding: 7px 12px; border-radius: 8px; cursor: pointer; text-align: left }
+button.b small { display: block; font-size: 11.5px; color: var(--muted); font-weight: 400 }
+button.b[aria-pressed="true"] { border-color: var(--own); background: var(--own-soft); font-weight: 600 }
+button.b.play[aria-pressed="true"] { border-color: var(--tok); background: var(--card); box-shadow: inset 0 0 0 1px var(--tok) }
+button:focus-visible { outline: 2px solid var(--own); outline-offset: 2px }
+.lbl { font-size: 12.5px; color: var(--muted); margin-right: 4px; min-width: 70px }
+.crumbs { font-size: 14px; display: flex; gap: 6px; align-items: center; min-height: 26px }
+.crumbs button { font: inherit; border: 0; background: none; color: var(--own); cursor: pointer; padding: 2px 4px }
+.crumbs .sep { color: var(--muted) }
+.stage { border: 1px solid var(--line); border-radius: 14px; background: var(--card); overflow: hidden; max-width: 1200px }
+svg.d { width: 100%; height: auto; display: block; user-select: none; max-height: 80vh }
+svg text { font-family: var(--sans); fill: var(--ink) }
+.mut { fill: var(--muted) !important }
+.bx { stroke-width: 2 }
+.bx.svc { fill: var(--soft); stroke: var(--line); stroke-width: 1.2 }
+.bx.io { fill: var(--card); stroke: var(--ink); stroke-width: 1.5 }
+.bx.soon { stroke: var(--soon); stroke-dasharray: 6 4 }
+.bx.opt { stroke-dasharray: 3 4 }
+.mod { cursor: pointer }
+.ov, .deep { transition: opacity .35s }
+.deep { opacity: 0; pointer-events: none }
+.zoomed .ov { opacity: 0 }
+.zoomed .deep { opacity: 1 }
+.edge { transition: opacity .25s }
+.dim .edge { opacity: .18 }
+.dim .edge.done { opacity: .7 }
+.edge.help { opacity: .8 }
+.dim .edge.hot { opacity: 1 }
+.parked { transition: opacity .4s; opacity: .55 }
+.cap { margin-top: 10px; font-size: 15px; min-height: 46px; max-width: 1200px; display: flex; gap: 10px; align-items: baseline }
+.cap .n { font-size: 12px; font-weight: 700; color: var(--tok); white-space: nowrap }
+.note { font-size: 12.5px; color: var(--muted); margin-top: 6px; max-width: 95ch }
+@media (prefers-reduced-motion: reduce) { .ov, .deep, .edge, .parked { transition: none } }
+</style>
+
+<h1 id="h1"></h1>
+<p class="lead" id="lead"></p>
+<div class="row" role="group" aria-label="Projekt" id="projs"></div>
+<div class="row" role="group" aria-label="Příklad" id="scen"></div>
+<div class="crumbs" id="crumbs"></div>
+<div class="stage"><svg class="d" id="map"></svg></div>
+<div class="cap" id="cap"></div>
+<p class="note" id="stats"></p>
+
+<script>
+const NS = 'http://www.w3.org/2000/svg'
+function el(tag, attrs = {}, parent) { const e = document.createElementNS(NS, tag); for (const k in attrs) if (attrs[k] !== '' && attrs[k] != null) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e }
+function txt(parent, x, y, s, attrs = {}) { const t = el('text', { x, y, ...attrs }, parent); t.textContent = s; return t }
+function wrap(s, n) { const out = []; let line = ''; for (const w of s.split(' ')) { if ((line + ' ' + w).trim().length > n && line) { out.push(line); line = w } else line = (line + ' ' + w).trim() } if (line) out.push(line); return out }
+const COL = { main: '--own', help: '--help', soon: '--soon', opt: '--own', async: '--own' }
+const pillW = (label, s = .9) => label.length * 12.5 * s * .58 + 14 * s
+function pill(parent, x, y, label, s = 1, col = '--own', fill) {
+	const fs = 12.5 * s, w = pillW(label, s), h = 20 * s
+	el('rect', { x: x - w / 2, y: y - h / 2, width: w, height: h, rx: h / 2, style: `fill:var(${fill || '--card'});stroke:var(${col})`, 'stroke-width': 1.1 * s }, parent)
+	txt(parent, x, y + fs * .36, label, { 'text-anchor': 'middle', 'font-size': fs, 'font-weight': 700, style: `fill:var(${fill ? '--card' : col})` })
+}
+
+/* ================= projects ================= */
+const PAGE = /*__PAGE__*/
+const PROJ = PAGE.projects
+const UI = Object.assign({ open: 'klikni = dovnitř', service: 'služba', shared: 'sdílená', example: 'Příklad', project: 'Projekt', hint: 'Pusť příklad a uvidíš, kde začíná a kudy jde.', end: 'konec', back: 'klikni na část', parts: 'částí', stats: true }, PAGE.ui || {})
+
+/* ================= 1. placement: try every grid and every assignment, keep the cheapest ================= */
+const W = 190, H = 220, GAPX = 150, GAPY = 130, IOW = 175, IOH = 60, SVW = 175, SVH = 46, S = 10
+function perms(cells, k, fn) {
+	const used = new Array(cells.length).fill(false), cur = []
+	const rec = () => { if (cur.length === k) return fn(cur); for (let i = 0; i < cells.length; i++) if (!used[i]) { used[i] = true; cur.push(cells[i]); rec(); cur.pop(); used[i] = false } }
+	rec()
+}
+const orient = (a, b, c) => Math.sign((b[0] - a[0]) * (c[1] - a[1]) - (b[1] - a[1]) * (c[0] - a[0]))
+const cross = (a, b, c, d) => orient(a, b, c) * orient(a, b, d) < 0 && orient(c, d, a) * orient(c, d, b) < 0
+const onSeg = (a, b, p) => orient(a, b, p) === 0 && Math.min(a[0], b[0]) <= p[0] && p[0] <= Math.max(a[0], b[0]) && Math.min(a[1], b[1]) <= p[1] && p[1] <= Math.max(a[1], b[1])
+function place(m) {
+	const n = m.mods.length, idx = Object.fromEntries(m.mods.map((d, i) => [d.id, i]))
+	const mm = m.flows.filter(f => idx[f[0]] != null && idx[f[1]] != null).map(f => [idx[f[0]], idx[f[1]]])
+	const inMods = m.flows.filter(f => m.io.find(i => i.id === f[0])).map(f => idx[f[1]])
+	const outMods = m.flows.filter(f => m.io.find(i => i.id === f[1])).map(f => idx[f[0]])
+	const shared = {}; for (const [mo, s] of m.uses) (shared[s] = shared[s] || []).push(idx[mo])
+	const all = []
+	for (let cols = 1; cols <= n; cols++) for (let rows = 1; rows <= n; rows++) {
+		let top = []
+		if (cols * rows < n || cols * rows > n + 6 || cols > 4 || rows > 4) continue
+		const cells = []; for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) cells.push([c, r])
+		perms(cells, n, a => {
+			let s = 0
+			for (const [i, j] of mm) { const dc = Math.abs(a[i][0] - a[j][0]), dr = Math.abs(a[i][1] - a[j][1]); s += (dc + dr) * 10 + (dc && dr ? 4 : 0) + (dc + dr > 1 ? 12 : 0) }
+			if (top.length === 2 && s >= top[1].s) return
+			// straight lines between centres that cross each other, or pass over another part
+			for (let p = 0; p < mm.length; p++) {
+				const [i, j] = mm[p], A = a[i], B = a[j]
+				for (let q = p + 1; q < mm.length; q++) { const [k, l] = mm[q]; if (i === k || i === l || j === k || j === l) continue; if (cross(A, B, a[k], a[l])) s += 18 }
+				for (let o = 0; o < n; o++) if (o !== i && o !== j && onSeg(A, B, a[o])) s += 30
+			}
+			for (const i of inMods) s += a[i][0] * 6
+			for (const i of outMods) s += (cols - 1 - a[i][0]) * 6
+			for (const s2 in shared) { const u = shared[s2]; for (let p = 0; p < u.length; p++) for (let q = p + 1; q < u.length; q++) s += (Math.abs(a[u[p]][0] - a[u[q]][0]) + Math.abs(a[u[p]][1] - a[u[q]][1])) * 3 }
+			if (rows === 1 && n > 2) s += 25
+			if (cols === 1 && n > 2) s += 25
+			s += (cols * rows - n) * 3 + Math.abs(cols - rows) * 2
+			if (top.length < 2 || s < top[1].s) { top.push({ s, a: a.map(x => x.slice()), cols, rows }); top.sort((x, y) => x.s - y.s); top = top.slice(0, 2) }
+		})
+		all.push(...top)
+	}
+	return all
+}
+
+/* ================= 2. boxes: parts in the grid, world in slots around it ================= */
+function layout(m, P) {
+	const pos = {}
+	const ML = IOW + 90, MT = SVH + 90
+	const cx = c => ML + 40 + c * (W + GAPX), cy = r => MT + 40 + r * (H + GAPY)
+	m.mods.forEach((d, i) => pos[d.id] = { x: cx(P.a[i][0]), y: cy(P.a[i][1]), w: W, h: H, kind: 'mod' })
+	const frame = { x: ML, y: MT, w: P.cols * (W + GAPX) - GAPX + 80, h: P.rows * (H + GAPY) - GAPY + 80 }
+	// slots: above/below each column, left/right of each row
+	const slots = []
+	for (let c = 0; c < P.cols; c++) {
+		slots.push({ side: 'top', x: cx(c) + W / 2, y: frame.y - 46 - SVH / 2 })
+		slots.push({ side: 'bot', x: cx(c) + W / 2, y: frame.y + frame.h + 46 + SVH / 2 })
+	}
+	for (let r = 0; r < P.rows; r++) {
+		slots.push({ side: 'left', x: frame.x - 70 - IOW / 2, y: cy(r) + H / 2 })
+		slots.push({ side: 'right', x: frame.x + frame.w + 70 + IOW / 2, y: cy(r) + H / 2 })
+	}
+	// a second, outer ring for systems with many outside boxes (it costs distance, so it is used only when needed)
+	for (const s of slots.slice()) {
+		const d = { top: [0, -(SVH + 40)], bot: [0, SVH + 40], left: [-(IOW + 40), 0], right: [IOW + 40, 0] }[s.side]
+		slots.push({ side: s.side, x: s.x + d[0], y: s.y + d[1], outer: true })
+	}
+	const taken = new Set()
+	const mc = id => ({ x: pos[id].x + W / 2, y: pos[id].y + H / 2 })
+	const take = (users, sides, w, h) => {
+		let best = null
+		slots.forEach((s, k) => {
+			if (taken.has(k) || !sides.includes(s.side)) return
+			const d = users.reduce((a, u) => { const c = mc(u); return a + Math.abs(c.x - s.x) + Math.abs(c.y - s.y) }, 0)
+			if (!best || d < best.d) best = { d, k }
+		})
+		if (!best) throw new Error('Too many outside boxes for this grid: merge services or inputs.')
+		taken.add(best.k); const s = slots[best.k]
+		return { x: s.x - w / 2, y: s.y - h / 2, w, h, side: s.side }
+	}
+	for (const io of m.io) {
+		const mods = m.flows.filter(x => x[0] === io.id || x[1] === io.id).map(f => f[0] === io.id ? f[1] : f[0])
+		pos[io.id] = { ...take(mods, io.kind === 'in' ? ['left', 'top'] : ['right', 'bot'], IOW, IOH), kind: 'io' }
+	}
+	const users = {}; for (const [mo, s] of m.uses) (users[s] = users[s] || []).push(mo)
+	Object.entries(users).sort((a, b) => b[1].length - a[1].length).forEach(([s, us]) => pos[s] = { ...take(us, ['top', 'bot', 'left', 'right'], SVW, SVH), kind: 'svc' })
+	let x2 = 0, y2 = 0, x1 = 1e9, y1 = 1e9
+	for (const k in pos) { const p = pos[k]; x1 = Math.min(x1, p.x); y1 = Math.min(y1, p.y); x2 = Math.max(x2, p.x + p.w); y2 = Math.max(y2, p.y + p.h) }
+	x1 = Math.min(x1, frame.x); y1 = Math.min(y1, frame.y - 30); x2 = Math.max(x2, frame.x + frame.w); y2 = Math.max(y2, frame.y + frame.h)
+	const dx = 30 - x1, dy = 30 - y1
+	for (const k in pos) { pos[k].x += dx; pos[k].y += dy }
+	frame.x += dx; frame.y += dy
+	return { pos, frame, vb: [x2 - x1 + 60, y2 - y1 + 60], P }
+}
+
+/* ================= 3. routing: A* on a 10px lattice, right angles, avoids boxes, avoids other lines ================= */
+function makeRouter(vb, pos) {
+	const GX = Math.ceil(vb[0] / S), GY = Math.ceil(vb[1] / S)
+	const block = new Uint8Array(GX * GY), used = new Uint8Array(GX * GY), soft = new Uint8Array(GX * GY)
+	for (const k in pos) {
+		const p = pos[k], pad = 12
+		for (let gx = Math.max(0, Math.floor((p.x - pad) / S)); gx <= Math.min(GX - 1, Math.floor((p.x + p.w + pad) / S)); gx++)
+			for (let gy = Math.max(0, Math.floor((p.y - pad) / S)); gy <= Math.min(GY - 1, Math.floor((p.y + p.h + pad) / S)); gy++) block[gy * GX + gx] = 1
+	}
+	// distance to the nearest box, in cells: lines pay for hugging a box, so they run down the middle of the gaps
+	const near = new Uint8Array(GX * GY).fill(9)
+	{ const q = []; for (let i = 0; i < block.length; i++) if (block[i]) { near[i] = 0; q.push(i) }
+	  for (let h = 0; h < q.length; h++) { const c = q[h], cx = c % GX, cy = (c / GX) | 0; for (const [dx, dy] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) { const nx = cx + dx, ny = cy + dy; if (nx < 0 || ny < 0 || nx >= GX || ny >= GY) continue; const n2 = ny * GX + nx; if (near[n2] > near[c] + 1) { near[n2] = near[c] + 1; if (near[n2] < 5) q.push(n2) } } } }
+	const HUG = [0, 2.2, 1.4, .8, .35, 0, 0, 0, 0, 0]
+	const DIRS = [[1, 0], [0, 1], [-1, 0], [0, -1]]
+	const sideDir = { right: 0, bot: 1, left: 2, top: 3 }
+	const portCount = {}
+	function port(id, side) {
+		const p = pos[id], key = id + side, k = portCount[key] = (portCount[key] || 0) + 1
+		const off = [0, 2, -2, 4, -4, 6, -6][k - 1] || 0
+		if (side === 'top' || side === 'bot') { const gx = Math.floor((p.x + p.w / 2) / S) + off, x = gx * S + S / 2; const gy = side === 'top' ? Math.floor((p.y - 18) / S) : Math.floor((p.y + p.h + 18) / S); return { gx, gy, edge: { x, y: side === 'top' ? p.y : p.y + p.h }, cell: { x, y: gy * S + S / 2 } } }
+		const gy = Math.floor((p.y + p.h / 2) / S) + off, y = gy * S + S / 2; const gx = side === 'left' ? Math.floor((p.x - 18) / S) : Math.floor((p.x + p.w + 18) / S); return { gx, gy, edge: { x: side === 'left' ? p.x : p.x + p.w, y }, cell: { x: gx * S + S / 2, y } }
+	}
+	function astar(a, b, startDir, endDir) {
+		const N = GX * GY * 4, g = new Float64Array(N).fill(Infinity), par = new Int32Array(N).fill(-1)
+		const heap = [], push = (f, s) => { heap.push([f, s]); let i = heap.length - 1; while (i) { const j = (i - 1) >> 1; if (heap[j][0] <= heap[i][0]) break; [heap[i], heap[j]] = [heap[j], heap[i]]; i = j } }
+		const pop = () => { const top = heap[0], last = heap.pop(); if (heap.length) { heap[0] = last; let i = 0; for (;;) { const l = 2 * i + 1, r = l + 1; let m = i; if (l < heap.length && heap[l][0] < heap[m][0]) m = l; if (r < heap.length && heap[r][0] < heap[m][0]) m = r; if (m === i) break; [heap[i], heap[m]] = [heap[m], heap[i]]; i = m } } return top }
+		const s0 = (a.gy * GX + a.gx) * 4 + startDir; g[s0] = 0; push(0, s0)
+		const goal = b.gy * GX + b.gx
+		while (heap.length) {
+			const [, s] = pop(), cell = s >> 2, d = s & 3, cx = cell % GX, cy = (cell / GX) | 0
+			if (cell === goal) { let cost = g[s] + (d === (endDir + 2) % 4 ? 0 : 8); const path = []; let t = s; while (t >= 0) { path.push(t >> 2); t = par[t] } return { cost, cells: path.reverse() } }
+			for (let nd = 0; nd < 4; nd++) {
+				if (nd === (d + 2) % 4) continue
+				const nx = cx + DIRS[nd][0], ny = cy + DIRS[nd][1]
+				if (nx < 0 || ny < 0 || nx >= GX || ny >= GY) continue
+				const nc = ny * GX + nx
+				if (block[nc] && nc !== goal) continue
+				const ns = nc * 4 + nd, cost = g[s] + 1 + (nd !== d ? 6 : 0) + used[nc] * 9 + HUG[near[nc]] + soft[nc] * .8
+				if (cost < g[ns]) { g[ns] = cost; par[ns] = s; push(cost + Math.abs(nx - b.gx) + Math.abs(ny - b.gy), ns) }
+			}
+		}
+		return null
+	}
+	function sidesToward(id, other) {
+		const p = pos[id], q = pos[other], dx = (q.x + q.w / 2) - (p.x + p.w / 2), dy = (q.y + q.h / 2) - (p.y + p.h / 2)
+		return [['right', dx], ['left', -dx], ['bot', dy], ['top', -dy]].sort((a, b) => b[1] - a[1]).slice(0, 2).map(s => s[0])
+	}
+	function route(a, b) {
+		let best = null
+		for (const sa of sidesToward(a, b)) for (const sb of sidesToward(b, a)) {
+			const saved = { ...portCount }
+			const pa = port(a, sa), pb = port(b, sb)
+			Object.assign(portCount, saved); for (const k in portCount) if (!(k in saved)) delete portCount[k]
+			const r = astar(pa, pb, sideDir[sa], sideDir[sb])
+			if (r && (!best || r.cost < best.cost)) best = { ...r, sa, sb }
+		}
+		const pa = port(a, best.sa), pb = port(b, best.sb)
+		for (const c of best.cells) { used[c] = Math.min(255, used[c] + 1) }
+		for (const c of best.cells) { const cx = c % GX, cy = (c / GX) | 0; for (const [dx, dy] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) { const n2 = (cy + dy) * GX + cx + dx; if (n2 >= 0 && n2 < used.length && !best.cells.includes(n2)) soft[n2] = Math.min(9, soft[n2] + 1) } }
+		const pts = [pa.edge, ...best.cells.map(c => ({ x: (c % GX) * S + S / 2, y: ((c / GX) | 0) * S + S / 2 })), pb.edge]
+		const simp = [pts[0]]
+		for (let i = 1; i < pts.length - 1; i++) { const p = simp[simp.length - 1], q = pts[i], r = pts[i + 1]; if (!((p.x === q.x && q.x === r.x) || (p.y === q.y && q.y === r.y))) simp.push(q) }
+		simp.push(pts[pts.length - 1])
+		return simp
+	}
+	return { route, crossings: () => { let n = 0; for (const u of used) if (u > 1) n++; return n } }
+}
+// route every line for a candidate and score the real picture
+function solve(m) {
+	let best = null
+	const cands = place(m)
+	for (const P of cands) {
+		const L = layout(m, P), R = makeRouter(L.vb, L.pos), paths = {}
+		const isMod = id => m.mods.some(x => x.id === id)
+		const order = [...m.flows].sort((a, b) => (isMod(b[0]) && isMod(b[1])) - (isMod(a[0]) && isMod(a[1])))
+		let len = 0, bends = 0
+		const add = (k, p) => { paths[k] = p; len += polyLen(p); bends += p.length - 2 }
+		for (const f of order) add(f[0] + '>' + f[1], R.route(f[0], f[1]))
+		for (const [mo, sv] of m.uses) add(mo + '>' + sv, R.route(mo, sv))
+		const cr = R.crossings(), flat = (P.rows === 1 || P.cols === 1) && m.mods.length > 2 ? 400 : 0, score = cr * 40 + len / 12 + bends * 6 + flat
+		if (!best || score < best.score) best = { score, L, paths, cr, n: cands.length }
+	}
+	return best
+}
+
+/* ================= drawing ================= */
+const ST = { proj: 0 }
+let svg, layers, box, groups, G, zoom, cur, anim, VB, model, PLACED = []
+function polyLen(p) { let L = 0; for (let i = 1; i < p.length; i++) L += Math.hypot(p[i].x - p[i - 1].x, p[i].y - p[i - 1].y); return L }
+function pointAt(p, t) { let L = polyLen(p) * t; for (let i = 1; i < p.length; i++) { const d = Math.hypot(p[i].x - p[i - 1].x, p[i].y - p[i - 1].y); if (L <= d) { const u = d ? L / d : 0; return { x: p[i - 1].x + (p[i].x - p[i - 1].x) * u, y: p[i - 1].y + (p[i].y - p[i - 1].y) * u } } L -= d } return p[p.length - 1] }
+function rounded(p, r = 9) {
+	let d = `M${p[0].x},${p[0].y}`
+	for (let i = 1; i < p.length - 1; i++) {
+		const a = p[i - 1], b = p[i], c = p[i + 1], l1 = Math.hypot(b.x - a.x, b.y - a.y), l2 = Math.hypot(c.x - b.x, c.y - b.y), rr = Math.min(r, l1 / 2, l2 / 2)
+		const p1 = { x: b.x - (b.x - a.x) / l1 * rr, y: b.y - (b.y - a.y) / l1 * rr }, p2 = { x: b.x + (c.x - b.x) / l2 * rr, y: b.y + (c.y - b.y) / l2 * rr }
+		d += ` L${p1.x},${p1.y} Q${b.x},${b.y} ${p2.x},${p2.y}`
+	}
+	return d + ` L${p[p.length - 1].x},${p[p.length - 1].y}`
+}
+function longest(p) { let bi = 1, bl = 0; for (let i = 1; i < p.length; i++) { const l = Math.hypot(p[i].x - p[i - 1].x, p[i].y - p[i - 1].y); if (l > bl) { bl = l; bi = i } } return [p[bi - 1], p[bi], bl] }
+
+function render() {
+	stopAndClear()
+	model = PROJ[ST.proj]
+	const t0 = performance.now()
+	const SOL = solve(model), L = SOL.L
+	VB = L.vb; zoom = null; G = {}; box = L.pos; PLACED = []
+	svg = document.getElementById('map'); svg.innerHTML = ''; svg.classList.remove('dim'); svg.setAttribute('viewBox', `0 0 ${VB[0]} ${VB[1]}`); cur = [0, 0, VB[0], VB[1]]
+	const d = el('defs', {}, svg)
+	for (const k in COL) { const m = el('marker', { id: `mk-${k}`, viewBox: '0 0 10 10', refX: 8.5, refY: 5, markerWidth: 5, markerHeight: 5, orient: 'auto-start-reverse' }, d); el('path', { d: 'M0,0 L10,5 L0,10 z', style: `fill:var(${COL[k]})` }, m) }
+	const back = el('g', {}, svg), front = el('g', {}, svg), edges = el('g', { id: 'edges' }, svg), tok = el('g', {}, svg)
+	layers = { edges, tok }
+	const F = L.frame
+	el('rect', { x: F.x, y: F.y, width: F.w, height: F.h, rx: 24, fill: 'none', style: 'stroke:var(--ink)', 'stroke-width': 2.5 }, back)
+	txt(back, F.x + 16, F.y + 24, model.name, { 'font-size': 15, 'font-weight': 700 })
+	for (const io of model.io) {
+		const b = box[io.id]
+		el('rect', { class: 'bx io' + (io.opt ? ' opt' : '') + (io.soon ? ' soon' : ''), x: b.x, y: b.y, width: b.w, height: b.h, rx: 12 }, back)
+		txt(back, b.x + b.w / 2, b.y + 26, io.n, { 'text-anchor': 'middle', 'font-size': 15, 'font-weight': 700 })
+		txt(back, b.x + b.w / 2, b.y + 45, io.note, { 'text-anchor': 'middle', 'font-size': 12, style: `fill:var(${io.soon ? '--soon' : '--muted'})` })
+	}
+	for (const s of model.svc) {
+		const b = box[s.id], n = model.uses.filter(u => u[1] === s.id).length
+		el('rect', { class: 'bx svc', x: b.x, y: b.y, width: b.w, height: b.h, rx: 10 }, back)
+		txt(back, b.x + b.w / 2, b.y + 21, s.n, { 'text-anchor': 'middle', 'font-size': 13.5, 'font-weight': 600 })
+		txt(back, b.x + b.w / 2, b.y + 37, UI.service + (n > 1 ? ' · ' + UI.shared : ''), { 'text-anchor': 'middle', 'font-size': 11, class: 'mut' })
+	}
+	groups = {}
+	model.mods.forEach((m, i) => {
+		const b = box[m.id], cx = b.x + W / 2, c = '--c' + (i + 1), cs = '--c' + (i + 1) + 's'
+		const g = el('g', { class: 'mod' }, front); groups[m.id] = g
+		el('rect', { class: 'bx', x: b.x, y: b.y, width: W, height: H, rx: 16, style: `fill:var(${cs});stroke:var(${c})` }, g)
+		const ov = el('g', { class: 'ov' }, g)
+		txt(ov, cx, b.y + 86, m.n, { 'text-anchor': 'middle', 'font-size': 20, 'font-weight': 700 })
+		wrap(m.d, 21).forEach((l, k) => txt(ov, cx, b.y + 113 + k * 18, l, { 'text-anchor': 'middle', 'font-size': 13.5, class: 'mut' }))
+		txt(ov, cx, b.y + H - 14, UI.open, { 'text-anchor': 'middle', 'font-size': 11, class: 'mut' })
+		const deep = el('g', { class: 'deep' }, g)
+		txt(deep, b.x + 14, b.y + 22, m.n, { 'font-size': 11, 'font-weight': 700 })
+		wrap(m.d, 44).forEach((l, k) => txt(deep, b.x + 14, b.y + 34 + k * 8, l, { 'font-size': 6.6, class: 'mut' }))
+		const x = b.x + 24, y0 = b.y + 58, step = (H - 76) / (m.line.length - 1)
+		el('path', { d: `M${x},${y0} L${x},${y0 + step * (m.line.length - 1)}`, style: `stroke:var(${c})`, 'stroke-width': 3.2, 'stroke-linecap': 'round' }, deep)
+		m.line.forEach(([n, note], k) => {
+			const y = y0 + k * step, last = k === m.line.length - 1
+			el('circle', { cx: x, cy: y, r: last ? 5.5 : 4.6, style: `fill:var(${last ? c : '--card'});stroke:var(${c})`, 'stroke-width': 2.4 }, deep)
+			txt(deep, x + 12, y + 1, n, { 'font-size': 8.4, 'font-weight': 700 })
+			txt(deep, x + 12, y + 11, note, { 'font-size': 6.6, class: 'mut' })
+		})
+		g.addEventListener('click', e => { e.stopPropagation(); zoomTo(m.id) })
+	})
+	// route: part-to-part first (shortest), then world, then services; a pair is two lines side by side
+	for (const [a, c, w, kind = 'main'] of model.flows) {
+		const p = SOL.paths[a + '>' + c]; G[a + '>' + c] = p
+		if (kind === 'two') { G[c + '>' + a] = p.slice().reverse(); drawArrow(p, 'main', w, [a + '>' + c, c + '>' + a], .5, 0, true) }
+		else drawArrow(p, kind, w, a + '>' + c, .5)
+	}
+	for (const [mo, s, req, ans] of model.uses) {
+		// one quiet two-way line per service: it asks, the service answers
+		const p = SOL.paths[mo + '>' + s]
+		G[mo + '>' + s] = p; G[s + '>' + mo] = p.slice().reverse()
+		drawArrow(p, 'help', req + ' / ' + ans, [mo + '>' + s, s + '>' + mo], .5, 0, true)
+	}
+	svg.onclick = () => zoom && out()
+	crumbs()
+	const sc = document.getElementById('scen')
+	sc.hidden = !(model.scen && model.scen.length); model.scen = model.scen || []
+	sc.innerHTML = `<span class="lbl">${UI.example}</span>` + model.scen.map(([n], i) => `<button type="button" class="b play" data-s="${i}" aria-pressed="false">${n}</button>`).join('')
+	sc.querySelectorAll('.play').forEach(b => b.onclick = () => b.getAttribute('aria-pressed') === 'true' ? stopAndClear() : play(+b.dataset.s))
+	document.getElementById('cap').innerHTML = `<span class="n"></span><span class="t" style="color:var(--muted)">${UI.hint}</span>`
+	if (UI.stats) document.getElementById('stats').textContent = `Vypočteno za ${Math.round(performance.now() - t0)} ms: vyzkoušeno ${SOL.n} kandidátů s nakreslenými čarami, vybrána mřížka ${L.P.cols}×${L.P.rows}, místa, kde se čáry potkávají: ${SOL.cr}.`
+}
+// arrow along a right-angle path; the word sits on its longest straight stretch
+function drawArrow(p, kind, word, key, t, side = 0, both = false) {
+	const col = COL[kind], r = 3.5, grp = el('g', { class: 'edge ' + kind, 'data-k': [].concat(key).join(' ') }, layers.edges)
+	const a = p[0], a2 = p[1], z = p[p.length - 1], z2 = p[p.length - 2]
+	const ua = { x: Math.sign(a2.x - a.x), y: Math.sign(a2.y - a.y) }, uz = { x: Math.sign(z.x - z2.x), y: Math.sign(z.y - z2.y) }
+	const q = p.slice(); q[0] = { x: a.x + ua.x * (r + (both ? 1 : 0)), y: a.y + ua.y * (r + (both ? 1 : 0)) }; q[q.length - 1] = { x: z.x - uz.x * (r + 1), y: z.y - uz.y * (r + 1) }
+	el('path', { d: rounded(q), fill: 'none', style: `stroke:var(${col})`, 'stroke-width': kind === 'help' ? 1.3 : 1.7, 'stroke-dasharray': kind === 'soon' ? '6 5' : kind === 'opt' ? '2 5' : kind === 'async' ? '8 4' : '', 'stroke-linecap': 'round', 'marker-end': `url(#mk-${kind})`, 'marker-start': both ? `url(#mk-${kind})` : '' }, grp)
+	for (const pt of [a, z]) el('circle', { cx: pt.x, cy: pt.y, r, style: `fill:var(--card);stroke:var(${col})`, 'stroke-width': 1.4 }, grp)
+	// try segments longest first and a few spots on each; take the first spot clear of other words and boxes
+	const w = pillW(word), segs = []
+	for (let i = 1; i < p.length; i++) segs.push([p[i - 1], p[i], Math.hypot(p[i].x - p[i - 1].x, p[i].y - p[i - 1].y)])
+	segs.sort((x, y) => y[2] - x[2])
+	const hit = (x, y) => PLACED.some(r => Math.abs(r.x - x) < (r.w + w) / 2 + 4 && Math.abs(r.y - y) < 22) || Object.values(box).some(b => x + w / 2 > b.x && x - w / 2 < b.x + b.w && y + 10 > b.y && y - 10 < b.y + b.h)
+	let spot = null
+	for (const [s1, s2, len] of segs) {
+		if (len < 34) continue
+		const vert = s1.x === s2.x, sh = side ? (vert ? w / 2 + 5 : 14) * side : 0
+		for (const t of [.5, .3, .7, .18, .82]) { const x = s1.x + (s2.x - s1.x) * t + (vert ? sh : 0), y = s1.y + (s2.y - s1.y) * t + (vert ? 0 : sh); if (!hit(x, y)) { spot = { x, y }; break } }
+		if (spot) break
+	}
+	if (!spot) { const [s1, s2] = segs[0]; spot = { x: (s1.x + s2.x) / 2, y: (s1.y + s2.y) / 2 } }
+	PLACED.push({ x: spot.x, y: spot.y, w })
+	pill(grp, spot.x, spot.y, word, .9, col)
+}
+
+/* camera */
+function fly(to) {
+	cancelAnimationFrame(anim)
+	const from = cur.slice(), t0 = performance.now(), dur = matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 550
+	const step = now => {
+		const t = dur ? Math.min(1, (now - t0) / dur) : 1, e = t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2
+		cur = from.map((f, i) => f + (to[i] - f) * e); svg.setAttribute('viewBox', cur.join(' '))
+		if (t < 1) anim = requestAnimationFrame(step)
+	}
+	anim = requestAnimationFrame(step)
+}
+function zoomTo(id) { stopAndClear(); zoom = id; for (const k in groups) groups[k].classList.toggle('zoomed', k === id); const b = box[id], Wv = Math.max((H + 70) * VB[0] / VB[1], 560), Hv = Wv * VB[1] / VB[0]; fly([b.x + W / 2 - Wv / 2, b.y + H / 2 - Hv / 2, Wv, Hv]); crumbs() }
+function out() { zoom = null; for (const k in groups) groups[k].classList.remove('zoomed'); fly([0, 0, VB[0], VB[1]]); crumbs() }
+function crumbs() { const c = document.getElementById('crumbs'); c.innerHTML = zoom ? `<button type="button">${model.name}</button><span class="sep">›</span><b>${model.mods.find(m => m.id === zoom).n}</b>` : `<b>${model.name}</b> <span class="sep">· ${UI.back}</span>`; if (zoom) c.querySelector('button').onclick = out }
+
+/* example player: when what travels changes, the old label stays parked where it arrived and the new one pops out */
+let run = 0
+const sleep = ms => new Promise(r => setTimeout(r, ms))
+const RM = () => matchMedia('(prefers-reduced-motion: reduce)').matches
+function tween(dur, f, my) { return new Promise(res => { const t0 = performance.now(); const step = now => { if (my !== run) return res(); const p = dur ? Math.min(1, (now - t0) / dur) : 1; f(p < .5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2); p < 1 ? requestAnimationFrame(step) : res() }; requestAnimationFrame(step) }) }
+function newTok(label, at) { const g = el('g', { transform: `translate(${at.x},${at.y}) scale(.2)` }, layers.tok); pill(g, 0, 0, label, 1.2, '--tok', '--tok'); g.dataset.label = label; return g }
+async function play(i) {
+	stopAndClear()
+	const my = ++run, steps = model.scen[i][1], cap = document.getElementById('cap')
+	if (zoom) out()
+	document.querySelectorAll('.play').forEach(b => b.setAttribute('aria-pressed', +b.dataset.s === i))
+	svg.classList.add('dim')
+	let tok = null, here = null
+	const pop = async (g, at) => tween(RM() ? 0 : 260, e => g.setAttribute('transform', `translate(${at.x},${at.y}) scale(${.2 + .8 * e})`), my)
+	const park = g => { if (!g) return; const old = layers.tok.querySelectorAll('.parked'); if (old.length >= 2) old[0].remove(); g.classList.add('parked'); const m = /translate\(([^,]+),([^)]+)\)/.exec(g.getAttribute('transform')); g.setAttribute('transform', `translate(${m[1]},${m[2]}) scale(.82)`) }
+	for (let k = 0; k < steps.length; k++) {
+		if (my !== run) return
+		const [a, b, payload, text] = steps[k]
+		cap.innerHTML = `<span class="n">${k + 1} / ${steps.length}</span><span class="t">${text}</span>`
+		if (a === 'at') {
+			const bx = box[b], to = { x: bx.x + W / 2, y: bx.y + H / 2 + 50 }
+			if (tok && tok.dataset.label !== payload) park(tok)
+			tok = newTok(payload, to); await pop(tok, to); here = to
+			await sleep(RM() ? 0 : 1400)
+			continue
+		}
+		const path = G[a + '>' + b]
+		document.querySelectorAll('#edges .edge').forEach(e => { if (e.classList.contains('hot')) { e.classList.remove('hot'); e.classList.add('done') } if (e.dataset.k.split(' ').includes(a + '>' + b)) e.classList.add('hot') })
+		if (!tok || tok.dataset.label !== payload) { park(tok); tok = newTok(payload, path[0]); await pop(tok, path[0]) }
+		const g = tok
+		await tween(RM() ? 0 : Math.min(1300, 450 + polyLen(path) * 1.6), e => { const p = pointAt(path, e); g.setAttribute('transform', `translate(${p.x},${p.y})`) }, my)
+		here = path[path.length - 1]
+		await sleep(RM() ? 0 : 550)
+	}
+	if (my !== run) return
+	cap.querySelector('.n').textContent = UI.end
+	document.querySelectorAll('.play').forEach(b => b.setAttribute('aria-pressed', false))
+}
+function stopAndClear() { run++; svg?.classList.remove('dim'); if (layers) layers.tok.innerHTML = ''; document.querySelectorAll('#edges .edge').forEach(e => e.classList.remove('done', 'hot')); document.querySelectorAll('.play').forEach(b => b.setAttribute('aria-pressed', false)) }
+
+document.getElementById('h1').textContent = PAGE.title || PROJ[0].name
+document.getElementById('lead').textContent = PAGE.lead || ''
+{
+	const box = document.getElementById('projs')
+	if (PROJ.length < 2) box.hidden = true
+	else {
+		box.innerHTML = `<span class="lbl">${UI.project}</span>` + PROJ.map((p, i) => `<button type="button" class="b" data-p="${i}" aria-pressed="${i === 0}">${p.name}<small>${p.mods.length} ${UI.parts}</small></button>`).join('')
+		box.querySelectorAll('[data-p]').forEach(b => b.onclick = () => { ST.proj = +b.dataset.p; box.querySelectorAll('[data-p]').forEach(x => x.setAttribute('aria-pressed', x === b)); render() })
+	}
+}
+render()
+</script>

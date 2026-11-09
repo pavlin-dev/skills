@@ -1,0 +1,328 @@
+{
+  "title": "Updater - architektura",
+  "lead": "Části updateru, okolní svět a co si posílají. Klikni na část pro to, co se děje uvnitř. Pusť příklad a uvidíš jednu konkrétní věc projít systémem.",
+  "projects": [
+    {
+      "name": "Updater",
+      "mods": [
+        {
+          "id": "src",
+          "n": "Zdroje",
+          "d": "Má na starost seznam míst, kde mohou být písně.",
+          "line": [
+            [
+              "Odkazy od agenta",
+              "← vyhledávací agent, když běží"
+            ],
+            [
+              "Procházení webů a kanálů",
+              "← sledované weby a YouTube"
+            ],
+            [
+              "Uložení do seznamu",
+              "každý zdroj právě jednou"
+            ],
+            [
+              "Předvýběr",
+              "⇄ AI: je to video s písní?"
+            ],
+            [
+              "Výsledek",
+              "zdroj připravený ke zpracování"
+            ]
+          ]
+        },
+        {
+          "id": "proc",
+          "n": "Zpracování",
+          "d": "Má na starost získání písní ze zdrojů.",
+          "line": [
+            [
+              "Výběr zdroje na řadě",
+              "nové hned, staré znovu po čase"
+            ],
+            [
+              "Rozbor parserem",
+              "⇄ General-parser"
+            ],
+            [
+              "Porovnání se známými",
+              "nová píseň, nebo nová verze?"
+            ],
+            [
+              "Výsledek",
+              "písně s názvem, textem a akordy"
+            ]
+          ]
+        },
+        {
+          "id": "pub",
+          "n": "Publikace",
+          "d": "Má na starost dostání dobrých písní do zpěvníku.",
+          "line": [
+            [
+              "Posouzení",
+              "⇄ AI dá písni známku"
+            ],
+            [
+              "Rozhodnutí",
+              "je píseň dost dobrá?"
+            ],
+            [
+              "Výsledek (připravujeme)",
+              "doručení do zpěvníku přes Backend"
+            ]
+          ]
+        }
+      ],
+      "io": [
+        {
+          "id": "ag",
+          "n": "Vyhledávací agent",
+          "note": "vstup · volitelný",
+          "kind": "in",
+          "opt": true
+        },
+        {
+          "id": "be",
+          "n": "Backend",
+          "note": "výstup · připravujeme",
+          "kind": "out",
+          "soon": true
+        }
+      ],
+      "svc": [
+        {
+          "id": "gp",
+          "n": "General-parser"
+        },
+        {
+          "id": "or",
+          "n": "OpenRouter (AI)"
+        }
+      ],
+      "flows": [
+        [
+          "ag",
+          "src",
+          "odkazy",
+          "opt"
+        ],
+        [
+          "src",
+          "proc",
+          "zdroj"
+        ],
+        [
+          "proc",
+          "pub",
+          "písně"
+        ],
+        [
+          "pub",
+          "be",
+          "píseň",
+          "soon"
+        ]
+      ],
+      "uses": [
+        [
+          "src",
+          "or",
+          "video",
+          "verdikt"
+        ],
+        [
+          "proc",
+          "gp",
+          "zdroj",
+          "písně"
+        ],
+        [
+          "pub",
+          "or",
+          "píseň",
+          "známka"
+        ]
+      ],
+      "scen": [
+        [
+          "Agent najde video",
+          [
+            [
+              "ag",
+              "src",
+              "youtu.be/k3Fw",
+              "Vyhledávací agent najde video „Oceány (živě)“ a pošle odkaz."
+            ],
+            [
+              "src",
+              "or",
+              "Oceány (živě)",
+              "Zdroje odkaz uloží a pošlou AI název a popis videa."
+            ],
+            [
+              "or",
+              "src",
+              "ano, píseň",
+              "AI: ano, je to píseň."
+            ],
+            [
+              "src",
+              "proc",
+              "youtu.be/k3Fw",
+              "Ze Zdrojů vyjde zdroj připravený ke zpracování."
+            ],
+            [
+              "proc",
+              "gp",
+              "youtu.be/k3Fw",
+              "Zpracování ho pošle parseru."
+            ],
+            [
+              "gp",
+              "proc",
+              "Oceány + akordy",
+              "Parser vrátí píseň s textem a akordy."
+            ],
+            [
+              "proc",
+              "pub",
+              "Oceány (nová)",
+              "Takovou píseň ještě nemáme, vyjde jako nová."
+            ],
+            [
+              "pub",
+              "or",
+              "Oceány + akordy",
+              "Publikace ji dá posoudit AI."
+            ],
+            [
+              "or",
+              "pub",
+              "8/10",
+              "Známka 8 z 10."
+            ],
+            [
+              "pub",
+              "be",
+              "Oceány",
+              "Dost dobrá. Doručení do zpěvníku připravujeme."
+            ]
+          ]
+        ],
+        [
+          "Sledovaný web přidá píseň",
+          [
+            [
+              "at",
+              "src",
+              "chvaly.cz/oceany",
+              "Zdroje při procházení sledovaného webu najdou novou stránku. Bez agenta."
+            ],
+            [
+              "src",
+              "proc",
+              "chvaly.cz/oceany",
+              "Stránka není video, předvýběr AI se přeskočí."
+            ],
+            [
+              "proc",
+              "gp",
+              "chvaly.cz/oceany",
+              "Zpracování ji pošle parseru."
+            ],
+            [
+              "gp",
+              "proc",
+              "Oceány + akordy",
+              "Parser vrátí píseň."
+            ],
+            [
+              "proc",
+              "pub",
+              "Oceány (verze 2)",
+              "Píseň známe, vyjde jako nová verze."
+            ],
+            [
+              "pub",
+              "or",
+              "Oceány + akordy",
+              "AI ji posoudí."
+            ],
+            [
+              "or",
+              "pub",
+              "4/10",
+              "Známka 4 z 10."
+            ],
+            [
+              "at",
+              "pub",
+              "nepublikovat",
+              "Málo. Verze zůstane uložená, do zpěvníku nejde."
+            ]
+          ]
+        ],
+        [
+          "Video není píseň",
+          [
+            [
+              "ag",
+              "src",
+              "youtu.be/x9Qa",
+              "Agent pošle odkaz na video."
+            ],
+            [
+              "src",
+              "or",
+              "Kázání 12. 3.",
+              "Zdroje se zeptají AI."
+            ],
+            [
+              "or",
+              "src",
+              "ne",
+              "AI: ne."
+            ],
+            [
+              "at",
+              "src",
+              "vyřazeno",
+              "Zdroj zůstane jako vyřazený, aby se nezkoumal znovu."
+            ]
+          ]
+        ],
+        [
+          "Opakovaná kontrola zdroje",
+          [
+            [
+              "at",
+              "proc",
+              "chvaly.cz/oceany",
+              "Stránka zpracovaná před měsícem je znovu na řadě: možná na ní někdo upravil akordy. Nikdo zvenku nic neposlal."
+            ],
+            [
+              "proc",
+              "gp",
+              "chvaly.cz/oceany",
+              "Zpracování ji znovu pošle parseru."
+            ],
+            [
+              "gp",
+              "proc",
+              "Oceány + akordy",
+              "Parser vrátí stejnou píseň."
+            ],
+            [
+              "at",
+              "proc",
+              "beze změny",
+              "Nic nového. Publikace se nic nedozví."
+            ]
+          ]
+        ]
+      ]
+    }
+  ]
+}
