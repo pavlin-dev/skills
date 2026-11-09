@@ -1,0 +1,14 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face { font-family: Inter; font-weight: 400 900; src: url(fonts/inter-latin-ext.woff2) format('woff2'); unicode-range: U+0100-024F, U+1E00-1EFF; }
+@font-face { font-family: Inter; font-weight: 400 900; src: url(fonts/inter-latin.woff2) format('woff2'); }
+html, body { margin: 0; background: #000; }
+canvas#c { width: 540px; height: 960px; display: block; }
+</style>
+<script>window.ready = new Promise((r) => (window._ready = r));</script>
+<script type="importmap">{ "imports": { "three": "./lib/three.module.js" } }</script>
+</head><body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script type="module" src="cell.js"></script>
+</body></html>

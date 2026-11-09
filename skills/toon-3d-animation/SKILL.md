@@ -32,6 +32,7 @@ It works because it is deliberately simple: no fingers, no anatomy, no uncanny f
     - an upper lid line only when the eye is really half closed. A lid line on an open eye turns small eyes into a "T";
     - a small nose, a small mouth that opens on the voice.
     - Kinds: smile, happy, proud, sly, flat, grim, surprised, scared, angry, pain, sleep, shrug, awe, wistful, talk.
+    - Other looks built on this toolkit (round white eyes, skin-coloured heads) are separate skills, see "Other looks" at the end.
   - **Hair:** a mass of rounded locks with a fixed hairline well above the brows, so it never covers the eyes, from any camera height or head angle. Hair over the eyes "looks like a mistake".
     - Flat two-tone colour, no gloss: a smooth highlight band and soft shading read "too realistic, it shines".
     - Drawn lines in a darker shade of the hair colour (not black): the groove between locks, strokes up from the tips, one flat lighter stroke per lock.
@@ -110,7 +111,8 @@ The first cut was "not dynamic, the characters should feel alive". What fixed it
 
 ## 5. Build and render
 
-1. `scripts/setup.sh <dir>` copies the template (`index.html`, `toon.js`, `props.js`, an example `story.js`, an example `timeline.json`, the model sheet `sheet.html` + `sheet.js`) and downloads three.js r170 and the Inter font.
+1. Rendering needs ffmpeg and Playwright with a Chromium: `npm i playwright && npx playwright install chromium` in the project folder (or a global install; `CHROME_PATH` points to another browser).
+   `scripts/setup.sh <dir>` copies the template (`index.html`, `toon.js`, `props.js`, an example `story.js`, an example `timeline.json`, the model sheet `sheet.html` + `sheet.js`) and downloads three.js r170 and the Inter font.
 2. Replace `timeline.json` with your voice-over's timeline:
 
    ```
@@ -159,3 +161,11 @@ Also liked: no people at all, one continuous camera gliding over a desk where ob
 - hearts flying out at the end.
 
 Build it with the same toolkit (`obj`, `toon`, `RB`, `shotCam`, a phone screen, the timeline). Fill the scene: real CC0 props and an HDRI from Poly Haven (polyhaven.com, glTF via its public API) turned an "empty, poor" set into a lived-in room. Characters carry emotion better; objects suit a strong object metaphor.
+
+## Other looks
+
+This skill is the toolkit and its default look. Similar looks built on the same `toon.js` live in their own skills, which add a `look.js` with presets and their own face sheet and example set:
+
+- `toon-3d-storytime`: skin-coloured heads, big round white eyes (`EYES.round`), mouths with teeth and a tongue, warm courtroom and prison sets, the look of narrated true-story shorts.
+
+For a new look, add a skill the same way instead of changing the default here: put new capabilities (an eye style, a mouth, a face kind) into `toon.js` as options, and the choices of the look (which eyes, skin tones, costumes, sets) into the new skill.
