@@ -1,13 +1,13 @@
 ---
-name: demand-validation
-description: How to find and validate a business or product idea before building it, in three steps - finding problems from signals people already left (the `demand-signals` skill), verifying the problem with real people by their past behaviour, and testing a page or small prototype with a price to see who pays and comes back. This is the hub - it holds the rules shared by all steps, agreeing the search area with the user (including where others with the same tools are not already looking), steps 2 and 3, stop criteria written before each test, B2B vs B2C differences, what an agent can do alone and what stays with the user, and the opportunity file that keeps candidates and killed ideas. Use whenever the user wants to find a business idea, a project or product opportunity, asks "what should I build", wants to validate an idea or check demand before building, asks if people would pay for something, or is about to build a new product nobody has asked for yet.
+name: business-opportunities
+description: How to find and validate a business or product idea before building it, in three steps - finding problems from signals people already left (the `opportunity-signals` skill), verifying the problem with real people by their past behaviour, and testing a page or small prototype with a price to see who pays and comes back. This is the hub - it holds the rules shared by all steps, agreeing the search area with the user (including where others with the same tools are not already looking), steps 2 and 3, stop criteria written before each test, B2B vs B2C differences, what an agent can do alone and what stays with the user, and the opportunity file that keeps candidates and killed ideas. Use whenever the user wants to find a business idea, a project or product opportunity, asks "what should I build", wants to validate an idea or check demand before building, asks if people would pay for something, or is about to build a new product nobody has asked for yet.
 ---
 
-# Demand validation
+# Business opportunities
 
 Building is the cheap part now. What is scarce is a problem people already spend money or time on, and a way to reach those people. This skill finds such problems and tests them in the cheapest order, so that most ideas die in days and the one that survives has evidence behind it.
 
-The work has three steps. This skill is the hub: it holds what all steps share, plus steps 2 and 3 for now; step 1 has its own skill, `demand-signals`. Each step answers one question and none of them is "build the product":
+The work has three steps. This skill is the hub: it holds what all steps share, plus steps 2 and 3 for now; step 1 has its own skill, `opportunity-signals`. Each step answers one question and none of them is "build the product":
 
 | Step | Question | Who does it | Result |
 |---|---|---|---|
@@ -54,7 +54,7 @@ Use the obvious global sources mainly as a check: if the same problem is solved 
 
 ## Step 1: Finding
 
-Done with the `demand-signals` skill: what counts as a signal and how strong it is, how to collect and group signals into problems, the five-question filter, the crowding check, the case against, and the candidate card. It needs the search area agreed above and ends with at most three candidate cards in the opportunity file.
+Done with the `opportunity-signals` skill: what counts as a signal and how strong it is, how to collect and group signals into problems, the five-question filter, the crowding check, the case against, and the candidate card. It needs the search area agreed above and ends with at most three candidate cards in the opportunity file.
 
 ## Step 2: Verifying the problem
 
