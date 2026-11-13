@@ -87,7 +87,7 @@ The logic is the same, the methods differ.
 | Finding signals | job ads, paid gigs, reviews of tools, new regulations | app store charts and reviews, searches, communities, what people already buy |
 | Step 2 interviews | work well, 10 to 15 are enough | work poorly, often skipped |
 | Who pays | often not the user of the product: verify both | the user, on impulse |
-| Step 3 | deposit, paid pilot, manual service | a real payment page and measured conversion and retention |
+| Step 3 | a mockup shown in conversations, then Wizard of Oz offered directly to a few dozen companies | a fake door with targeted traffic, then Wizard of Oz behind a real payment, measuring conversion and retention |
 | Sample needed | a few to a few dozen companies | hundreds to thousands of visits |
 | Main risk | long sales cycle, access to the decision maker | cost of getting a customer, retention |
 | Strongest proof | signed contract, renewal | still active after 30 days, renewed subscription |

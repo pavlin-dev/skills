@@ -49,11 +49,13 @@ Status: found / in step 2 / in step 3 / passed / killed
 
 #### Step 3: page or prototype with a price
 
-- Form (prototype behind payment / pre-order / manual service / page only):
-- Criterion written beforehand (visits, payments, date):
+- Technique (fake door / clickable mockup / Wizard of Oz) and the one question it answers:
+- What is faked and what is real (the value delivered and the payment are never faked):
+- For Wizard of Oz: who does the manual work, how fast, up to how many customers:
+- Criterion written beforehand (which action, how many, from how many relevant visitors, by which date):
 - Where visitors came from:
 - Where the numbers are read:
-- Result (visits, payments, returning users) and how sure we are:
+- Result (visits, clicks, contacts, payments, returning users) and how sure we are:
 - Decision: build / change segment / kill:
 
 ## Graveyard
