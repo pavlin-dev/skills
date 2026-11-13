@@ -1,13 +1,13 @@
 ---
 name: business-opportunities
-description: How to find and validate a business or product idea before building it, in three steps - finding problems from signals people already left (the `opportunity-signals` skill), verifying the problem with real people by their past behaviour, and testing a page or small prototype with a price to see who pays and comes back. This is the hub - it holds the rules shared by all steps, agreeing the search area with the user (including where others with the same tools are not already looking), steps 2 and 3, stop criteria written before each test, B2B vs B2C differences, what an agent can do alone and what stays with the user, and the opportunity file that keeps candidates and killed ideas. Use whenever the user wants to find a business idea, a project or product opportunity, asks "what should I build", wants to validate an idea or check demand before building, asks if people would pay for something, or is about to build a new product nobody has asked for yet.
+description: How to find and validate a business or product idea before building it, in three steps - finding problems from signals people already left (the `opportunity-signals` skill), verifying the problem with real people by their past behaviour, and testing a cheap first version with a price to see who pays and comes back (the `opportunity-prototype` skill). This is the hub - it holds the rules shared by all steps, agreeing the search area with the user (including where others with the same tools are not already looking), step 2, stop criteria written before each test, B2B vs B2C differences, what an agent can do alone and what stays with the user, and the opportunity file that keeps candidates and killed ideas. Use whenever the user wants to find a business idea, a project or product opportunity, asks "what should I build", wants to validate an idea or check demand before building, asks if people would pay for something, or is about to build a new product nobody has asked for yet.
 ---
 
 # Business opportunities
 
 Building is the cheap part now. What is scarce is a problem people already spend money or time on, and a way to reach those people. This skill finds such problems and tests them in the cheapest order, so that most ideas die in days and the one that survives has evidence behind it.
 
-The work has three steps. This skill is the hub: it holds what all steps share, plus steps 2 and 3 for now; step 1 has its own skill, `opportunity-signals`. Each step answers one question and none of them is "build the product":
+The work has three steps. This skill is the hub: it holds what all steps share, plus step 2 for now; step 1 has its own skill, `opportunity-signals`, and step 3 has `opportunity-prototype`. Each step answers one question and none of them is "build the product":
 
 | Step | Question | Who does it | Result |
 |---|---|---|---|
@@ -76,33 +76,7 @@ For consumer products this step often tells little: people cannot explain why th
 
 ## Step 3: A page or prototype with a price
 
-Now describe or build a small solution that is paid for from the first day, bring people from the segment to it, and measure what they do.
-
-| What the visitor did | What it proves |
-|---|---|
-| came to the page | nothing, only that the headline or ad works |
-| clicked "buy" or left an email | interest, weak (costs a second, commits to nothing) |
-| entered a card and paid | willingness to pay |
-| paid and uses it repeatedly | that the solution works |
-
-Most people who click "buy" never finish paying, so counting clicks overstates demand several times.
-
-Choose the form by how long the real thing takes to build:
-
-- **A working prototype behind a payment** when it can be built in days. One test answers both "do they pay" and "do they come back". Prefer this.
-- **A page with a real pre-order or deposit** when building takes weeks or more, or the buyer is a company (there a paid pilot or a deposit is a normal way to start).
-- **Doing the job by hand for money** for business customers: the customer gets the result now, and you learn exactly what to automate.
-- **A page whose "buy" button leads nowhere** only as a rough sieve between several ideas, and only honestly: after the click say plainly that it is not ready and offer to leave an email. Never pretend to charge.
-
-Rules for the test:
-
-- **Honesty.** Say that the product is early. Take money only for something you will deliver or refund, and say so on the page.
-- **Right visitors.** People must come from the segment where the signals were found. Friends and broad untargeted traffic measure the traffic, not the idea. Ways to get them: direct outreach (business customers, free but slow), communities the user is a real member of, the user's own audience, paid ads (mostly for consumer products that need hundreds of visitors). An ad is a way to bring people, not evidence.
-- **Enough of them.** Only a few percent of strangers pay. With 200 visits the difference between zero and three payments is chance; plan for high hundreds to thousands of relevant visits for consumer products, or a few dozen direct offers for business customers.
-- **Criterion beforehand.** Write how many visits and how many payments count as success before launching, and by which date.
-- **Measurement in place before launch**: where payments and returning users will be read, with tagged links so visits can be traced to their source.
-
-Only after this step passes does building the full product start.
+Done with the `opportunity-prototype` skill: choosing between a fake door, a clickable mockup and a Wizard of Oz version, what may and may never be faked, what not to build, honest disclosure, bringing the right visitors, the criterion and measurement before launch, and replacing the fake piece by piece once people pay. Only after this step passes does building the full product start.
 
 ## B2B and B2C
 
